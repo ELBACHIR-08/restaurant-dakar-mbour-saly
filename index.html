@@ -80,7 +80,7 @@
     .status-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border-radius:20px;background:#fff;border:1px solid var(--line)}
     .status-left{display:flex;align-items:center;gap:12px}.dot{width:13px;height:13px;border-radius:50%;background:#999;box-shadow:0 0 0 7px rgba(153,153,153,.12)}.dot.ok{background:var(--green);box-shadow:0 0 0 7px rgba(23,106,80,.13)}.dot.warn{background:var(--gold);box-shadow:0 0 0 7px rgba(185,140,76,.16)}
     .status-row b{display:block}.status-row small{display:block;color:var(--muted);margin-top:2px}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;background:#f3eadc;color:#7c5727}.badge.green{background:#e9f6f0;color:var(--green)}.badge.wine{background:#f5e8ec;color:var(--wine)}
-    .section{display:none}.section.active{display:block;animation:fade .24s ease}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .section{display:none;scroll-margin-top:96px}.section.active{display:block;animation:fade .24s ease}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .panel{border:1px solid var(--line);background:rgba(255,250,243,.88);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:20px}
     .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}.panel-title{font-size:28px;line-height:1;letter-spacing:-.04em;margin:0}.panel-sub{margin:6px 0 0;color:var(--muted);line-height:1.55}
     .demo-grid{display:grid;grid-template-columns:minmax(360px,.78fr) minmax(0,1.22fr) minmax(340px,.82fr);gap:18px;align-items:start}
@@ -94,6 +94,25 @@
     .side-stack{display:grid;gap:18px}.cart-card{border:1px solid var(--line);background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}.cart-card h3{margin:0 0 12px;font-size:23px;letter-spacing:-.04em}.cart-line{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e5d7c2;padding:10px 0;font-size:13px}.cart-line span:first-child{color:var(--muted)}.cart-line b{text-align:right}.empty{padding:22px;border:1px dashed #d8c6aa;border-radius:20px;text-align:center;color:var(--muted);background:#fffaf3}.total{border:1px solid #decaa9;background:linear-gradient(135deg,#fff8ec,#f4e4ca);border-radius:22px;padding:15px;margin-top:12px}.total-label{color:#7a6040;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:950}.amount{font-size:31px;font-weight:950;letter-spacing:-.045em}.uplift{display:flex;justify-content:space-between;gap:12px;background:#effaf4;color:var(--green);border:1px solid #cce7da;border-radius:18px;padding:11px;margin-top:10px;font-weight:850;font-size:13px}
     .reserve-box{border:1px solid var(--line);border-radius:22px;background:#fffaf3;padding:14px;margin-top:12px}.reserve-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.control{border:1px solid var(--line);border-radius:15px;background:white;padding:10px}.control label{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:950}.control input,.control select{border:0;outline:none;background:transparent;width:100%;padding-top:5px;font-weight:900;color:var(--ink)}.wallets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.wallets button{border:1px solid var(--line);background:white;border-radius:14px;padding:10px 7px;font-size:12px;font-weight:950}.wallets button.active{background:#17120f;color:white;border-color:#17120f}.pay{width:100%;border:0;background:linear-gradient(135deg,var(--wine),var(--wine2));color:white;border-radius:16px;padding:13px;margin-top:12px;font-weight:950}.pay.success{background:linear-gradient(135deg,var(--green),#27846a)}.clear{border:1px solid var(--line);background:white;color:var(--ink);border-radius:14px;padding:10px 12px;font-weight:850;width:100%;margin-top:8px}
     .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.metric .name{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:950}.metric .value{font-size:29px;font-weight:950;letter-spacing:-.045em;margin-top:6px}.metric .sub{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}.bar{height:10px;background:#f0e6d7;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--wine))}.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.table{border-collapse:collapse;width:100%;background:white;border-radius:18px;overflow:hidden}.table th,.table td{padding:13px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}.table th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:#fff4df}.table td:last-child,.table th:last-child{text-align:right}.script-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.script-card{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.script-card h3{margin:0 0 12px;font-size:20px}.script-step{display:flex;gap:10px;border-bottom:1px dashed #e5d7c2;padding:10px 0}.script-step:last-child{border-bottom:0}.num{width:27px;height:27px;border-radius:50%;background:#17120f;color:white;display:grid;place-items:center;font-size:12px;font-weight:950;flex:0 0 auto}.script-step p{margin:0;color:var(--muted);line-height:1.42;font-size:13px}.script-step b{color:var(--ink)}.offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.offer{border:1px solid var(--line);background:white;border-radius:26px;padding:20px;display:flex;flex-direction:column;gap:12px}.offer.featured{border-color:var(--gold);box-shadow:0 20px 46px rgba(185,140,76,.17);transform:translateY(-4px)}.offer h3{margin:0;font-size:21px}.offer .big{font-size:33px;font-weight:950;letter-spacing:-.05em}.offer ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}.toast{position:fixed;right:22px;bottom:22px;background:#17120f;color:white;border-radius:18px;padding:14px 16px;box-shadow:0 18px 50px rgba(0,0,0,.26);display:none;z-index:100;max-width:390px;line-height:1.35}.toast.show{display:block;animation:pop .24s ease}@keyframes pop{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+    .choice-system{background:#fffdf8;max-width:98%}
+    .flow-meta{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#f4eadb;color:#7c5727;font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;margin-bottom:8px}
+    .choice-title{font-weight:950;font-size:14px;line-height:1.35;margin-bottom:4px;color:#241b13}
+    .choice-subtitle{color:var(--muted);font-size:12px;line-height:1.42;margin-bottom:10px}
+    .choice-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .choice-btn{border:1px solid #eadfce;background:#fff;color:#261c14;border-radius:999px;padding:10px 12px;font-size:12px;font-weight:950;box-shadow:0 8px 16px rgba(35,27,20,.05);position:relative;z-index:20;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    .choice-btn:hover{border-color:#d4b77b;background:#fff7e8}
+    .choice-btn.primary-choice{background:#17120f;color:white;border-color:#17120f}
+    .choice-btn:disabled{opacity:.48;cursor:not-allowed;box-shadow:none}
+    .choice-btn.selected{background:#176a50;color:white;border-color:#176a50;opacity:1}
+    .summary-card{display:grid;gap:8px;margin-top:10px}
+    .summary-row{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid #f0e5d6;padding-bottom:7px;font-size:12px}
+    .summary-row span{color:var(--muted)}.summary-row b{text-align:right}
+    .inline-control{display:grid;gap:8px;margin-top:10px}
+    .inline-control input{border:1px solid #eadfce;border-radius:14px;padding:11px 12px;font-size:16px;background:#fff;width:100%}
+    .inline-control button{border:0;border-radius:14px;background:#17120f;color:white;font-weight:950;padding:11px 12px;touch-action:manipulation}
+    .conversation-note{font-size:11px;color:#7c5727;background:#fff3dc;border:1px solid #f0ddb9;border-radius:14px;padding:9px 10px;margin-top:9px;line-height:1.35}
+
     @media(max-width:1180px){.hero{grid-template-columns:1fr}.demo-grid{grid-template-columns:390px minmax(0,1fr)}.side-stack{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.script-grid,.offer-grid,.dashboard-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:860px){.app{padding:14px}.topbar{margin:-14px -14px 16px;padding:12px 14px}.topbar-inner{align-items:flex-start;flex-direction:column}.brand{min-width:0}.nav{justify-content:flex-start}.hero-card{padding:24px;min-height:auto}.demo-grid,.catalog-grid,.metrics,.script-grid,.offer-grid,.dashboard-grid,.reserve-controls{grid-template-columns:1fr}.phone{position:relative;top:auto;height:760px;max-width:420px;margin:auto}.wallets{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.panel-head{flex-direction:column}.hero p{font-size:16px}h1{font-size:44px}}
 
@@ -316,7 +335,21 @@
       tiramisu:['espresso','lyvrose','glace']
     };
 
-    const quicks = ['Je viens en couple','Je veux le Chateaubriand','Je préfère du poisson','Anniversaire pour 4 personnes','Budget 60000','Réserver à 20h30','Paiement Wave'];
+    const bundleMap = {
+      bundle_couple_premium:['chateaubriand','petitcaillou','moelleux'],
+      bundle_couple_light:['daurade','chablis','cremebrulee'],
+      bundle_couple_dessert:['tiramisu','espresso'],
+      bundle_birthday_cake:['tiramisu','lyvrose'],
+      bundle_birthday_champagne:['prosecco','lyvrose'],
+      bundle_birthday_group:['carteblanche','prosecco','tiramisu'],
+      bundle_friends_share:['asia','prosecco'],
+      bundle_friends_signature:['carteblanche','sancerre'],
+      bundle_friends_sushi:['asia','sancerre'],
+      bundle_business_lunch:['daurade','riesling','cremebrulee'],
+      bundle_business_dinner:['chateaubriand','petitcaillou','gambas'],
+      bundle_solo_light:['daurade','riesling'],
+      bundle_solo_signature:['tartare','chevalnoir']
+    };
 
     const state = {
       selected:'chateaubriand',
@@ -325,8 +358,25 @@
       paid:false,
       apiOnline:false,
       chatStarted:false,
-      lastIntent:'default'
+      lastIntent:'default',
+      reservation:freshReservation()
     };
+
+    function freshReservation(){
+      return {
+        active:false,
+        step:null,
+        visitType:null,
+        visitLabel:null,
+        guests:null,
+        dateISO:null,
+        dateLabel:null,
+        time:null,
+        suggestion:null,
+        note:null,
+        deposit:20000
+      };
+    }
 
     function item(id){ return items[id]; }
     function dishIds(){ return ['chateaubriand','canard','daurade','tartare','asia','tiramisu']; }
@@ -334,8 +384,9 @@
     function cartTotal(){ return state.cart.reduce((sum,id)=>sum + (item(id)?.price || 0),0); }
     function basePrice(){ const firstDish = state.cart.map(item).find(x => x && x.type === 'Plat'); return firstDish ? firstDish.price : selectedDish().price; }
     function uplift(){ const base = basePrice(); if(!base) return 0; return Math.max(0, Math.round(((cartTotal() - base) / base) * 100)); }
+    function normalize(str){ return String(str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 
-    function renderAll(){ renderClock(); renderChips(); renderCatalog(); renderPairings(); renderCart(); renderWallets(); renderMetrics(); renderScripts(); }
+    function renderAll(){ renderClock(); renderChips(); renderCatalog(); renderPairings(); renderCart(); renderWallets(); renderMetrics(); renderScripts(); syncReservationControls(); }
 
     function renderClock(){
       const d = new Date();
@@ -343,7 +394,8 @@
     }
 
     function renderChips(){
-      document.getElementById('quickChips').innerHTML = quicks.map(q=>`<button class="chip" onclick="quickSend('${escapeAttr(q)}')">${q}</button>`).join('');
+      const el = document.getElementById('quickChips');
+      if(el) el.innerHTML = '';
     }
 
     function renderCatalog(){
@@ -407,7 +459,7 @@
         <div class="metric"><div class="name">Uplift</div><div class="value">+${uplift()}%</div><div class="sub">Gain potentiel par commande.</div></div>
         <div class="metric"><div class="name">CA add. pilote</div><div class="value">${fcfa(monthlyAdd)}</div><div class="sub">Hyp. 800 vues menu/mois, 22% attach.</div></div>`;
       document.getElementById('leverBars').innerHTML = [
-        ['Accords mets-vins',84],['Desserts et cocktails',62],['Réservation avec acompte',58],['Menu dynamique midi/soir',73]
+        ['Réservation conversationnelle',88],['Accords mets-vins',84],['Desserts et cocktails',62],['Acompte anti no-show',68],['Menu dynamique midi/soir',73]
       ].map(([name,v])=>`<div style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;font-weight:900"><span>${name}</span><span>${v}%</span></div><div class="bar"><span style="width:${v}%"></span></div></div>`).join('');
       const rows = (pairingsByDish[state.selected] || []).map(id=>{
         const p = item(id);
@@ -418,14 +470,30 @@
 
     function renderScripts(){
       const blocks = [
-        {title:'1. Qualification', steps:[['Bot','Bonjour 👋 Quelle expérience recherchez-vous aujourd’hui ?'],['Choix','Déjeuner · Dîner romantique · Entre amis · Anniversaire · Business lunch'],['Bot','Préférez-vous viande, poisson, plat à partager ou dessert ?']]},
-        {title:'2. Upsell mets-vins', steps:[['Bot','Excellent choix. Ce plat s’accorde avec cette suggestion.'],['Relance','Préférez-vous une option accessible ou premium ?'],['Bot','Je peux l’ajouter directement à votre panier.']]},
-        {title:'3. Réservation payante', steps:[['Bot','Souhaitez-vous réserver cette table maintenant ?'],['Relance','Pour garantir la table, vous pouvez verser un acompte déduit de l’addition.'],['Paiement','Choisissez Wave, Orange Money ou Free Money.']]},
-        {title:'Chateaubriand', steps:[['Client','Je veux le Chateaubriand.'],['Bot','Excellent choix. Le meilleur accord est le Saint-Julien Petit Caillou.'],['Upsell','Souhaitez-vous ajouter les rouleaux de gambas en entrée ?']]},
-        {title:'Daurade', steps:[['Client','Je préfère du poisson.'],['Bot','Je recommande la daurade royale avec un Chablis ou un Riesling.'],['Upsell','Souhaitez-vous finir léger avec une crème brûlée ?']]},
-        {title:'Anniversaire', steps:[['Client','Anniversaire pour 4 personnes.'],['Bot','Je recommande la Carte Blanche + rosé ou Prosecco.'],['Conversion','Je peux sécuriser la table avec un acompte wallet.']]}
+        {title:'1. Démarrage', steps:[['Bot','Bonjour 👋 Que souhaitez-vous faire aujourd’hui ?'],['Choix','Réserver une table · Découvrir le menu · Me faire conseiller · Commander'],['UX','Un seul bloc de boutons apparaît en bas de conversation.']]},
+        {title:'2. Réservation', steps:[['Bot','Pour quel type de moment souhaitez-vous réserver ?'],['Choix','Seul · Couple · Amis · Anniversaire · Entreprise'],['Logique','Solo/couple auto-remplissent le nombre, groupes demandent la taille.']]},
+        {title:'3. Date et heure', steps:[['Bot','Pour quelle date souhaitez-vous venir ?'],['Choix','Aujourd’hui · Demain · Ce week-end · Choisir une date'],['Bot','Quelle heure vous conviendrait ? 12h30 · 20h30 · 21h00 · Autre.']]},
+        {title:'4. Upsell contextualisé', steps:[['Couple','Chateaubriand + Saint-Julien ou Daurade + Chablis.'],['Anniversaire','Carte Blanche, rosé, Prosecco ou dessert avec bougie.'],['Entreprise','Business lunch, dîner d’affaires ou demande de devis.']]},
+        {title:'5. Confirmation', steps:[['Récap','Type, convives, date, heure, suggestion, acompte.'],['Paiement','Wave · Orange Money · Free Money.'],['Message','L’acompte est déduit de l’addition.']]},
+        {title:'6. Anti-friction', steps:[['Mobile','Écran figé sur la discussion, pas de zoom.'],['Navigation','Bouton quitter et possibilité de modifier.'],['Conversion','Tout reste dans le chatbot.']]}
       ];
       document.getElementById('scriptGrid').innerHTML = blocks.map(b=>`<div class="script-card"><h3>${b.title}</h3>${b.steps.map((s,i)=>`<div class="script-step"><div class="num">${i+1}</div><p><b>${s[0]} :</b> ${s[1]}</p></div>`).join('')}</div>`).join('');
+    }
+
+    function syncReservationControls(){
+      const r = state.reservation;
+      const guestInput = document.getElementById('guestInput');
+      if(r.guests && guestInput){
+        const value = String(r.guests);
+        if(!Array.from(guestInput.options).some(o => o.value === value)){
+          const opt = document.createElement('option');
+          opt.value = value; opt.textContent = value; guestInput.appendChild(opt);
+        }
+        guestInput.value = value;
+      }
+      if(r.dateISO && document.getElementById('dateInput')) document.getElementById('dateInput').value = r.dateISO;
+      if(r.time && document.getElementById('timeInput')) document.getElementById('timeInput').value = r.time;
+      if(document.getElementById('depositInput')) document.getElementById('depositInput').value = String(r.deposit || 20000);
     }
 
     function selectDish(id){
@@ -444,30 +512,51 @@
       if(!silent) showToast(`${item(id).name} ajouté au panier.`);
     }
 
+    function addBundle(ids, label){
+      (ids || []).forEach(id => addToCart(id, true));
+      state.reservation.suggestion = label || null;
+      renderAll();
+      if(label) showToast(`${label} ajouté au panier.`);
+    }
+
     function clearCart(){ state.cart = []; state.paid = false; renderAll(); showToast('Panier vidé.'); }
     function setWallet(w){ state.wallet = w; state.paid = false; renderWallets(); renderCart(); }
 
     function simulatePayment(){
-      const deposit = Number(document.getElementById('depositInput').value || 20000);
-      const guests = document.getElementById('guestInput').value;
-      const time = document.getElementById('timeInput').value || '20:30';
+      const r = state.reservation || {};
+      const deposit = Number(r.deposit || document.getElementById('depositInput').value || 20000);
+      const guests = r.guests || document.getElementById('guestInput').value;
+      const time = r.time || document.getElementById('timeInput').value || '20:30';
+      const dateLabel = r.dateLabel || 'date sélectionnée';
       state.paid = true;
       renderCart();
-      addBot(`Réservation confirmée ✅\n${guests} personne(s) à ${time}. Acompte simulé : ${fcfa(deposit)} via ${state.wallet}. Le montant sera déduit de l'addition.`);
+      addBot(`Réservation confirmée ✅\n${guests} personne(s), ${dateLabel} à ${time}.\nAcompte simulé : ${fcfa(deposit)} via ${state.wallet}. Le montant sera déduit de l'addition.`);
+      addChoiceGroup({
+        progress:'Confirmation',
+        title:'Souhaitez-vous recevoir une confirmation WhatsApp ?',
+        subtitle:'Dans la version réelle, le client reçoit un récapitulatif avec date, heure, acompte et adresse.',
+        choices:[
+          {label:'Recevoir WhatsApp', value:'whatsapp_confirm', primary:true},
+          {label:'Modifier la réservation', value:'modify_reservation'}
+        ]
+      });
       showToast(`Paiement simulé : ${fcfa(deposit)} via ${state.wallet}.`);
     }
 
     function focusChat(){
-      switchSection('demo', {noScroll:true});
-      lockChatMode();
-      setTimeout(()=>document.getElementById('chatInput').focus({preventScroll:true}),150);
+      switchSection('demo', {noScroll:true, lockChat:true, focusInput:true});
+      if(!window.matchMedia('(max-width: 860px)').matches){
+        setTimeout(()=>document.getElementById('demo').scrollIntoView({behavior:'smooth', block:'start'}), 30);
+      }
     }
 
     function quickSend(text){
-      switchSection('demo', {noScroll:true});
-      lockChatMode();
-      document.getElementById('chatInput').value = text;
-      sendFromInput();
+      switchSection('demo', {noScroll:true, lockChat:true});
+      setTimeout(()=>{
+        const input = document.getElementById('chatInput');
+        input.value = text;
+        sendFromInput();
+      }, window.matchMedia('(max-width: 860px)').matches ? 100 : 20);
     }
 
     function sendFromInput(){
@@ -478,7 +567,76 @@
       input.value = '';
       input.blur();
       addUser(text);
+      if(routeConversationText(text)) return;
       respond(text);
+    }
+
+    function routeConversationText(text){
+      const m = normalize(text);
+      const r = state.reservation;
+
+      if(r.active && r.step === 'guest_free'){
+        const num = parseGuestCount(text);
+        if(num){
+          setGuests(num);
+          return true;
+        }
+        addBot("Je n'ai pas bien compris le nombre. Écrivez par exemple : 8 ou nous serons 8.");
+        return true;
+      }
+
+      if(r.active && r.step === 'time_free'){
+        const time = parseTime(text);
+        if(time){
+          setReservationTime(time, `à ${time}`);
+          return true;
+        }
+        addBot("Je n'ai pas bien compris l'horaire. Écrivez par exemple : 20h30 ou 13:00.");
+        return true;
+      }
+
+      if(/reserv|reservation|réserver|book|table|acompte/.test(m)){
+        startReservationFlow();
+        return true;
+      }
+
+      if(/en couple|couple|romantique/.test(m)){
+        startReservationFlow({silentIntro:true});
+        setVisitType('couple','En couple',2);
+        return true;
+      }
+
+      if(/anniversaire|birthday|fete|celebration/.test(m)){
+        startReservationFlow({silentIntro:true});
+        state.reservation.visitType = 'birthday';
+        state.reservation.visitLabel = 'Anniversaire';
+        const num = parseGuestCount(text);
+        if(num) setGuests(num);
+        else askGuests('Super, pour un anniversaire il me faut le nombre de personnes.');
+        return true;
+      }
+
+      if(/amis|groupe|entre amis/.test(m)){
+        startReservationFlow({silentIntro:true});
+        state.reservation.visitType = 'friends';
+        state.reservation.visitLabel = 'Avec des amis';
+        const num = parseGuestCount(text);
+        if(num) setGuests(num);
+        else askGuests('Très bien. Vous serez combien ?');
+        return true;
+      }
+
+      if(/entreprise|business|dejeuner d'affaires|diner d'affaires|collegue/.test(m)){
+        startReservationFlow({silentIntro:true});
+        state.reservation.visitType = 'business';
+        state.reservation.visitLabel = 'Entreprise / business';
+        const num = parseGuestCount(text);
+        if(num) setGuests(num);
+        else askGuests('Très bien. Combien de personnes sont prévues pour ce format business ?');
+        return true;
+      }
+
+      return false;
     }
 
     function addUser(text){ appendBubble('user', escapeHtml(text)); }
@@ -489,6 +647,84 @@
       div.className = `bubble ${role}`;
       div.innerHTML = html;
       chat.appendChild(div);
+      scrollPhone();
+    }
+
+    function addChoiceGroup({progress='', title='', subtitle='', choices=[]}){
+      const chat = document.getElementById('chat');
+      const card = document.createElement('div');
+      card.className = 'chat-card choice-system';
+      const buttons = choices.map(c => `<button type="button" class="choice-btn ${c.primary ? 'primary-choice' : ''}" data-chat-action="choice" data-choice="${escapeAttr(c.value)}" data-label="${escapeAttr(c.label)}">${escapeHtml(c.label)}</button>`).join('');
+      card.innerHTML = `
+        ${progress ? `<div class="flow-meta">${escapeHtml(progress)}</div>` : ''}
+        ${title ? `<div class="choice-title">${escapeHtml(title)}</div>` : ''}
+        ${subtitle ? `<div class="choice-subtitle">${escapeHtml(subtitle)}</div>` : ''}
+        <div class="choice-row">${buttons}</div>
+      `;
+      chat.appendChild(card);
+      scrollPhone();
+    }
+
+    function addDateInputCard(){
+      const min = dateISO(0);
+      const chat = document.getElementById('chat');
+      const card = document.createElement('div');
+      card.className = 'chat-card choice-system';
+      card.innerHTML = `
+        <div class="flow-meta">Réservation · étape 3 sur 6</div>
+        <div class="choice-title">Choisissez la date souhaitée</div>
+        <div class="choice-subtitle">Le calendrier reste dans la conversation pour éviter de quitter le tunnel.</div>
+        <div class="inline-control">
+          <input id="inlineDateInput" type="date" min="${min}" value="${dateISO(1)}" />
+          <button type="button" data-chat-action="dateInput">Valider cette date</button>
+        </div>
+      `;
+      chat.appendChild(card);
+      scrollPhone();
+    }
+
+    function addTimeInputCard(){
+      const chat = document.getElementById('chat');
+      const card = document.createElement('div');
+      card.className = 'chat-card choice-system';
+      card.innerHTML = `
+        <div class="flow-meta">Réservation · étape 4 sur 6</div>
+        <div class="choice-title">Entrez l'horaire souhaité</div>
+        <div class="choice-subtitle">Exemple : 20h30. Le restaurant pourra confirmer si le créneau est disponible.</div>
+        <div class="inline-control">
+          <input id="inlineTimeInput" type="time" value="20:30" />
+          <button type="button" data-chat-action="timeInput">Valider cet horaire</button>
+        </div>
+      `;
+      chat.appendChild(card);
+      scrollPhone();
+    }
+
+    function addReservationSummary(){
+      const r = state.reservation;
+      const chat = document.getElementById('chat');
+      const card = document.createElement('div');
+      card.className = 'chat-card choice-system';
+      card.innerHTML = `
+        <div class="flow-meta">Réservation · étape 6 sur 6</div>
+        <div class="choice-title">Récapitulatif avant confirmation</div>
+        <div class="summary-card">
+          <div class="summary-row"><span>Moment</span><b>${escapeHtml(r.visitLabel || 'Non précisé')}</b></div>
+          <div class="summary-row"><span>Convives</span><b>${escapeHtml(String(r.guests || '-'))}</b></div>
+          <div class="summary-row"><span>Date</span><b>${escapeHtml(r.dateLabel || '-')}</b></div>
+          <div class="summary-row"><span>Heure</span><b>${escapeHtml(r.time || '-')}</b></div>
+          <div class="summary-row"><span>Suggestion</span><b>${escapeHtml(r.suggestion || 'Réservation simple')}</b></div>
+          <div class="summary-row"><span>Acompte</span><b>${fcfa(r.deposit || 20000)}</b></div>
+        </div>
+        <div class="conversation-note">L'acompte est déduit de l'addition. Il sert à sécuriser la table et à réduire les no-shows.</div>
+        <div class="choice-row">
+          <button type="button" class="choice-btn primary-choice" data-chat-action="choice" data-choice="confirm_wave" data-label="Confirmer avec Wave">Confirmer avec Wave</button>
+          <button type="button" class="choice-btn" data-chat-action="choice" data-choice="confirm_om" data-label="Confirmer avec Orange Money">Orange Money</button>
+          <button type="button" class="choice-btn" data-chat-action="choice" data-choice="confirm_free" data-label="Confirmer avec Free Money">Free Money</button>
+          <button type="button" class="choice-btn" data-chat-action="choice" data-choice="modify_reservation" data-label="Modifier">Modifier</button>
+        </div>
+      `;
+      chat.appendChild(card);
       scrollPhone();
     }
 
@@ -506,6 +742,388 @@
       const body = document.getElementById('screenBody');
       if(!body) return;
       requestAnimationFrame(()=>{ body.scrollTop = body.scrollHeight; });
+    }
+
+    function startReservationFlow(opts={}){
+      state.reservation = freshReservation();
+      state.reservation.active = true;
+      state.reservation.step = 'visit_type';
+      document.getElementById('phoneSubtitle').textContent = 'Réservation guidée, sans formulaire long.';
+      if(!opts.silentIntro){
+        addBot("Parfait. Je vais vous aider à réserver en moins d'une minute, sans quitter la discussion.");
+        addBot("Je vais d'abord comprendre le contexte, puis je vous proposerai la date, l'heure et une suggestion adaptée.");
+      }
+      addChoiceGroup({
+        progress:'Réservation · étape 1 sur 6',
+        title:'Pour quel type de moment souhaitez-vous réserver ?',
+        subtitle:'Les choix suivants adaptent automatiquement le nombre de personnes, les suggestions et l’acompte.',
+        choices:[
+          {label:'Je viens seul', value:'visit_solo'},
+          {label:'En couple', value:'visit_couple', primary:true},
+          {label:'Avec des amis', value:'visit_friends'},
+          {label:'Anniversaire', value:'visit_birthday'},
+          {label:'Entreprise / business', value:'visit_business'},
+          {label:'Autre', value:'visit_other'}
+        ]
+      });
+    }
+
+    function setVisitType(type,label,autoGuests=null){
+      state.reservation.visitType = type;
+      state.reservation.visitLabel = label;
+      if(autoGuests){
+        state.reservation.guests = autoGuests;
+        state.reservation.step = 'date';
+        addBot(`Très bien, je note : ${label}, ${autoGuests} personne${autoGuests>1?'s':''}.`);
+        askDate();
+      } else {
+        state.reservation.step = 'guests';
+        askGuests(`Très bien, je note : ${label}. Vous serez combien ?`);
+      }
+    }
+
+    function askGuests(prompt){
+      addBot(prompt || 'Vous serez combien ?');
+      addChoiceGroup({
+        progress:'Réservation · étape 2 sur 6',
+        title:'Nombre de personnes',
+        subtitle:'Choisissez un nombre rapide ou précisez si la table est plus grande.',
+        choices:[
+          {label:'3 personnes', value:'guest_3'},
+          {label:'4 personnes', value:'guest_4', primary:true},
+          {label:'5 personnes', value:'guest_5'},
+          {label:'6 personnes', value:'guest_6'},
+          {label:'7+ personnes', value:'guest_custom'},
+          {label:'Je précise', value:'guest_custom'}
+        ]
+      });
+    }
+
+    function setGuests(num){
+      state.reservation.guests = Number(num);
+      state.reservation.step = 'date';
+      addBot(`Parfait, je note une table pour ${num} personne${Number(num)>1?'s':''}.`);
+      askDate();
+      renderAll();
+    }
+
+    function askDate(){
+      state.reservation.step = 'date';
+      addBot('Pour quelle date souhaitez-vous venir ?');
+      addChoiceGroup({
+        progress:'Réservation · étape 3 sur 6',
+        title:'Choix de la date',
+        subtitle:'La date apparaît ici, en bas de conversation, pour garder le tunnel fluide.',
+        choices:[
+          {label:"Aujourd'hui", value:'date_today'},
+          {label:'Demain', value:'date_tomorrow', primary:true},
+          {label:'Ce week-end', value:'date_weekend'},
+          {label:'Choisir une date', value:'date_custom'}
+        ]
+      });
+    }
+
+    function setReservationDate(iso,label){
+      state.reservation.dateISO = iso;
+      state.reservation.dateLabel = label || formatDateLabel(iso);
+      state.reservation.step = 'time';
+      addBot(`Très bien, je note : ${state.reservation.dateLabel}.`);
+      askTime();
+      renderAll();
+    }
+
+    function askTime(){
+      addBot('Quelle heure vous conviendrait ?');
+      addChoiceGroup({
+        progress:'Réservation · étape 4 sur 6',
+        title:'Choix de l’heure',
+        subtitle:'Les créneaux sont proposés en bas de la discussion, sans ouvrir une nouvelle page.',
+        choices:[
+          {label:'12h30', value:'time_12_30'},
+          {label:'13h00', value:'time_13_00'},
+          {label:'19h30', value:'time_19_30'},
+          {label:'20h00', value:'time_20_00'},
+          {label:'20h30', value:'time_20_30', primary:true},
+          {label:'21h00', value:'time_21_00'},
+          {label:'Autre horaire', value:'time_custom'}
+        ]
+      });
+    }
+
+    function setReservationTime(time,label){
+      state.reservation.time = time;
+      state.reservation.step = 'upsell';
+      addBot(`C'est noté : ${label || time}.`);
+      askContextualUpsell();
+      renderAll();
+    }
+
+    function askContextualUpsell(){
+      const type = state.reservation.visitType;
+      if(type === 'couple'){
+        addBot('Souhaitez-vous une suggestion spéciale pour rendre le dîner plus mémorable ?');
+        addChoiceGroup({
+          progress:'Réservation · étape 5 sur 6',
+          title:'Suggestion adaptée : dîner en couple',
+          subtitle:'Vous pouvez accepter une suggestion ou rester sur une réservation simple.',
+          choices:[
+            {label:'Chateaubriand + Saint-Julien', value:'bundle_couple_premium', primary:true},
+            {label:'Daurade + Chablis', value:'bundle_couple_light'},
+            {label:'Dessert + Espresso Martini', value:'bundle_couple_dessert'},
+            {label:'Réservation simple', value:'skip_upsell'}
+          ]
+        });
+        return;
+      }
+
+      if(type === 'birthday'){
+        addBot("Souhaitez-vous ajouter une touche spéciale pour l'anniversaire ?");
+        addChoiceGroup({
+          progress:'Réservation · étape 5 sur 6',
+          title:'Suggestion adaptée : anniversaire',
+          subtitle:'Le but est de transformer une réservation simple en moment événementiel.',
+          choices:[
+            {label:'Dessert + touche festive', value:'bundle_birthday_cake', primary:true},
+            {label:'Champagne / cocktail', value:'bundle_birthday_champagne'},
+            {label:'Carte Blanche groupe', value:'bundle_birthday_group'},
+            {label:'Table bien placée', value:'note_good_table'},
+            {label:'Réservation simple', value:'skip_upsell'}
+          ]
+        });
+        return;
+      }
+
+      if(type === 'friends'){
+        addBot('Pour une table entre amis, je peux proposer un format à partager qui augmente naturellement le panier.');
+        addChoiceGroup({
+          progress:'Réservation · étape 5 sur 6',
+          title:'Suggestion adaptée : amis / groupe',
+          subtitle:'Formats rapides à commander et faciles à partager.',
+          choices:[
+            {label:'L’Asia + Prosecco', value:'bundle_friends_share', primary:true},
+            {label:'Carte Blanche + Sancerre', value:'bundle_friends_signature'},
+            {label:'Sushi + Sancerre', value:'bundle_friends_sushi'},
+            {label:'Réservation simple', value:'skip_upsell'}
+          ]
+        });
+        return;
+      }
+
+      if(type === 'business'){
+        addBot('Quel format business recherchez-vous ?');
+        addChoiceGroup({
+          progress:'Réservation · étape 5 sur 6',
+          title:'Suggestion adaptée : entreprise',
+          subtitle:'Le chatbot peut orienter vers déjeuner rapide, dîner d’affaires ou demande de devis.',
+          choices:[
+            {label:'Business lunch', value:'bundle_business_lunch', primary:true},
+            {label:"Dîner d'affaires", value:'bundle_business_dinner'},
+            {label:'Groupe + Carte Blanche', value:'bundle_birthday_group'},
+            {label:"Besoin d'un devis", value:'note_quote'},
+            {label:'Réservation simple', value:'skip_upsell'}
+          ]
+        });
+        return;
+      }
+
+      addBot('Souhaitez-vous une recommandation simple pour compléter votre réservation ?');
+      addChoiceGroup({
+        progress:'Réservation · étape 5 sur 6',
+        title:'Suggestion personnalisée',
+        subtitle:'Option légère ou signature, selon votre envie.',
+        choices:[
+          {label:'Daurade + Riesling', value:'bundle_solo_light', primary:true},
+          {label:'Tartare + Cheval Noir', value:'bundle_solo_signature'},
+          {label:'Dessert + Espresso Martini', value:'bundle_couple_dessert'},
+          {label:'Réservation simple', value:'skip_upsell'}
+        ]
+      });
+    }
+
+    function finalizeUpsell(value,label){
+      if(bundleMap[value]){
+        addBundle(bundleMap[value], label);
+        addBot(`Parfait, j'ajoute la suggestion : ${label}.`);
+        addCards(bundleMap[value]);
+      } else if(value === 'note_good_table'){
+        state.reservation.note = 'Table bien placée demandée';
+        state.reservation.suggestion = 'Table bien placée';
+        addBot("Je note la demande : table bien placée. Dans la version réelle, le restaurant reçoit cette préférence.");
+      } else if(value === 'note_quote'){
+        state.reservation.note = 'Demande de devis entreprise';
+        state.reservation.suggestion = "Demande de devis";
+        addBot("Je note une demande de devis. Dans la version réelle, le restaurant recevrait les détails pour vous rappeler.");
+      } else {
+        state.reservation.suggestion = 'Réservation simple';
+        addBot("Très bien, on garde une réservation simple.");
+      }
+      state.reservation.step = 'summary';
+      addReservationSummary();
+      renderAll();
+    }
+
+    function handleChoice(value,label,btn){
+      if(btn) disableChoiceGroup(btn);
+
+      if(value === 'start_reservation'){
+        addUser(label);
+        startReservationFlow();
+        return;
+      }
+
+      if(value === 'start_menu'){
+        addUser(label);
+        addBot('Voici les scénarios les plus intéressants à tester dans le MVP.');
+        addChoiceGroup({
+          progress:'Menu intelligent',
+          title:'Quel plat voulez-vous explorer ?',
+          subtitle:'Chaque plat déclenche des accords et des upsells spécifiques.',
+          choices:[
+            {label:'Chateaubriand', value:'dish_chateaubriand', primary:true},
+            {label:'Daurade royale', value:'dish_daurade'},
+            {label:"L'Asia à partager", value:'dish_asia'},
+            {label:'Tiramisu', value:'dish_tiramisu'}
+          ]
+        });
+        return;
+      }
+
+      if(value === 'start_advice'){
+        addUser(label);
+        addBot("Très bien. Je vais vous conseiller comme un maître d'hôtel digital.");
+        addChoiceGroup({
+          progress:'Conseil rapide',
+          title:'Vous êtes plutôt...',
+          subtitle:'Le choix déclenche automatiquement une recommandation mets-boisson.',
+          choices:[
+            {label:'Viande premium', value:'dish_chateaubriand', primary:true},
+            {label:'Poisson', value:'dish_daurade'},
+            {label:'À partager', value:'dish_asia'},
+            {label:'Dessert / cocktail', value:'dish_tiramisu'}
+          ]
+        });
+        return;
+      }
+
+      if(value === 'start_preorder'){
+        addUser(label);
+        addBot('Parfait. Pour la démo, je compose un panier précommandable avec suggestion automatique.');
+        addChoiceGroup({
+          progress:'Précommande',
+          title:'Quel point de départ ?',
+          choices:[
+            {label:'Dîner premium', value:'pre_bundle_couple_premium', primary:true},
+            {label:'Poisson léger', value:'pre_bundle_couple_light'},
+            {label:'Table entre amis', value:'pre_bundle_friends_share'}
+          ]
+        });
+        return;
+      }
+
+      if(value.startsWith('dish_')){
+        const id = value.replace('dish_','');
+        addUser(label);
+        state.selected = id;
+        addBot(`Très bon choix : ${item(id).name}. Voici les meilleures suggestions associées.`);
+        addCards([id, ...(pairingsByDish[id] || [])]);
+        renderAll();
+        return;
+      }
+
+      const visitMap = {
+        visit_solo:['solo','Je viens seul',1],
+        visit_couple:['couple','En couple',2],
+        visit_friends:['friends','Avec des amis',null],
+        visit_birthday:['birthday','Anniversaire',null],
+        visit_business:['business','Entreprise / business',null],
+        visit_other:['other','Autre',null]
+      };
+      if(visitMap[value]){
+        addUser(label);
+        setVisitType(...visitMap[value]);
+        return;
+      }
+
+      if(value.startsWith('guest_')){
+        addUser(label);
+        if(value === 'guest_custom'){
+          state.reservation.step = 'guest_free';
+          addBot('D’accord. Écrivez simplement le nombre exact de personnes, par exemple : 8.');
+        } else {
+          setGuests(Number(value.replace('guest_','')));
+        }
+        return;
+      }
+
+      if(value.startsWith('date_')){
+        addUser(label);
+        if(value === 'date_today') return setReservationDate(dateISO(0), "aujourd'hui");
+        if(value === 'date_tomorrow') return setReservationDate(dateISO(1), 'demain');
+        if(value === 'date_weekend') return setReservationDate(nextWeekendISO(), 'ce week-end');
+        if(value === 'date_custom') return addDateInputCard();
+      }
+
+      if(value.startsWith('time_')){
+        addUser(label);
+        const timeMap = {
+          time_12_30:'12:30',
+          time_13_00:'13:00',
+          time_19_30:'19:30',
+          time_20_00:'20:00',
+          time_20_30:'20:30',
+          time_21_00:'21:00'
+        };
+        if(value === 'time_custom'){
+          state.reservation.step = 'time_free';
+          return addTimeInputCard();
+        }
+        return setReservationTime(timeMap[value], label);
+      }
+
+      if(value.startsWith('pre_bundle_')){
+        addUser(label);
+        const bundleKey = value.replace('pre_','');
+        addBundle(bundleMap[bundleKey] || [], label);
+        addBot(`Parfait, je compose le panier : ${label}.`);
+        addCards(bundleMap[bundleKey] || []);
+        return;
+      }
+
+      if(bundleMap[value] || value === 'skip_upsell' || value === 'note_good_table' || value === 'note_quote'){
+        addUser(label);
+        finalizeUpsell(value,label);
+        return;
+      }
+
+      if(value === 'confirm_wave' || value === 'confirm_om' || value === 'confirm_free'){
+        addUser(label);
+        const wallet = value === 'confirm_wave' ? 'Wave' : value === 'confirm_om' ? 'Orange Money' : 'Free Money';
+        setWallet(wallet);
+        simulatePayment();
+        return;
+      }
+
+      if(value === 'modify_reservation'){
+        addUser(label);
+        addBot('Aucun problème, on reprend la réservation depuis le début.');
+        startReservationFlow({silentIntro:true});
+        return;
+      }
+
+      if(value === 'whatsapp_confirm'){
+        addUser(label);
+        addBot('Confirmation WhatsApp simulée ✅\nDans la version réelle, le client recevrait le récapitulatif complet et le reçu de l’acompte.');
+        return;
+      }
+    }
+
+    function disableChoiceGroup(btn){
+      const card = btn.closest('.chat-card');
+      if(!card) return;
+      card.querySelectorAll('button[data-chat-action="choice"]').forEach(b => {
+        b.disabled = true;
+        if(b === btn) b.classList.add('selected');
+      });
     }
 
     async function respond(message){
@@ -528,10 +1146,13 @@
       state.lastIntent = data.intent || 'default';
       const map = {chateaubriand:'chateaubriand', canard:'canard', daurade:'daurade', tartare:'tartare', asia:'asia', tiramisu:'tiramisu'};
       if(map[data.intent]) state.selected = map[data.intent];
+      if(data.intent === 'reservation'){
+        startReservationFlow({silentIntro:true});
+        return;
+      }
       addBot(data.reply || 'Je peux vous aider à composer votre panier.');
       (data.followups || []).forEach(f => addBot(f));
       if(data.cards && data.cards.length) addCards(data.cards);
-      if(data.intent === 'reservation') document.getElementById('phoneSubtitle').textContent = 'Réservation avec acompte wallet activée.';
       renderAll();
     }
 
@@ -561,31 +1182,61 @@
 
       const now = Date.now();
       const lastTap = Number(btn.dataset.lastTap || 0);
-      if(now - lastTap < 450) return false;
+      if(now - lastTap < 350) return false;
       btn.dataset.lastTap = String(now);
 
       const input = document.getElementById('chatInput');
       if(input) input.blur();
 
-      if(btn.dataset.chatAction === 'add'){
+      const action = btn.dataset.chatAction;
+
+      if(action === 'choice'){
+        handleChoice(btn.dataset.choice, btn.dataset.label || btn.textContent.trim(), btn);
+      }
+
+      if(action === 'dateInput'){
+        const inputDate = document.getElementById('inlineDateInput');
+        if(!inputDate || !inputDate.value){
+          showToast('Choisissez une date.');
+          return false;
+        }
+        btn.disabled = true;
+        addUser(formatDateLabel(inputDate.value));
+        setReservationDate(inputDate.value, formatDateLabel(inputDate.value));
+      }
+
+      if(action === 'timeInput'){
+        const inputTime = document.getElementById('inlineTimeInput');
+        if(!inputTime || !inputTime.value){
+          showToast('Choisissez un horaire.');
+          return false;
+        }
+        btn.disabled = true;
+        addUser(inputTime.value);
+        setReservationTime(inputTime.value, inputTime.value.replace(':','h'));
+      }
+
+      if(action === 'add'){
         const id = btn.dataset.id;
         addToCart(id);
         btn.classList.add('added');
         btn.textContent = '✓ Ajouté';
       }
-      if(btn.dataset.chatAction === 'wallet'){
+
+      if(action === 'wallet'){
         const wallet = btn.dataset.wallet || 'Wave';
         setWallet(wallet);
         simulatePayment();
         btn.classList.add('added');
         btn.textContent = '✓ Réservation confirmée';
       }
+
       setTimeout(scrollPhone, 80);
       return false;
     }
 
     function localBrain(message){
-      const m = message.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const m = normalize(message);
       const reply = (intent, text, cards, followups=[]) => ({mode:'front-fallback', intent, reply:text, cards, followups});
       if(/chateaubriand|boeuf premium|600g/.test(m)) return reply('chateaubriand', "Excellent choix. Le Chateaubriand est le meilleur support d'upsell premium : je vous propose un Saint-Julien ou un Pessac-Léognan.", ['chateaubriand','petitcaillou','lepape','gambas','moelleux'], ['Voulez-vous une option vin accessible ou prestige ?']);
       if(/canard|confit/.test(m)) return reply('canard', 'Très bon choix gourmand. Je propose une option rouge accessible ou un Bourgogne premium.', ['canard','champy','chaireclavel','cremebrulee']);
@@ -593,19 +1244,33 @@
       if(/tartare/.test(m)) return reply('tartare', 'Le tartare est idéal avec un rouge structuré et une garniture simple.', ['tartare','malbec','chevalnoir','frites']);
       if(/sushi|asia|partager|amis|groupe/.test(m)) return reply('asia', 'Pour une table entre amis, le format à partager fonctionne très bien avec Sancerre ou Prosecco.', ['asia','sancerre','prosecco','carteblanche']);
       if(/dessert|tiramisu|moelleux|chocolat/.test(m)) return reply('tiramisu', "Très bon choix de fin de repas. Je recommande l'Espresso Martini ou un rosé festif.", ['tiramisu','espresso','lyvrose','glace']);
-      if(/anniversaire|birthday|celebration|fete/.test(m)) return reply('anniversaire', "Pour un anniversaire, je recommande un parcours clé en main : Carte Blanche, rosé ou Prosecco, puis acompte wallet pour sécuriser la table.", ['carteblanche','lyvrose','prosecco','tiramisu'], ['Je peux aussi préparer la réservation avec acompte.']);
-      if(/reserv|table|20h|21h|midi|dejeuner|diner|acompte|no show|wave|orange money|free money|payer|paiement|wallet/.test(m)) return reply('reservation', "Je peux sécuriser la réservation avec un acompte wallet. Le montant sera déduit de l'addition.", ['deposit20000','wave','orangeMoney','freeMoney'], ['Quel créneau souhaitez-vous ? Exemple : ce soir 20h30, 2 personnes.']);
       if(/budget|fcfa|xof|moins de|pas depasser|60000|50000|40000|30000/.test(m)) return reply('budget', 'Avec ce budget, je compose un panier optimisé : plat fort + accord accessible + dessert ou cocktail.', ['daurade','riesling','cremebrulee','espresso']);
-      return reply('default', "Je peux vous aider à choisir un plat, proposer un accord, composer un panier ou sécuriser une réservation. Essayez : Chateaubriand, poisson, anniversaire, budget 60000 ou réservation.", ['chateaubriand','daurade','asia','tiramisu']);
+      return reply('default', "Je peux vous aider à choisir un plat, proposer un accord, composer un panier ou sécuriser une réservation. Utilisez les boutons ou essayez : Chateaubriand, poisson, anniversaire ou budget 60000.", ['chateaubriand','daurade','asia','tiramisu']);
     }
 
     function switchSection(id, opts={}){
-      if(id !== 'demo') unlockChatMode();
+      const section = document.getElementById(id);
+      if(!section) return;
+      const wasChatFocused = document.body.classList.contains('chat-focus');
+      if(id !== 'demo' && wasChatFocused) unlockChatMode({restore:false});
       document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      section.classList.add('active');
       document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active', b.dataset.section===id));
       if(id === 'dashboard') renderMetrics();
-      if(!opts.noScroll && !document.body.classList.contains('chat-focus')) window.scrollTo({top:0,behavior:'smooth'});
+      if(id === 'demo' && opts.lockChat){
+        setTimeout(()=>{
+          lockChatMode();
+          if(opts.focusInput){
+            const input = document.getElementById('chatInput');
+            if(input) input.focus({preventScroll:true});
+          }
+          scrollPhone();
+        }, 80);
+        return;
+      }
+      if(!opts.noScroll && !document.body.classList.contains('chat-focus')){
+        setTimeout(()=>section.scrollIntoView({behavior: opts.instant ? 'auto' : 'smooth', block:'start'}), 30);
+      }
     }
 
     function lockChatMode(){
@@ -617,23 +1282,35 @@
       setTimeout(scrollPhone, 60);
     }
 
-    function unlockChatMode(){
+    function unlockChatMode(opts={}){
       if(!document.body.classList.contains('chat-focus')) return;
       const y = window.__chatLockY || 0;
       document.body.classList.remove('chat-focus');
       document.body.style.top = '';
-      requestAnimationFrame(()=>window.scrollTo(0, y));
+      if(opts.restore !== false) requestAnimationFrame(()=>window.scrollTo(0, y));
     }
 
     function resetDemo(){
-      state.selected = 'chateaubriand'; state.cart = []; state.wallet='Wave'; state.paid=false; state.lastIntent='default';
+      state.selected = 'chateaubriand'; state.cart = []; state.wallet='Wave'; state.paid=false; state.lastIntent='default'; state.reservation = freshReservation();
       document.getElementById('chat').innerHTML = '';
+      document.getElementById('phoneSubtitle').textContent = 'Je vous conseille, je compose le panier et je sécurise la réservation.';
       startChat(); renderAll(); showToast('Démo réinitialisée.');
     }
 
     function startChat(){
-      addBot("Bonjour 👋 Je suis votre Sommelier Digital. Dites-moi votre intention : dîner en couple, anniversaire, poisson, viande, budget ou réservation.");
-      addBot("Je peux aussi ajouter automatiquement un vin, un cocktail, un dessert ou un acompte wallet au panier.");
+      addBot("Bonjour 👋 Je suis votre Sommelier Digital.");
+      addBot("Que souhaitez-vous faire aujourd'hui ?");
+      addChoiceGroup({
+        progress:'Démarrage',
+        title:'Choisissez une action',
+        subtitle:'Le parcours reste dans la discussion. Les prochains boutons apparaîtront toujours en bas.',
+        choices:[
+          {label:'Réserver une table', value:'start_reservation', primary:true},
+          {label:'Découvrir le menu', value:'start_menu'},
+          {label:'Me faire conseiller', value:'start_advice'},
+          {label:'Commander / précommander', value:'start_preorder'}
+        ]
+      });
     }
 
     async function checkApi(){
@@ -644,7 +1321,7 @@
         state.apiOnline = true;
         document.getElementById('apiDot').className = 'dot ok';
         document.getElementById('apiStatus').textContent = 'API chatbot en ligne';
-        document.getElementById('apiSub').textContent = `Serveur actif sur le port ${data.port || 5173}`;
+        document.getElementById('apiSub').textContent = data.runtime ? `Runtime actif : ${data.runtime}` : 'Serveur actif.';
       }catch(e){
         state.apiOnline = false;
         document.getElementById('apiDot').className = 'dot warn';
@@ -653,11 +1330,63 @@
       }
     }
 
+    function parseGuestCount(text){
+      const m = normalize(text);
+      const match = m.match(/\b(\d{1,2})\b/);
+      if(match){
+        const n = Number(match[1]);
+        if(n >= 1 && n <= 50) return n;
+      }
+      const words = {un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,neuf:9,dix:10};
+      for(const [k,v] of Object.entries(words)){
+        if(new RegExp(`\\b${k}\\b`).test(m)) return v;
+      }
+      return null;
+    }
+
+    function parseTime(text){
+      const m = normalize(text);
+      const match = m.match(/\b([01]?\d|2[0-3])\s*(?:h|:)\s*([0-5]\d)?\b/);
+      if(!match) return null;
+      const h = String(Number(match[1])).padStart(2,'0');
+      const min = String(match[2] || '00').padStart(2,'0');
+      return `${h}:${min}`;
+    }
+
+    function dateISO(offsetDays){
+      const d = new Date();
+      d.setDate(d.getDate() + offsetDays);
+      return d.toISOString().slice(0,10);
+    }
+
+    function nextWeekendISO(){
+      const d = new Date();
+      const day = d.getDay();
+      const diff = (6 - day + 7) % 7 || 7;
+      d.setDate(d.getDate() + diff);
+      return d.toISOString().slice(0,10);
+    }
+
+    function formatDateLabel(iso){
+      try{
+        const d = new Date(`${iso}T12:00:00`);
+        return d.toLocaleDateString('fr-FR',{weekday:'long', day:'2-digit', month:'long'});
+      }catch(e){
+        return iso;
+      }
+    }
+
     function escapeHtml(str){ return String(str).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
     function escapeAttr(str){ return escapeHtml(str).replace(/`/g,'&#96;'); }
     function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.classList.remove('show'),3600); }
 
-    document.getElementById('nav').addEventListener('click', e => { const b = e.target.closest('button[data-section]'); if(b) switchSection(b.dataset.section); });
+    document.getElementById('nav').addEventListener('click', e => {
+      const b = e.target.closest('button[data-section]');
+      if(!b) return;
+      const id = b.dataset.section;
+      if(id === 'demo') focusChat();
+      else switchSection(id);
+    });
     document.getElementById('chatInput').addEventListener('focus', () => { lockChatMode(); setTimeout(scrollPhone, 120); });
     document.getElementById('chatInput').addEventListener('keydown', e => { if(e.key === 'Enter') sendFromInput(); });
     document.getElementById('screenBody').addEventListener('pointerdown', handleChatCardAction, {capture:true});

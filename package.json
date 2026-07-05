@@ -1,8 +1,8 @@
 {
   "name": "restaurant-dakar-mbour-saly",
-  "version": "2.3.0-vercel-framework-null",
+  "version": "2.4.0-reservation-flow",
   "private": true,
-  "description": "MVP Sommelier Digital - static frontend + Vercel serverless API",
+  "description": "MVP Sommelier Digital - tunnel de réservation conversationnel + Vercel serverless API",
   "scripts": {
     "dev": "vercel dev"
   },

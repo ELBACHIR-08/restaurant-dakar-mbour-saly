@@ -1,36 +1,32 @@
-# Sommelier Digital - MVP Vercel Ready
+# Sommelier Digital AI - reservation flow UX
 
-Prototype de demonstration du Sommelier Digital pour restaurant premium.
+Version corrigee pour Vercel avec tunnel de reservation conversationnel.
 
-## Mise a jour incluse
+Nouveautes :
+- boutons evolutifs directement dans le chatbot ;
+- parcours "Je veux reserver" en plusieurs etapes :
+  1. type de venue : seul, couple, amis, anniversaire, entreprise ;
+  2. nombre de personnes avec auto-remplissage pour seul/couple ;
+  3. date en bas de conversation ;
+  4. heure en bas de conversation ;
+  5. suggestion contextuelle d'upsell ;
+  6. recapitulatif + acompte wallet ;
+- mode mobile toujours fige sur la discussion ;
+- aucun zoom input mobile ;
+- boutons Ajouter au panier et boutons de choix cliquables ;
+- navigation homepage conservee : Chatbot live, Dashboard, Script chatbot, Offre client ;
+- API Vercel serverless conservee : /api/chat et /api/health.
 
-Cette version corrige le test mobile du chatbot :
+Deploiement :
+1. dezipper le fichier ;
+2. uploader tout le contenu du dossier a la racine du repo GitHub ;
+3. remplacer les fichiers existants ;
+4. Commit changes ;
+5. Vercel redeploie automatiquement.
 
-- mode discussion plein ecran sur mobile ;
-- page verrouillee pendant la saisie ;
-- plus de zoom automatique sur le champ de saisie ;
-- scroll limite a la zone de conversation ;
-- bouton `Quitter` pour sortir du mode discussion ;
-- compatibilite Vercel avec `framework: null`.
-
-## Structure attendue a la racine du repo
-
-- `index.html`
-- `package.json`
-- `vercel.json`
-- `api/chat.js`
-- `api/health.js`
-- `.gitignore`
-- `README.md`
-
-## Deploiement
-
-1. Uploader tout le contenu du dossier dans GitHub.
-2. Commit changes.
-3. Dans Vercel, redeploy sans cache.
-4. Tester `/health` puis la page principale.
-
-
-## Correctif interaction mobile
-
-Cette version corrige le mode chatbot mobile : l’écran reste figé sur la discussion et les boutons “Ajouter au panier” restent cliquables en un seul tap, même après la saisie d’un message.
+A verifier apres deploy :
+- ouvrir la page sur mobile ;
+- cliquer Chatbot live ;
+- cliquer "Reserver une table" ;
+- suivre le flow jusqu'au paiement Wave ;
+- tester /api/health.
