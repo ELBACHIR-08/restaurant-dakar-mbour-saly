@@ -1,12 +1,12 @@
 {
   "name": "restaurant-dakar-mbour-saly",
-  "version": "2.2.0-vercel-fix",
+  "version": "2.3.0-vercel-framework-null",
   "private": true,
   "description": "MVP Sommelier Digital - static frontend + Vercel serverless API",
   "scripts": {
     "dev": "vercel dev"
   },
   "engines": {
-    "node": ">=20.x"
+    "node": "20.x"
   }
 }

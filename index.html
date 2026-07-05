@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <title>Sommelier Digital Live - MVP Restaurant Revenue AI</title>
   <style>
     :root{
@@ -23,7 +23,8 @@
       --radius:28px;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;overscroll-behavior:none}
+    html,body{min-height:100%;touch-action:manipulation}
     body{
       margin:0;
       color:var(--ink);
@@ -34,7 +35,8 @@
         linear-gradient(135deg,#fffaf1 0%,#f4ebdf 55%,#ffffff 100%);
     }
     button,input,select{font:inherit}
-    button{cursor:pointer}
+    button{cursor:pointer;touch-action:manipulation}
+    input,select,textarea{font-size:16px}
     .app{max-width:1440px;margin:0 auto;padding:22px}
     .topbar{
       position:sticky;top:0;z-index:30;
@@ -83,10 +85,10 @@
     .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}.panel-title{font-size:28px;line-height:1;letter-spacing:-.04em;margin:0}.panel-sub{margin:6px 0 0;color:var(--muted);line-height:1.55}
     .demo-grid{display:grid;grid-template-columns:minmax(360px,.78fr) minmax(0,1.22fr) minmax(340px,.82fr);gap:18px;align-items:start}
     .phone{border:10px solid #17120f;background:#17120f;border-radius:46px;box-shadow:0 26px 80px rgba(17,11,7,.27);height:760px;position:sticky;top:94px;overflow:hidden}.phone:before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:112px;height:25px;border-radius:0 0 17px 17px;background:#17120f;z-index:3}
-    .screen{height:100%;border-radius:34px;overflow:hidden;background:#fffaf3;display:flex;flex-direction:column;position:relative}.screen-top{padding:22px 18px 14px;background:linear-gradient(135deg,var(--wine),#91562d);color:white}.screen-top .mini{display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.72);font-size:12px;font-weight:900}.screen-top h3{margin:18px 0 5px;font-size:25px;letter-spacing:-.04em}.screen-top p{margin:0;color:rgba(255,255,255,.82);font-size:13px;line-height:1.38}
-    .screen-body{padding:14px;overflow:auto;flex:1;scroll-behavior:smooth}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:2px 0 14px}.chip{border:1px solid #eadfce;background:white;color:#332920;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}.chip:hover{background:#fff4dd}.chat{display:grid;gap:10px}.bubble{padding:11px 12px;border-radius:18px;line-height:1.42;font-size:13px;max-width:88%;white-space:pre-line}.bot{background:#f0e6d7;color:#241b13;border-top-left-radius:6px}.user{background:#17120f;color:white;justify-self:end;border-top-right-radius:6px}.typing{display:flex;gap:5px;width:max-content}.typing span{width:7px;height:7px;border-radius:50%;background:#9b8e80;animation:typing 1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}@keyframes typing{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+    .screen{height:100%;border-radius:34px;overflow:hidden;background:#fffaf3;display:flex;flex-direction:column;position:relative}.exit-chat{display:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.14);color:white;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:950}.screen-top{padding:22px 18px 14px;background:linear-gradient(135deg,var(--wine),#91562d);color:white}.screen-top .mini{display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.72);font-size:12px;font-weight:900}.screen-top h3{margin:18px 0 5px;font-size:25px;letter-spacing:-.04em}.screen-top p{margin:0;color:rgba(255,255,255,.82);font-size:13px;line-height:1.38}
+    .screen-body{padding:14px;overflow:auto;flex:1;scroll-behavior:smooth;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:2px 0 14px}.chip{border:1px solid #eadfce;background:white;color:#332920;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}.chip:hover{background:#fff4dd}.chat{display:grid;gap:10px}.bubble{padding:11px 12px;border-radius:18px;line-height:1.42;font-size:13px;max-width:88%;white-space:pre-line}.bot{background:#f0e6d7;color:#241b13;border-top-left-radius:6px}.user{background:#17120f;color:white;justify-self:end;border-top-right-radius:6px}.typing{display:flex;gap:5px;width:max-content}.typing span{width:7px;height:7px;border-radius:50%;background:#9b8e80;animation:typing 1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}@keyframes typing{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
     .chat-card{border:1px solid #eadfce;background:#fff;border-radius:21px;padding:12px;box-shadow:0 10px 24px rgba(35,27,20,.07);max-width:95%}.chat-card .top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.chat-card .kind{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:950;color:#8b652c}.chat-card h4{margin:4px 0 4px;font-size:15px}.chat-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.4}.chat-card .price{font-weight:950;color:var(--wine);font-size:14px;text-align:right}.add-small{border:0;background:var(--ink);color:white;border-radius:13px;padding:9px 10px;font-size:12px;font-weight:950;margin-top:10px;width:100%}.add-small.added{background:var(--green)}
-    .screen-bottom{border-top:1px solid #eadfce;background:white;padding:11px;display:grid;gap:8px}.input-row{display:flex;gap:8px}.input-row input{flex:1;border:1px solid var(--line);border-radius:15px;padding:11px 12px;outline:none;background:#fffaf3;font-size:13px}.input-row button{border:0;background:linear-gradient(135deg,var(--wine),var(--wine2));color:white;border-radius:15px;padding:0 13px;font-weight:950}.mini-cart{display:flex;justify-content:space-between;align-items:center;gap:10px}.mini-cart span{display:block;color:var(--muted);font-size:11px}.mini-cart b{font-size:15px}.mini-cart button{border:0;background:var(--gold);color:#25180d;border-radius:13px;padding:10px 11px;font-weight:950;font-size:12px}
+    .screen-bottom{border-top:1px solid #eadfce;background:white;padding:11px;display:grid;gap:8px}.input-row{display:flex;gap:8px}.input-row input{flex:1;border:1px solid var(--line);border-radius:15px;padding:11px 12px;outline:none;background:#fffaf3;font-size:16px;min-width:0}.input-row button{border:0;background:linear-gradient(135deg,var(--wine),var(--wine2));color:white;border-radius:15px;padding:0 13px;font-weight:950}.mini-cart{display:flex;justify-content:space-between;align-items:center;gap:10px}.mini-cart span{display:block;color:var(--muted);font-size:11px}.mini-cart b{font-size:15px}.mini-cart button{border:0;background:var(--gold);color:#25180d;border-radius:13px;padding:10px 11px;font-weight:950;font-size:12px}
     .catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.dish{border:1px solid var(--line);background:white;border-radius:24px;padding:15px;position:relative;overflow:hidden;transition:.2s ease}.dish:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(35,27,20,.09)}.dish.active{border-color:var(--wine);box-shadow:0 0 0 3px rgba(76,23,34,.08)}.dish .emoji{font-size:34px;margin-bottom:10px}.dish .type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:950}.dish h3{margin:4px 0;font-size:18px;line-height:1.05;letter-spacing:-.03em}.dish p{margin:8px 0 12px;color:var(--muted);line-height:1.35;font-size:13px}.dish .price{font-weight:950;color:var(--wine)}.dish button{border:0;background:#17120f;color:white;border-radius:14px;padding:10px 12px;font-weight:950;width:100%;margin-top:12px}
     .pairing-list{display:grid;gap:11px}.pairing{border:1px solid var(--line);background:#fff;border-radius:22px;padding:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.pairing .type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8b652c;font-weight:950}.pairing h4{margin:4px 0 5px}.pairing p{margin:0;color:var(--muted);font-size:13px;line-height:1.4}.pairing .right{text-align:right;min-width:120px}.pairing .right b{color:var(--wine)}.pairing button{border:0;background:#17120f;color:white;border-radius:13px;padding:8px 10px;font-size:12px;font-weight:950;margin-top:8px}.pairing button.added{background:var(--green)}
     .side-stack{display:grid;gap:18px}.cart-card{border:1px solid var(--line);background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}.cart-card h3{margin:0 0 12px;font-size:23px;letter-spacing:-.04em}.cart-line{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e5d7c2;padding:10px 0;font-size:13px}.cart-line span:first-child{color:var(--muted)}.cart-line b{text-align:right}.empty{padding:22px;border:1px dashed #d8c6aa;border-radius:20px;text-align:center;color:var(--muted);background:#fffaf3}.total{border:1px solid #decaa9;background:linear-gradient(135deg,#fff8ec,#f4e4ca);border-radius:22px;padding:15px;margin-top:12px}.total-label{color:#7a6040;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:950}.amount{font-size:31px;font-weight:950;letter-spacing:-.045em}.uplift{display:flex;justify-content:space-between;gap:12px;background:#effaf4;color:var(--green);border:1px solid #cce7da;border-radius:18px;padding:11px;margin-top:10px;font-weight:850;font-size:13px}
@@ -94,6 +96,28 @@
     .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.metric .name{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:950}.metric .value{font-size:29px;font-weight:950;letter-spacing:-.045em;margin-top:6px}.metric .sub{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}.bar{height:10px;background:#f0e6d7;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--wine))}.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.table{border-collapse:collapse;width:100%;background:white;border-radius:18px;overflow:hidden}.table th,.table td{padding:13px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}.table th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:#fff4df}.table td:last-child,.table th:last-child{text-align:right}.script-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.script-card{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.script-card h3{margin:0 0 12px;font-size:20px}.script-step{display:flex;gap:10px;border-bottom:1px dashed #e5d7c2;padding:10px 0}.script-step:last-child{border-bottom:0}.num{width:27px;height:27px;border-radius:50%;background:#17120f;color:white;display:grid;place-items:center;font-size:12px;font-weight:950;flex:0 0 auto}.script-step p{margin:0;color:var(--muted);line-height:1.42;font-size:13px}.script-step b{color:var(--ink)}.offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.offer{border:1px solid var(--line);background:white;border-radius:26px;padding:20px;display:flex;flex-direction:column;gap:12px}.offer.featured{border-color:var(--gold);box-shadow:0 20px 46px rgba(185,140,76,.17);transform:translateY(-4px)}.offer h3{margin:0;font-size:21px}.offer .big{font-size:33px;font-weight:950;letter-spacing:-.05em}.offer ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}.toast{position:fixed;right:22px;bottom:22px;background:#17120f;color:white;border-radius:18px;padding:14px 16px;box-shadow:0 18px 50px rgba(0,0,0,.26);display:none;z-index:100;max-width:390px;line-height:1.35}.toast.show{display:block;animation:pop .24s ease}@keyframes pop{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
     @media(max-width:1180px){.hero{grid-template-columns:1fr}.demo-grid{grid-template-columns:390px minmax(0,1fr)}.side-stack{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.script-grid,.offer-grid,.dashboard-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:860px){.app{padding:14px}.topbar{margin:-14px -14px 16px;padding:12px 14px}.topbar-inner{align-items:flex-start;flex-direction:column}.brand{min-width:0}.nav{justify-content:flex-start}.hero-card{padding:24px;min-height:auto}.demo-grid,.catalog-grid,.metrics,.script-grid,.offer-grid,.dashboard-grid,.reserve-controls{grid-template-columns:1fr}.phone{position:relative;top:auto;height:760px;max-width:420px;margin:auto}.wallets{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.panel-head{flex-direction:column}.hero p{font-size:16px}h1{font-size:44px}}
+
+    @media(max-width:860px){
+      /* Mode discussion verrouillé : aucune remontée de page, aucun zoom input, tout reste dans le téléphone. */
+      body.chat-focus{position:fixed;left:0;right:0;width:100%;overflow:hidden;background:#fffaf3}
+      body.chat-focus .topbar,
+      body.chat-focus .hero,
+      body.chat-focus #demo > .panel > .panel-head,
+      body.chat-focus .demo-grid > .panel,
+      body.chat-focus .side-stack{display:none!important}
+      body.chat-focus .app{height:100dvh;max-width:none;margin:0;padding:0;overflow:hidden}
+      body.chat-focus #demo,
+      body.chat-focus #demo .panel,
+      body.chat-focus .demo-grid{height:100dvh;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:#fffaf3!important;display:block!important}
+      body.chat-focus .phone{position:fixed!important;inset:0!important;width:100vw!important;max-width:none!important;height:100dvh!important;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;z-index:9999;background:#fffaf3;overflow:hidden}
+      body.chat-focus .phone:before{display:none}
+      body.chat-focus .screen{border-radius:0;height:100dvh}
+      body.chat-focus .screen-top{padding-top:calc(env(safe-area-inset-top) + 14px);padding-bottom:12px;flex-shrink:0}
+      body.chat-focus .screen-top h3{margin-top:12px;font-size:22px}
+      body.chat-focus .screen-body{min-height:0;overflow:auto;touch-action:pan-y}
+      body.chat-focus .screen-bottom{padding-bottom:calc(env(safe-area-inset-bottom) + 10px);flex-shrink:0}
+      body.chat-focus .exit-chat{display:inline-flex;align-items:center;justify-content:center}
+    }
   </style>
 </head>
 <body>
@@ -157,7 +181,7 @@
           <div class="phone" aria-label="Aperçu mobile du chatbot">
             <div class="screen">
               <div class="screen-top">
-                <div class="mini"><span>La Fourchette · Demo</span><span id="liveClock">12:00</span></div>
+                <div class="mini"><span>La Fourchette · Demo</span><button class="exit-chat" onclick="unlockChatMode()">Quitter</button><span id="liveClock">12:00</span></div>
                 <h3 id="phoneTitle">Sommelier Digital</h3>
                 <p id="phoneSubtitle">Je vous conseille, je compose le panier et je sécurise la réservation.</p>
               </div>
@@ -434,17 +458,20 @@
     }
 
     function focusChat(){
-      switchSection('demo');
-      setTimeout(()=>document.getElementById('chatInput').focus(),150);
+      switchSection('demo', {noScroll:true});
+      lockChatMode();
+      setTimeout(()=>document.getElementById('chatInput').focus({preventScroll:true}),150);
     }
 
     function quickSend(text){
-      switchSection('demo');
+      switchSection('demo', {noScroll:true});
+      lockChatMode();
       document.getElementById('chatInput').value = text;
       sendFromInput();
     }
 
     function sendFromInput(){
+      lockChatMode();
       const input = document.getElementById('chatInput');
       const text = input.value.trim();
       if(!text) return;
@@ -474,7 +501,11 @@
       scrollPhone();
     }
     function hideTyping(){ const el = document.getElementById('typing'); if(el) el.remove(); }
-    function scrollPhone(){ const body = document.getElementById('screenBody'); body.scrollTop = body.scrollHeight; }
+    function scrollPhone(){
+      const body = document.getElementById('screenBody');
+      if(!body) return;
+      requestAnimationFrame(()=>{ body.scrollTop = body.scrollHeight; });
+    }
 
     async function respond(message){
       showTyping();
@@ -532,12 +563,30 @@
       return reply('default', "Je peux vous aider à choisir un plat, proposer un accord, composer un panier ou sécuriser une réservation. Essayez : Chateaubriand, poisson, anniversaire, budget 60000 ou réservation.", ['chateaubriand','daurade','asia','tiramisu']);
     }
 
-    function switchSection(id){
+    function switchSection(id, opts={}){
+      if(id !== 'demo') unlockChatMode();
       document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active', b.dataset.section===id));
       if(id === 'dashboard') renderMetrics();
-      window.scrollTo({top:0,behavior:'smooth'});
+      if(!opts.noScroll && !document.body.classList.contains('chat-focus')) window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function lockChatMode(){
+      if(!window.matchMedia('(max-width: 860px)').matches) return;
+      if(document.body.classList.contains('chat-focus')) return;
+      window.__chatLockY = window.scrollY || document.documentElement.scrollTop || 0;
+      document.body.style.top = `-${window.__chatLockY}px`;
+      document.body.classList.add('chat-focus');
+      setTimeout(scrollPhone, 60);
+    }
+
+    function unlockChatMode(){
+      if(!document.body.classList.contains('chat-focus')) return;
+      const y = window.__chatLockY || 0;
+      document.body.classList.remove('chat-focus');
+      document.body.style.top = '';
+      requestAnimationFrame(()=>window.scrollTo(0, y));
     }
 
     function resetDemo(){
@@ -573,7 +622,9 @@
     function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.classList.remove('show'),3600); }
 
     document.getElementById('nav').addEventListener('click', e => { const b = e.target.closest('button[data-section]'); if(b) switchSection(b.dataset.section); });
+    document.getElementById('chatInput').addEventListener('focus', () => { lockChatMode(); setTimeout(scrollPhone, 120); });
     document.getElementById('chatInput').addEventListener('keydown', e => { if(e.key === 'Enter') sendFromInput(); });
+    if(window.visualViewport){ window.visualViewport.addEventListener('resize', () => { if(document.body.classList.contains('chat-focus')) setTimeout(scrollPhone, 80); }); }
     document.getElementById('dateInput').valueAsDate = new Date(Date.now() + 24*60*60*1000);
     renderAll(); startChat(); checkApi(); setInterval(renderClock, 30000);
   </script>
