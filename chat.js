@@ -37,6 +37,10 @@ const catalog = {
     reply: "Je peux sécuriser la réservation avec un acompte wallet. Le montant sera déduit de l'addition le jour J.",
     cards: ['deposit20000','wave','orangeMoney','freeMoney']
   },
+  order: {
+    reply: "Je peux gérer une commande directe : livraison ou à emporter, nombre de personnes, zone, frais estimés, panier et paiement wallet.",
+    cards: ['daurade','tagliatelles','volaille','tiramisu']
+  },
   budget: {
     reply: "Avec ce budget, je compose un panier optimisé : plat fort + accord accessible + dessert ou cocktail selon le moment.",
     cards: ['daurade','riesling','cremebrulee','espresso']
@@ -56,6 +60,7 @@ function detectIntent(message = '') {
   if (/sushi|asia|partager|amis|groupe/.test(m)) return 'asia';
   if (/dessert|tiramisu|moelleux|chocolat/.test(m)) return 'tiramisu';
   if (/anniversaire|birthday|celebration|fete/.test(m)) return 'anniversaire';
+  if (/livraison|livrer|domicile|commande|commander|emporter|retrait|takeaway|delivery/.test(m)) return 'order';
   if (/reserv|table|20h|21h|midi|dejeuner|diner|acompte|no show/.test(m)) return 'reservation';
   if (/wave|orange money|free money|payer|paiement|wallet/.test(m)) return 'reservation';
   if (/budget|fcfa|xof|moins de|pas depasser|60000|50000|40000|30000/.test(m)) return 'budget';
@@ -74,6 +79,10 @@ function buildReply(message, payload = {}) {
     } else {
       followups.push('Quel créneau souhaitez-vous ? Exemple : ce soir 20h30, 2 personnes.');
     }
+  }
+  if (intent === 'order') {
+    followups.push('Souhaitez-vous une livraison à domicile ou une commande à emporter ?');
+    followups.push('Le chatbot va filtrer les plats adaptés à la livraison, puis proposer dessert, boisson ou sauce.');
   }
   if (intent === 'chateaubriand') followups.push('Voulez-vous une version accessible ou premium pour le vin ?');
   if (intent === 'daurade') followups.push('Souhaitez-vous rester léger ou ajouter un dessert ?');

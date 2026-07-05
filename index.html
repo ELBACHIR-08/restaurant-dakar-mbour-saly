@@ -112,6 +112,8 @@
     .inline-control input{border:1px solid #eadfce;border-radius:14px;padding:11px 12px;font-size:16px;background:#fff;width:100%}
     .inline-control button{border:0;border-radius:14px;background:#17120f;color:white;font-weight:950;padding:11px 12px;touch-action:manipulation}
     .conversation-note{font-size:11px;color:#7c5727;background:#fff3dc;border:1px solid #f0ddb9;border-radius:14px;padding:9px 10px;margin-top:9px;line-height:1.35}
+    .privacy-note{font-size:10.5px;color:#73685d;background:#fbf5eb;border:1px solid #efe2d2;border-radius:12px;padding:8px 9px;margin-top:8px;line-height:1.35}
+    .contact-pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#e9f6f0;color:#176a50;font-size:11px;font-weight:950;padding:6px 9px;margin-top:8px}
 
     @media(max-width:1180px){.hero{grid-template-columns:1fr}.demo-grid{grid-template-columns:390px minmax(0,1fr)}.side-stack{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.script-grid,.offer-grid,.dashboard-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:860px){.app{padding:14px}.topbar{margin:-14px -14px 16px;padding:12px 14px}.topbar-inner{align-items:flex-start;flex-direction:column}.brand{min-width:0}.nav{justify-content:flex-start}.hero-card{padding:24px;min-height:auto}.demo-grid,.catalog-grid,.metrics,.script-grid,.offer-grid,.dashboard-grid,.reserve-controls{grid-template-columns:1fr}.phone{position:relative;top:auto;height:760px;max-width:420px;margin:auto}.wallets{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.panel-head{flex-direction:column}.hero p{font-size:16px}h1{font-size:44px}}
@@ -165,6 +167,7 @@
           <div class="hero-actions">
             <button class="primary" onclick="focusChat()">Tester le chatbot →</button>
             <button class="secondary" onclick="quickSend('Je veux le Chateaubriand')">Démo Chateaubriand</button>
+            <button class="secondary" onclick="quickSend('Je veux commander en livraison')">Démo livraison</button>
             <button class="ghost" onclick="quickSend('Anniversaire pour 4 personnes')">Démo anniversaire</button>
           </div>
           <div class="hero-stats">
@@ -182,7 +185,7 @@
         </div>
         <div class="panel" style="margin:0;box-shadow:none;background:#fff;border-radius:22px;padding:16px">
           <b>Questions test rapides</b>
-          <p class="panel-sub" style="font-size:13px">Essaie : “Je viens en couple”, “poisson”, “budget 60000”, “réserver à 20h30”, “paiement Wave”.</p>
+          <p class="panel-sub" style="font-size:13px">Essaie : “Je viens en couple”, “livraison aux Almadies”, “poisson”, “budget 60000”, “réserver à 20h30”, “paiement Wave”.</p>
         </div>
       </aside>
     </section>
@@ -215,7 +218,7 @@
                 </div>
                 <div class="mini-cart">
                   <div><span>Panier actuel</span><b id="miniTotal">0 FCFA</b></div>
-                  <button onclick="quickSend('Je veux réserver et payer avec Wave')">Réserver</button>
+                  <button id="miniAction" onclick="handleMiniAction()">Réserver</button>
                 </div>
               </div>
             </div>
@@ -299,6 +302,8 @@
       chateaubriand:{id:'chateaubriand', type:'Plat', emoji:'🥩', category:'Viande premium', name:'Chateaubriand 600g', price:45000, description:'Plat signature à partager, idéal pour déclencher un accord vin premium et une entrée.'},
       canard:{id:'canard', type:'Plat', emoji:'🍗', category:'Viande gourmande', name:'Confit de canard', price:28500, description:'Plat à forte valeur gustative, parfait pour proposer un rouge rond ou un Bourgogne.'},
       daurade:{id:'daurade', type:'Plat', emoji:'🐟', category:'Poisson', name:'Filet de daurade royale', price:16500, description:'Plat accessible qui peut monter en panier avec un blanc sec et frais.'},
+      tagliatelles:{id:'tagliatelles', type:'Plat livraison', emoji:'🍝', category:'Livraison premium', name:'Tagliatelles au saumon frais', price:18500, description:'Plat adapté à la livraison, lisible, généreux et facile à packager.'},
+      volaille:{id:'volaille', type:'Plat livraison', emoji:'🍗', category:'Livraison premium', name:'Suprême de volaille à la plancha', price:14500, description:'Option accessible pour panier livraison avec garniture ou boisson.'},
       tartare:{id:'tartare', type:'Plat', emoji:'🔪', category:'Viande froide', name:'Tartare de boeuf au couteau', price:16500, description:'Très bon support pour proposer un rouge structuré ou une garniture.'},
       asia:{id:'asia', type:'Plat', emoji:'🍣', category:'À partager', name:"L'Asia - plateau à partager", price:16500, description:'Plateau idéal entre amis, à connecter avec Prosecco, Sancerre ou Carte Blanche.'},
       tiramisu:{id:'tiramisu', type:'Dessert', emoji:'🍰', category:'Dessert', name:'Tiramisu déstructuré', price:7500, description:'Moment parfait pour proposer un cocktail, une coupe festive ou une option anniversaire.'},
@@ -320,6 +325,10 @@
       espresso:{id:'espresso', type:'Cocktail', emoji:'🍸', name:'Espresso Martini', price:7500, reason:'Accord naturel avec tiramisu ou moelleux chocolat.'},
       lyvrose:{id:'lyvrose', type:'Rosé / Champagne', emoji:'🍾', name:"Pays d'Oc Lyv Rosé", price:30000, reason:'Accord festif pour anniversaire ou dessert.'},
       glace:{id:'glace', type:'Extra dessert', emoji:'🍨', name:'Boule de glace ou sorbet', price:2000, reason:'Petit add-on à faible friction.'},
+      basilpassion:{id:'basilpassion', type:'Mocktail livraison', emoji:'🍹', name:'Basil Passion sans alcool', price:5500, reason:'Boisson premium livrable, plus adaptée qu’un cocktail fragile.'},
+      citronnade:{id:'citronnade', type:'Boisson', emoji:'🍋', name:'Citronnade maison', price:3500, reason:'Boisson simple pour augmenter le panier livraison.'},
+      sauce:{id:'sauce', type:'Extra', emoji:'🥣', name:'Sauce supplémentaire', price:1500, reason:'Petit add-on utile pour livraison et à très faible friction.'},
+      packduo:{id:'packduo', type:'Box premium', emoji:'🎁', name:'Duo Signature livraison', price:43500, reason:'Pack clé en main pour deux personnes : plat, partage, dessert et boisson.'},
       deposit20000:{id:'deposit20000', type:'Acompte', emoji:'💳', name:'Acompte réservation', price:20000, reason:"Déduit de l'addition et limite le no-show."},
       wave:{id:'wave', type:'Wallet', emoji:'🌊', name:'Paiement Wave', price:0, reason:'Paiement wallet simulé dans le MVP.'},
       orangeMoney:{id:'orangeMoney', type:'Wallet', emoji:'🟠', name:'Orange Money', price:0, reason:'Alternative de paiement wallet.'},
@@ -348,7 +357,16 @@
       bundle_business_lunch:['daurade','riesling','cremebrulee'],
       bundle_business_dinner:['chateaubriand','petitcaillou','gambas'],
       bundle_solo_light:['daurade','riesling'],
-      bundle_solo_signature:['tartare','chevalnoir']
+      bundle_solo_signature:['tartare','chevalnoir'],
+      delivery_complete_daurade:['daurade','cremebrulee','citronnade'],
+      delivery_complete_tagliatelles:['tagliatelles','tiramisu','citronnade'],
+      delivery_complete_volaille:['volaille','frites','basilpassion'],
+      delivery_share_asia:['asia','prosecco'],
+      delivery_share_gambas:['gambas','asia','citronnade'],
+      delivery_group_carteblanche:['carteblanche','prosecco','tiramisu'],
+      delivery_dessert_pack:['tiramisu','glace','espresso'],
+      delivery_chef_duo:['packduo','basilpassion'],
+      pickup_fast_lunch:['daurade','riesling','cremebrulee']
     };
 
     const state = {
@@ -359,7 +377,8 @@
       apiOnline:false,
       chatStarted:false,
       lastIntent:'default',
-      reservation:freshReservation()
+      reservation:freshReservation(),
+      order:freshOrder()
     };
 
     function freshReservation(){
@@ -374,7 +393,35 @@
         time:null,
         suggestion:null,
         note:null,
+        contactMethod:null,
+        phone:null,
+        email:null,
+        marketingOptIn:false,
         deposit:20000
+      };
+    }
+
+    function freshOrder(){
+      return {
+        active:false,
+        step:null,
+        mode:null,
+        modeLabel:null,
+        guests:null,
+        guestLabel:null,
+        zone:null,
+        zoneLabel:null,
+        deliveryFee:0,
+        eta:null,
+        pickupTime:null,
+        intent:null,
+        suggestion:null,
+        address:null,
+        phone:null,
+        email:null,
+        marketingOptIn:false,
+        note:null,
+        payment:null
       };
     }
 
@@ -382,6 +429,8 @@
     function dishIds(){ return ['chateaubriand','canard','daurade','tartare','asia','tiramisu']; }
     function selectedDish(){ return item(state.selected); }
     function cartTotal(){ return state.cart.reduce((sum,id)=>sum + (item(id)?.price || 0),0); }
+    function serviceFee(){ return state.order && state.order.active && state.order.mode === 'delivery' ? Number(state.order.deliveryFee || 0) : 0; }
+    function grandTotal(){ return cartTotal() + serviceFee(); }
     function basePrice(){ const firstDish = state.cart.map(item).find(x => x && x.type === 'Plat'); return firstDish ? firstDish.price : selectedDish().price; }
     function uplift(){ const base = basePrice(); if(!base) return 0; return Math.max(0, Math.round(((cartTotal() - base) / base) * 100)); }
     function normalize(str){ return String(str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
@@ -429,16 +478,24 @@
         el.innerHTML = "Aucun produit ajouté pour l'instant.";
       } else {
         el.className = '';
-        el.innerHTML = state.cart.map(id=>{
+        let lines = state.cart.map(id=>{
           const x = item(id);
           return `<div class="cart-line"><span>${x.emoji || ''} ${x.type} · ${x.name}</span><b>${fcfa(x.price)}</b></div>`;
-        }).join('');
+        });
+        if(serviceFee()){
+          lines.push(`<div class="cart-line"><span>🛵 Livraison estimée · ${escapeHtml(state.order.zoneLabel || 'zone sélectionnée')}</span><b>${fcfa(serviceFee())}</b></div>`);
+        }
+        el.innerHTML = lines.join('');
       }
-      document.getElementById('cartTotal').textContent = fcfa(cartTotal());
-      document.getElementById('miniTotal').textContent = fcfa(cartTotal());
+      document.getElementById('cartTotal').textContent = fcfa(grandTotal());
+      document.getElementById('miniTotal').textContent = fcfa(grandTotal());
+      const miniAction = document.getElementById('miniAction');
+      if(miniAction) miniAction.textContent = state.order && state.order.active ? 'Commander' : 'Réserver';
       document.getElementById('cartUplift').textContent = `+${uplift()}%`;
       const pay = document.getElementById('payButton');
-      pay.textContent = state.paid ? `Acompte payé avec ${state.wallet} ✓` : `Payer l'acompte avec ${state.wallet}`;
+      pay.textContent = state.order && state.order.active
+        ? (state.paid ? `Commande payée avec ${state.wallet} ✓` : `Payer la commande avec ${state.wallet}`)
+        : (state.paid ? `Acompte payé avec ${state.wallet} ✓` : `Payer l'acompte avec ${state.wallet}`);
       pay.classList.toggle('success', state.paid);
     }
 
@@ -447,7 +504,7 @@
     }
 
     function renderMetrics(){
-      const total = cartTotal();
+      const total = grandTotal();
       const base = basePrice();
       const add = Math.max(0,total-base);
       const monthlySessions = 800;
@@ -459,7 +516,7 @@
         <div class="metric"><div class="name">Uplift</div><div class="value">+${uplift()}%</div><div class="sub">Gain potentiel par commande.</div></div>
         <div class="metric"><div class="name">CA add. pilote</div><div class="value">${fcfa(monthlyAdd)}</div><div class="sub">Hyp. 800 vues menu/mois, 22% attach.</div></div>`;
       document.getElementById('leverBars').innerHTML = [
-        ['Réservation conversationnelle',88],['Accords mets-vins',84],['Desserts et cocktails',62],['Acompte anti no-show',68],['Menu dynamique midi/soir',73]
+        ['Réservation conversationnelle',88],['Commande & livraison directe',86],['Accords mets-vins',84],['Desserts et cocktails',62],['Acompte anti no-show',68],['Menu dynamique midi/soir',73]
       ].map(([name,v])=>`<div style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;font-weight:900"><span>${name}</span><span>${v}%</span></div><div class="bar"><span style="width:${v}%"></span></div></div>`).join('');
       const rows = (pairingsByDish[state.selected] || []).map(id=>{
         const p = item(id);
@@ -470,12 +527,13 @@
 
     function renderScripts(){
       const blocks = [
-        {title:'1. Démarrage', steps:[['Bot','Bonjour 👋 Que souhaitez-vous faire aujourd’hui ?'],['Choix','Réserver une table · Découvrir le menu · Me faire conseiller · Commander'],['UX','Un seul bloc de boutons apparaît en bas de conversation.']]},
+        {title:'1. Démarrage', steps:[['Bot','Bonjour 👋 Que souhaitez-vous faire aujourd’hui ?'],['Choix','Réserver une table · Commander en livraison · À emporter · Me faire conseiller'],['UX','Un seul bloc de boutons apparaît en bas de conversation.']]},
         {title:'2. Réservation', steps:[['Bot','Pour quel type de moment souhaitez-vous réserver ?'],['Choix','Seul · Couple · Amis · Anniversaire · Entreprise'],['Logique','Solo/couple auto-remplissent le nombre, groupes demandent la taille.']]},
-        {title:'3. Date et heure', steps:[['Bot','Pour quelle date souhaitez-vous venir ?'],['Choix','Aujourd’hui · Demain · Ce week-end · Choisir une date'],['Bot','Quelle heure vous conviendrait ? 12h30 · 20h30 · 21h00 · Autre.']]},
-        {title:'4. Upsell contextualisé', steps:[['Couple','Chateaubriand + Saint-Julien ou Daurade + Chablis.'],['Anniversaire','Carte Blanche, rosé, Prosecco ou dessert avec bougie.'],['Entreprise','Business lunch, dîner d’affaires ou demande de devis.']]},
-        {title:'5. Confirmation', steps:[['Récap','Type, convives, date, heure, suggestion, acompte.'],['Paiement','Wave · Orange Money · Free Money.'],['Message','L’acompte est déduit de l’addition.']]},
-        {title:'6. Anti-friction', steps:[['Mobile','Écran figé sur la discussion, pas de zoom.'],['Navigation','Bouton quitter et possibilité de modifier.'],['Conversion','Tout reste dans le chatbot.']]}
+        {title:'3. Commande & livraison', steps:[['Bot','Livraison ou à emporter ? Pour combien de personnes ?'],['Choix','1 personne · 2 personnes · 3-4 · 5+'],['Logique','Les plats proposés sont filtrés selon le format et la capacité de livraison.']]},
+        {title:'4. Zone, délai et frais', steps:[['Bot','Dans quelle zone souhaitez-vous être livré ?'],['Choix','Plateau · Almadies · Ngor · Mermoz · Saly · Autre zone'],['Rassurance','Frais et délai estimés avant paiement.']]},
+        {title:'5. Upsell contextualisé', steps:[['Sur place','Vin, champagne, table premium, dessert anniversaire.'],['Livraison','Dessert, boisson soft, garniture, pack duo/groupe.'],['Entreprise','Business lunch, dîner d’affaires ou demande de devis.']]},
+        {title:'6. Contact subtil', steps:[['Bot','Où souhaitez-vous recevoir la confirmation ?'],['Logique','Téléphone prioritaire pour WhatsApp/SMS, email optionnel ou requis pour groupe/entreprise.'],['Conformité','Micro-mention : les infos servent à confirmer la commande ou la réservation.']]},
+        {title:'7. Confirmation', steps:[['Récap','Mode, convives, zone/retrait, contact, délai, frais, panier.'],['Paiement','Wave · Orange Money · Free Money · paiement à la livraison si validé.'],['Mobile','Écran figé sur la discussion, pas de zoom.']]}
       ];
       document.getElementById('scriptGrid').innerHTML = blocks.map(b=>`<div class="script-card"><h3>${b.title}</h3>${b.steps.map((s,i)=>`<div class="script-step"><div class="num">${i+1}</div><p><b>${s[0]} :</b> ${s[1]}</p></div>`).join('')}</div>`).join('');
     }
@@ -528,22 +586,545 @@
       const guests = r.guests || document.getElementById('guestInput').value;
       const time = r.time || document.getElementById('timeInput').value || '20:30';
       const dateLabel = r.dateLabel || 'date sélectionnée';
+      const contact = r.email || r.phone || 'contact à confirmer';
       state.paid = true;
       renderCart();
-      addBot(`Réservation confirmée ✅\n${guests} personne(s), ${dateLabel} à ${time}.\nAcompte simulé : ${fcfa(deposit)} via ${state.wallet}. Le montant sera déduit de l'addition.`);
+      addBot(`Réservation confirmée ✅\n${guests} personne(s), ${dateLabel} à ${time}.\nConfirmation envoyée à : ${contact}.\nAcompte simulé : ${fcfa(deposit)} via ${state.wallet}. Le montant sera déduit de l'addition.`);
       addChoiceGroup({
-        progress:'Confirmation',
-        title:'Souhaitez-vous recevoir une confirmation WhatsApp ?',
-        subtitle:'Dans la version réelle, le client reçoit un récapitulatif avec date, heure, acompte et adresse.',
+        progress:'Après-confirmation',
+        title:'Souhaitez-vous recevoir les offres du restaurant ?',
+        subtitle:'Optionnel. Dans la version réelle, cette autorisation est séparée de la confirmation de réservation.',
         choices:[
-          {label:'Recevoir WhatsApp', value:'whatsapp_confirm', primary:true},
+          {label:'Oui, recevoir les offres', value:'res_marketing_yes', primary:true},
+          {label:'Non merci', value:'marketing_no'},
           {label:'Modifier la réservation', value:'modify_reservation'}
         ]
       });
       showToast(`Paiement simulé : ${fcfa(deposit)} via ${state.wallet}.`);
     }
 
-    function focusChat(){
+    
+    function handleMiniAction(){
+      if(state.order && state.order.active){
+        if(state.order.step === 'summary') addOrderSummary();
+        else startOrderFlow({silentIntro:true});
+      } else {
+        quickSend('Je veux réserver et payer avec Wave');
+      }
+    }
+
+    function zoneData(zone){
+      const zones = {
+        plateau:{fee:1500, eta:'30-45 min'},
+        almadies:{fee:2500, eta:'40-55 min'},
+        ngor:{fee:2500, eta:'40-55 min'},
+        mermoz:{fee:2000, eta:'35-50 min'},
+        sacrecoeur:{fee:2000, eta:'35-50 min'},
+        saly:{fee:5000, eta:'précommande 90-120 min'},
+        other:{fee:3000, eta:'à confirmer'}
+      };
+      return zones[zone] || zones.other;
+    }
+
+    function startOrderFlow(opts={}){
+      state.order = freshOrder();
+      state.order.active = true;
+      state.order.step = 'mode';
+      state.reservation.active = false;
+      document.getElementById('phoneSubtitle').textContent = 'Commande, livraison, upsell et paiement wallet.';
+      if(!opts.silentIntro){
+        addBot("Très bien. Je peux vous aider à commander sans appel téléphonique : choix du format, zone, panier, frais estimés et paiement wallet.");
+        addBot("Je vais d'abord confirmer le mode de commande, puis je vous proposerai uniquement les options adaptées à la livraison ou au retrait.");
+      }
+      addChoiceGroup({
+        progress:'Commande · étape 1 sur 6',
+        title:'Comment souhaitez-vous recevoir votre commande ?',
+        subtitle:'La livraison et le retrait n’ont pas les mêmes règles : le menu est filtré pour préserver la qualité du repas.',
+        choices:[
+          {label:'Livraison à domicile', value:'order_mode_delivery', primary:true},
+          {label:'À emporter', value:'order_mode_pickup'},
+          {label:'Voir les plats livrables', value:'order_menu_delivery'}
+        ]
+      });
+    }
+
+    function setOrderMode(mode,label){
+      state.order.mode = mode;
+      state.order.modeLabel = label;
+      state.order.step = 'guests';
+      addBot(mode === 'delivery'
+        ? 'Parfait, je prépare un parcours livraison. Pour combien de personnes commandez-vous ?'
+        : 'Parfait, je prépare une commande à emporter. Pour combien de personnes commandez-vous ?');
+      askOrderGuests();
+      renderAll();
+    }
+
+    function askOrderGuests(){
+      addChoiceGroup({
+        progress:'Commande · étape 2 sur 6',
+        title:'Nombre de personnes',
+        subtitle:'Cela permet de proposer un plat seul, un pack duo ou un format groupe.',
+        choices:[
+          {label:'1 personne', value:'order_guest_1'},
+          {label:'2 personnes', value:'order_guest_2', primary:true},
+          {label:'3-4 personnes', value:'order_guest_4'},
+          {label:'5 personnes et +', value:'order_guest_custom'},
+          {label:'Je précise', value:'order_guest_custom'}
+        ]
+      });
+    }
+
+    function setOrderGuests(num,label){
+      state.order.guests = Number(num);
+      state.order.guestLabel = label || `${num} personne${Number(num)>1?'s':''}`;
+      addBot(`Très bien, je note : ${state.order.guestLabel}.`);
+      if(state.order.mode === 'delivery') askDeliveryZone();
+      else askPickupTime();
+      renderAll();
+    }
+
+    function askDeliveryZone(){
+      state.order.step = 'zone';
+      addBot('Dans quelle zone souhaitez-vous être livré ?');
+      addChoiceGroup({
+        progress:'Commande · étape 3 sur 6',
+        title:'Zone de livraison',
+        subtitle:'Le MVP simule les frais et le délai. Le restaurant pourra ensuite valider ses vraies zones.',
+        choices:[
+          {label:'Plateau', value:'zone_plateau'},
+          {label:'Almadies', value:'zone_almadies', primary:true},
+          {label:'Ngor', value:'zone_ngor'},
+          {label:'Mermoz', value:'zone_mermoz'},
+          {label:'Sacré-Cœur', value:'zone_sacrecoeur'},
+          {label:'Mbour / Saly', value:'zone_saly'},
+          {label:'Autre zone', value:'zone_other'}
+        ]
+      });
+    }
+
+    function setDeliveryZone(zone,label){
+      const z = zoneData(zone);
+      state.order.zone = zone;
+      state.order.zoneLabel = label;
+      state.order.deliveryFee = z.fee;
+      state.order.eta = z.eta;
+      state.order.step = 'order_type';
+      addBot(`Zone notée : ${label}. Délai estimé : ${z.eta}. Frais estimés : ${fcfa(z.fee)}.`);
+      askOrderType();
+      renderAll();
+    }
+
+    function askPickupTime(){
+      state.order.step = 'pickup_time';
+      addBot('À quelle heure souhaitez-vous récupérer la commande ?');
+      addChoiceGroup({
+        progress:'Commande · étape 3 sur 6',
+        title:'Heure de retrait',
+        subtitle:'Le retrait évite l’attente sur place et permet le paiement avant préparation.',
+        choices:[
+          {label:'Dans 30 min', value:'pickup_30'},
+          {label:'Dans 45 min', value:'pickup_45', primary:true},
+          {label:'Dans 1h', value:'pickup_60'},
+          {label:'Choisir une heure', value:'pickup_custom'}
+        ]
+      });
+    }
+
+    function setPickupTime(label){
+      state.order.pickupTime = label;
+      state.order.step = 'order_type';
+      addBot(`C'est noté : retrait ${label}.`);
+      askOrderType();
+      renderAll();
+    }
+
+    function askOrderType(){
+      addBot('Que souhaitez-vous commander ?');
+      addChoiceGroup({
+        progress:'Commande · étape 4 sur 6',
+        title:'Type de commande',
+        subtitle:'Le chatbot évite de lister toute la carte et propose d’abord les formats qui convertissent le mieux.',
+        choices:[
+          {label:'Repas complet', value:'order_type_complete', primary:true},
+          {label:'Plat principal', value:'order_type_main'},
+          {label:'À partager', value:'order_type_share'},
+          {label:'Dessert uniquement', value:'order_type_dessert'},
+          {label:'Suggestion du Chef', value:'order_type_chef'}
+        ]
+      });
+    }
+
+    function showOrderSuggestions(kind,label){
+      state.order.intent = kind;
+      state.order.step = 'items';
+      addBot(`Très bien. Je vous propose des options adaptées : ${label}.`);
+      const g = Number(state.order.guests || 1);
+      let choices = [];
+      if(kind === 'complete'){
+        choices = [
+          {label:'Daurade + crème brûlée + citronnade', value:'delivery_complete_daurade', primary:true},
+          {label:'Tagliatelles saumon + tiramisu', value:'delivery_complete_tagliatelles'},
+          {label:'Volaille + frites + Basil Passion', value:'delivery_complete_volaille'},
+          {label:'L’Asia + Prosecco', value:'delivery_share_asia'}
+        ];
+      } else if(kind === 'main'){
+        choices = [
+          {label:'Filet de daurade royale', value:'order_item_daurade', primary:true},
+          {label:'Tagliatelles au saumon', value:'order_item_tagliatelles'},
+          {label:'Suprême de volaille', value:'order_item_volaille'},
+          {label:'L’Asia à partager', value:'order_item_asia'}
+        ];
+      } else if(kind === 'share'){
+        choices = [
+          {label:'Rouleaux gambas + L’Asia', value:'delivery_share_gambas', primary:true},
+          {label:'L’Asia + Prosecco', value:'delivery_share_asia'},
+          {label:'Carte Blanche groupe', value:'delivery_group_carteblanche'}
+        ];
+      } else if(kind === 'dessert'){
+        choices = [
+          {label:'Tiramisu + glace + Espresso Martini', value:'delivery_dessert_pack', primary:true},
+          {label:'Moelleux chocolat', value:'order_item_moelleux'},
+          {label:'Crème brûlée', value:'order_item_cremebrulee'}
+        ];
+      } else {
+        choices = g >= 5
+          ? [{label:'Carte Blanche groupe', value:'delivery_group_carteblanche', primary:true},{label:'Rouleaux gambas + L’Asia', value:'delivery_share_gambas'},{label:'Demander un devis', value:'order_note_quote'}]
+          : [{label:'Duo Signature livraison', value:'delivery_chef_duo', primary:true},{label:'Daurade + crème brûlée', value:'delivery_complete_daurade'},{label:'L’Asia + Prosecco', value:'delivery_share_asia'}];
+      }
+      addChoiceGroup({
+        progress:'Commande · étape 5 sur 6',
+        title:'Sélection adaptée au format choisi',
+        subtitle:'Ces propositions protègent la qualité du repas et maximisent le panier sans afficher une carte interminable.',
+        choices
+      });
+    }
+
+    function addOrderItem(id,label){
+      addToCart(id, true);
+      state.order.suggestion = label || item(id)?.name || null;
+      addBot(`${item(id)?.name || label} ajouté au panier.`);
+      addCards([id]);
+      askOrderUpsell();
+      renderAll();
+    }
+
+    function finalizeOrderBundle(value,label){
+      if(bundleMap[value]){
+        addBundle(bundleMap[value], label);
+        state.order.suggestion = label;
+        addBot(`Parfait, je compose le panier : ${label}.`);
+        addCards(bundleMap[value]);
+      } else if(value === 'order_note_quote'){
+        state.order.note = 'Demande de devis / grande commande';
+        state.order.suggestion = 'Demande de devis';
+        addBot('Je note une demande de devis. Le restaurant recevrait les détails pour rappeler le client.');
+      }
+      askOrderUpsell();
+      renderAll();
+    }
+
+    function askOrderUpsell(){
+      state.order.step = 'upsell';
+      addBot('Souhaitez-vous compléter la commande avant paiement ?');
+      addChoiceGroup({
+        progress:'Commande · étape 5 sur 6',
+        title:'Upsell adapté à la livraison',
+        subtitle:'Ici, on privilégie les ajouts qui supportent bien la livraison : dessert, boisson, sauce, garniture.',
+        choices:[
+          {label:'Ajouter tiramisu', value:'order_add_tiramisu', primary:true},
+          {label:'Ajouter boisson maison', value:'order_add_citronnade'},
+          {label:'Ajouter sauce', value:'order_add_sauce'},
+          {label:'Passer au paiement', value:'order_checkout'}
+        ]
+      });
+    }
+
+    function addOrderSummary(){
+      const o = state.order;
+      o.step = 'summary';
+      const chat = document.getElementById('chat');
+      const card = document.createElement('div');
+      card.className = 'chat-card choice-system';
+      const modeLine = o.mode === 'delivery' ? `Livraison · ${o.zoneLabel || 'zone à confirmer'}` : `À emporter · ${o.pickupTime || 'horaire à confirmer'}`;
+      const etaLine = o.mode === 'delivery' ? `${o.eta || 'à confirmer'} · frais ${fcfa(o.deliveryFee || 0)}` : 'Retrait sans frais de livraison';
+      card.innerHTML = `
+        <div class="flow-meta">Commande · étape 7 sur 7</div>
+        <div class="choice-title">Récapitulatif avant paiement</div>
+        <div class="summary-card">
+          <div class="summary-row"><span>Mode</span><b>${escapeHtml(modeLine)}</b></div>
+          <div class="summary-row"><span>Personnes</span><b>${escapeHtml(o.guestLabel || String(o.guests || '-'))}</b></div>
+          ${o.mode === 'delivery' ? `<div class="summary-row"><span>Adresse</span><b>${escapeHtml(o.address || 'à confirmer')}</b></div>` : ''}
+          <div class="summary-row"><span>Contact</span><b>${escapeHtml(o.phone || '-')}</b></div>
+          ${o.email ? `<div class="summary-row"><span>Email reçu</span><b>${escapeHtml(o.email)}</b></div>` : ''}
+          <div class="summary-row"><span>Délai</span><b>${escapeHtml(etaLine)}</b></div>
+          <div class="summary-row"><span>Suggestion</span><b>${escapeHtml(o.suggestion || 'Commande simple')}</b></div>
+          <div class="summary-row"><span>Total estimé</span><b>${fcfa(grandTotal())}</b></div>
+        </div>
+        <div class="conversation-note">Le paiement wallet avant préparation réduit les erreurs de commande. Le restaurant peut contacter le client si l'adresse ou le créneau doit être précisé.</div>
+        <div class="privacy-note">Vos informations servent uniquement à confirmer cette commande, le reçu et la livraison. Les offres marketing restent optionnelles.</div>
+        <div class="choice-row">
+          <button type="button" class="choice-btn primary-choice" data-chat-action="choice" data-choice="order_pay_wave" data-label="Payer avec Wave">Payer avec Wave</button>
+          <button type="button" class="choice-btn" data-chat-action="choice" data-choice="order_pay_om" data-label="Orange Money">Orange Money</button>
+          <button type="button" class="choice-btn" data-chat-action="choice" data-choice="order_pay_free" data-label="Free Money">Free Money</button>
+          <button type="button" class="choice-btn" data-chat-action="choice" data-choice="order_pay_cash" data-label="Paiement à la livraison">Paiement à la livraison</button>
+          <button type="button" class="choice-btn" data-chat-action="choice" data-choice="modify_order" data-label="Modifier">Modifier</button>
+        </div>
+      `;
+      chat.appendChild(card);
+      scrollPhone();
+      renderAll();
+    }
+
+    function simulateOrderPayment(wallet){
+      state.order.payment = wallet;
+      state.paid = true;
+      renderCart();
+      const o = state.order;
+      const modeLine = o.mode === 'delivery' ? `livraison ${o.zoneLabel || ''}` : `retrait ${o.pickupTime || ''}`;
+      const contactLine = o.email ? `${o.phone} · reçu email ${o.email}` : `${o.phone}`;
+      addBot(`Commande confirmée ✅
+Mode : ${modeLine}.
+Contact : ${contactLine}.
+Total estimé : ${fcfa(grandTotal())}.
+Paiement : ${wallet}. ${o.mode === 'delivery' ? 'Le restaurant utilisera l’adresse indiquée et pourra vous joindre si besoin.' : 'La commande sera prête au créneau demandé.'}`);
+      addChoiceGroup({
+        progress:'Après-confirmation commande',
+        title:'Souhaitez-vous recevoir les offres du restaurant ?',
+        subtitle:'Optionnel. Dans la version réelle, cette autorisation est séparée du reçu et peut être retirée à tout moment.',
+        choices:[
+          {label:'Oui, recevoir les offres', value:'order_marketing_yes', primary:true},
+          {label:'Non merci', value:'marketing_no'},
+          {label:'Nouvelle commande', value:'modify_order'}
+        ]
+      });
+      showToast(`Commande simulée : ${fcfa(grandTotal())} · ${wallet}.`);
+    }
+
+
+    function contactMethodLabel(method){
+      if(method === 'sms') return 'SMS';
+      if(method === 'email') return 'Email';
+      return 'WhatsApp';
+    }
+
+    function isValidEmail(value){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(value || '').trim());
+    }
+
+    function cleanPhone(value){
+      return String(value || '').trim().replace(/[^+\d]/g,'');
+    }
+
+    function isLikelyPhone(value){
+      const v = cleanPhone(value);
+      const digits = v.replace(/\D/g,'');
+      return digits.length >= 8 && digits.length <= 15;
+    }
+
+    function addContactInputCard({context, type='text', title, subtitle, placeholder, buttonLabel}){
+      const chat = document.getElementById('chat');
+      const card = document.createElement('div');
+      card.className = 'chat-card choice-system';
+      const inputType = type === 'email' ? 'email' : (type === 'tel' ? 'tel' : 'text');
+      card.innerHTML = `
+        <div class="flow-meta">Contact</div>
+        <div class="choice-title">${escapeHtml(title)}</div>
+        <div class="choice-subtitle">${escapeHtml(subtitle)}</div>
+        <div class="inline-control">
+          <input data-contact-input="1" data-contact-context="${escapeAttr(context)}" type="${inputType}" inputmode="${type === 'email' ? 'email' : (type === 'tel' ? 'tel' : 'text')}" placeholder="${escapeAttr(placeholder || '')}" />
+          <button type="button" data-chat-action="contactInput" data-contact-context="${escapeAttr(context)}">${escapeHtml(buttonLabel || 'Valider')}</button>
+        </div>
+        <div class="privacy-note">Ces informations servent uniquement à confirmer la réservation ou la commande. Les offres commerciales sont demandées séparément.</div>
+      `;
+      chat.appendChild(card);
+      setTimeout(()=>{
+        const input = card.querySelector('input[data-contact-input]');
+        if(input && !window.matchMedia('(max-width: 860px)').matches) input.focus();
+      }, 40);
+      scrollPhone();
+    }
+
+    function askReservationContactPreference(){
+      const r = state.reservation;
+      r.step = 'contact_preference';
+      const groupLead = r.visitType === 'business' || Number(r.guests || 0) >= 6;
+      addBot('Votre réservation est presque prête. Où souhaitez-vous recevoir la confirmation ?');
+      addChoiceGroup({
+        progress:'Réservation · étape 6 sur 7',
+        title:'Canal de confirmation',
+        subtitle: groupLead ? 'Pour un groupe ou une demande entreprise, le téléphone accélère la confirmation et l’email peut servir au devis.' : 'On demande le contact uniquement après intention claire, pour sécuriser la table et envoyer le récapitulatif.',
+        choices:[
+          {label:'WhatsApp', value:'res_contact_whatsapp', primary:true},
+          {label:'SMS', value:'res_contact_sms'},
+          {label:'Email', value:'res_contact_email'}
+        ]
+      });
+    }
+
+    function askReservationContactInput(method){
+      const r = state.reservation;
+      r.contactMethod = method;
+      r.step = method === 'email' ? 'contact_email' : 'contact_phone';
+      if(method === 'email'){
+        addContactInputCard({
+          context:'reservation_email', type:'email',
+          title:'Votre email de confirmation',
+          subtitle:'Nous envoyons le récapitulatif de réservation et le reçu d’acompte à cette adresse.',
+          placeholder:'exemple@email.com', buttonLabel:'Valider l’email'
+        });
+      } else {
+        addContactInputCard({
+          context:'reservation_phone', type:'tel',
+          title:`Votre numéro ${contactMethodLabel(method)}`,
+          subtitle:'Le restaurant pourra confirmer la table ou vous prévenir en cas de changement.',
+          placeholder:'+221 77 000 00 00', buttonLabel:'Valider le numéro'
+        });
+      }
+    }
+
+    function submitReservationPhone(value){
+      if(!isLikelyPhone(value)){
+        addBot('Le numéro semble incomplet. Écrivez par exemple : +221 77 000 00 00.');
+        return true;
+      }
+      state.reservation.phone = cleanPhone(value);
+      addBot(`Parfait, confirmation prévue par ${contactMethodLabel(state.reservation.contactMethod)}.`);
+      afterReservationContact();
+      return true;
+    }
+
+    function submitReservationEmail(value){
+      if(!isValidEmail(value)){
+        addBot('L’email semble incomplet. Écrivez par exemple : nom@email.com.');
+        return true;
+      }
+      state.reservation.email = String(value).trim();
+      addBot('Email bien noté pour la confirmation.');
+      afterReservationContact();
+      return true;
+    }
+
+    function afterReservationContact(){
+      const r = state.reservation;
+      const needsEmail = (r.visitType === 'business' || Number(r.guests || 0) >= 6) && !r.email;
+      if(needsEmail){
+        r.step = 'contact_email_optional';
+        addChoiceGroup({
+          progress:'Réservation · contact complémentaire',
+          title:'Ajouter un email pour le devis ou la confirmation détaillée ?',
+          subtitle:'Optionnel, mais utile pour les groupes, anniversaires et demandes entreprise.',
+          choices:[
+            {label:'Ajouter un email', value:'res_optional_email_yes', primary:true},
+            {label:'Continuer sans email', value:'res_optional_email_no'}
+          ]
+        });
+        return;
+      }
+      addReservationSummary();
+    }
+
+    function askReservationOptionalEmailInput(){
+      state.reservation.step = 'contact_email_optional_input';
+      addContactInputCard({
+        context:'reservation_optional_email', type:'email',
+        title:'Email complémentaire',
+        subtitle:'Utile pour recevoir un devis, une facture ou une confirmation détaillée.',
+        placeholder:'exemple@email.com', buttonLabel:'Ajouter cet email'
+      });
+    }
+
+    function requestOrderContact(){
+      const o = state.order;
+      o.step = 'contact_phone';
+      if(o.mode === 'delivery'){
+        addBot('Le panier est prêt. Pour sécuriser la livraison, indiquez un numéro WhatsApp ou téléphone.');
+        addContactInputCard({
+          context:'order_phone', type:'tel',
+          title:'Numéro pour la livraison',
+          subtitle:'Le restaurant ou le livreur pourra vous joindre si l’adresse doit être précisée.',
+          placeholder:'+221 77 000 00 00', buttonLabel:'Valider le numéro'
+        });
+      } else {
+        addBot('Le panier est prêt. Où souhaitez-vous recevoir la confirmation de retrait ?');
+        addContactInputCard({
+          context:'order_phone', type:'tel',
+          title:'Numéro WhatsApp / téléphone',
+          subtitle:'Vous serez prévenu quand la commande sera prête.',
+          placeholder:'+221 77 000 00 00', buttonLabel:'Valider le numéro'
+        });
+      }
+    }
+
+    function submitOrderPhone(value){
+      if(!isLikelyPhone(value)){
+        addBot('Le numéro semble incomplet. Écrivez par exemple : +221 77 000 00 00.');
+        return true;
+      }
+      state.order.phone = cleanPhone(value);
+      addBot('Numéro bien noté.');
+      if(state.order.mode === 'delivery') askDeliveryAddress();
+      else askOrderEmailOptional();
+      return true;
+    }
+
+    function askDeliveryAddress(){
+      state.order.step = 'address_free';
+      addBot('Quelle est l’adresse ou le point de repère pour la livraison ?');
+      addContactInputCard({
+        context:'order_address', type:'text',
+        title:'Adresse de livraison',
+        subtitle:'Un quartier, une rue et un repère suffisent pour la démonstration.',
+        placeholder:'Ex : Almadies, près de...', buttonLabel:'Valider l’adresse'
+      });
+    }
+
+    function submitOrderAddress(value){
+      const v = String(value || '').trim();
+      if(v.length < 5){
+        addBot('L’adresse semble trop courte. Ajoutez au moins un quartier ou un point de repère.');
+        return true;
+      }
+      state.order.address = v;
+      addBot('Adresse bien notée.');
+      askOrderEmailOptional();
+      return true;
+    }
+
+    function askOrderEmailOptional(){
+      state.order.step = 'email_optional';
+      addChoiceGroup({
+        progress:'Commande · reçu',
+        title:'Souhaitez-vous recevoir le reçu par email ?',
+        subtitle:'Optionnel. Le téléphone reste utilisé pour la confirmation opérationnelle.',
+        choices:[
+          {label:'Oui, ajouter email', value:'order_email_yes', primary:true},
+          {label:'Non, continuer', value:'order_email_no'}
+        ]
+      });
+    }
+
+    function askOrderEmailInput(){
+      state.order.step = 'email_optional_input';
+      addContactInputCard({
+        context:'order_email', type:'email',
+        title:'Email pour le reçu',
+        subtitle:'Le reçu et le récapitulatif de commande peuvent être envoyés à cette adresse.',
+        placeholder:'exemple@email.com', buttonLabel:'Valider l’email'
+      });
+    }
+
+    function submitOrderEmail(value){
+      if(!isValidEmail(value)){
+        addBot('L’email semble incomplet. Écrivez par exemple : nom@email.com.');
+        return true;
+      }
+      state.order.email = String(value).trim();
+      addBot('Email bien noté pour le reçu.');
+      addOrderSummary();
+      return true;
+    }
+
+function focusChat(){
       switchSection('demo', {noScroll:true, lockChat:true, focusInput:true});
       if(!window.matchMedia('(max-width: 860px)').matches){
         setTimeout(()=>document.getElementById('demo').scrollIntoView({behavior:'smooth', block:'start'}), 30);
@@ -592,6 +1173,39 @@
           return true;
         }
         addBot("Je n'ai pas bien compris l'horaire. Écrivez par exemple : 20h30 ou 13:00.");
+        return true;
+      }
+
+      if(state.order && state.order.active && state.order.step === 'guest_free'){
+        const num = parseGuestCount(text);
+        if(num){
+          setOrderGuests(num, `${num} personne${num>1?'s':''}`);
+          return true;
+        }
+        addBot("Je n'ai pas bien compris le nombre. Écrivez par exemple : 4 ou nous serons 4.");
+        return true;
+      }
+
+      if(state.order && state.order.active && state.order.step === 'zone_free'){
+        const label = text.trim();
+        setDeliveryZone('other', label || 'Autre zone');
+        return true;
+      }
+
+      if(state.order && state.order.active && state.order.step === 'pickup_free'){
+        const time = parseTime(text);
+        setPickupTime(time ? `à ${time}` : text.trim());
+        return true;
+      }
+
+      if(r.active && r.step === 'contact_phone') return submitReservationPhone(text);
+      if(r.active && (r.step === 'contact_email' || r.step === 'contact_email_optional_input')) return submitReservationEmail(text);
+      if(state.order && state.order.active && state.order.step === 'contact_phone') return submitOrderPhone(text);
+      if(state.order && state.order.active && state.order.step === 'address_free') return submitOrderAddress(text);
+      if(state.order && state.order.active && state.order.step === 'email_optional_input') return submitOrderEmail(text);
+
+      if(/livraison|livrer|domicile|commande|commander|emporter|retrait|takeaway|delivery/.test(m)){
+        startOrderFlow({silentIntro:false});
         return true;
       }
 
@@ -702,21 +1316,25 @@
 
     function addReservationSummary(){
       const r = state.reservation;
+      r.step = 'summary';
       const chat = document.getElementById('chat');
       const card = document.createElement('div');
       card.className = 'chat-card choice-system';
+      const contactLine = r.email && r.phone ? `${r.phone} · ${r.email}` : (r.email || r.phone || '-');
       card.innerHTML = `
-        <div class="flow-meta">Réservation · étape 6 sur 6</div>
+        <div class="flow-meta">Réservation · étape 7 sur 7</div>
         <div class="choice-title">Récapitulatif avant confirmation</div>
         <div class="summary-card">
           <div class="summary-row"><span>Moment</span><b>${escapeHtml(r.visitLabel || 'Non précisé')}</b></div>
           <div class="summary-row"><span>Convives</span><b>${escapeHtml(String(r.guests || '-'))}</b></div>
           <div class="summary-row"><span>Date</span><b>${escapeHtml(r.dateLabel || '-')}</b></div>
           <div class="summary-row"><span>Heure</span><b>${escapeHtml(r.time || '-')}</b></div>
+          <div class="summary-row"><span>Contact</span><b>${escapeHtml(contactLine)}</b></div>
           <div class="summary-row"><span>Suggestion</span><b>${escapeHtml(r.suggestion || 'Réservation simple')}</b></div>
           <div class="summary-row"><span>Acompte</span><b>${fcfa(r.deposit || 20000)}</b></div>
         </div>
         <div class="conversation-note">L'acompte est déduit de l'addition. Il sert à sécuriser la table et à réduire les no-shows.</div>
+        <div class="privacy-note">Vos informations servent uniquement à confirmer cette réservation. Les offres marketing restent optionnelles et séparées.</div>
         <div class="choice-row">
           <button type="button" class="choice-btn primary-choice" data-chat-action="choice" data-choice="confirm_wave" data-label="Confirmer avec Wave">Confirmer avec Wave</button>
           <button type="button" class="choice-btn" data-chat-action="choice" data-choice="confirm_om" data-label="Confirmer avec Orange Money">Orange Money</button>
@@ -746,6 +1364,7 @@
 
     function startReservationFlow(opts={}){
       state.reservation = freshReservation();
+      state.order = freshOrder();
       state.reservation.active = true;
       state.reservation.step = 'visit_type';
       document.getElementById('phoneSubtitle').textContent = 'Réservation guidée, sans formulaire long.';
@@ -957,8 +1576,8 @@
         state.reservation.suggestion = 'Réservation simple';
         addBot("Très bien, on garde une réservation simple.");
       }
-      state.reservation.step = 'summary';
-      addReservationSummary();
+      state.reservation.step = 'contact_preference';
+      askReservationContactPreference();
       renderAll();
     }
 
@@ -1005,18 +1624,16 @@
         return;
       }
 
-      if(value === 'start_preorder'){
+      if(value === 'start_preorder' || value === 'start_order'){
         addUser(label);
-        addBot('Parfait. Pour la démo, je compose un panier précommandable avec suggestion automatique.');
-        addChoiceGroup({
-          progress:'Précommande',
-          title:'Quel point de départ ?',
-          choices:[
-            {label:'Dîner premium', value:'pre_bundle_couple_premium', primary:true},
-            {label:'Poisson léger', value:'pre_bundle_couple_light'},
-            {label:'Table entre amis', value:'pre_bundle_friends_share'}
-          ]
-        });
+        startOrderFlow();
+        return;
+      }
+
+      if(value === 'start_pickup'){
+        addUser(label);
+        startOrderFlow({silentIntro:true});
+        setOrderMode('pickup', 'À emporter');
         return;
       }
 
@@ -1080,7 +1697,110 @@
         return setReservationTime(timeMap[value], label);
       }
 
-      if(value.startsWith('pre_bundle_')){
+      
+      if(value.startsWith('order_mode_')){
+        addUser(label);
+        if(value === 'order_mode_delivery') return setOrderMode('delivery', 'Livraison à domicile');
+        if(value === 'order_mode_pickup') return setOrderMode('pickup', 'À emporter');
+      }
+
+      if(value === 'order_menu_delivery'){
+        addUser(label);
+        setOrderMode('delivery', 'Livraison à domicile');
+        return;
+      }
+
+      if(value.startsWith('order_guest_')){
+        addUser(label);
+        if(value === 'order_guest_custom'){
+          state.order.step = 'guest_free';
+          addBot('D’accord. Écrivez simplement le nombre exact de personnes, par exemple : 6.');
+        } else {
+          const num = Number(value.replace('order_guest_',''));
+          const lab = num === 4 ? '3-4 personnes' : `${num} personne${num>1?'s':''}`;
+          setOrderGuests(num, lab);
+        }
+        return;
+      }
+
+      if(value.startsWith('zone_')){
+        addUser(label);
+        const zone = value.replace('zone_','');
+        if(zone === 'other'){
+          state.order.step = 'zone_free';
+          addBot('Indiquez la zone ou le quartier de livraison. Exemple : Ouakam, Virage, Somone...');
+          return;
+        }
+        return setDeliveryZone(zone, label);
+      }
+
+      if(value.startsWith('pickup_')){
+        addUser(label);
+        if(value === 'pickup_custom'){
+          state.order.step = 'pickup_free';
+          addBot('Écrivez l’heure souhaitée pour le retrait, par exemple : 19h45.');
+          return;
+        }
+        const pickupMap = {pickup_30:'dans 30 min', pickup_45:'dans 45 min', pickup_60:'dans 1h'};
+        return setPickupTime(pickupMap[value] || label);
+      }
+
+      if(value.startsWith('order_type_')){
+        addUser(label);
+        const kind = value.replace('order_type_','');
+        return showOrderSuggestions(kind, label);
+      }
+
+      const orderItemMap = {
+        order_item_daurade:'daurade', order_item_tagliatelles:'tagliatelles', order_item_volaille:'volaille', order_item_asia:'asia',
+        order_item_moelleux:'moelleux', order_item_cremebrulee:'cremebrulee', order_add_tiramisu:'tiramisu', order_add_citronnade:'citronnade', order_add_sauce:'sauce'
+      };
+      if(orderItemMap[value]){
+        addUser(label);
+        return addOrderItem(orderItemMap[value], label);
+      }
+
+      if(value.startsWith('delivery_') || value.startsWith('pickup_fast_') || value === 'order_note_quote'){
+        addUser(label);
+        return finalizeOrderBundle(value, label);
+      }
+
+      if(value === 'order_checkout'){
+        addUser(label);
+        return requestOrderContact();
+      }
+
+      if(value === 'order_email_yes'){
+        addUser(label);
+        return askOrderEmailInput();
+      }
+
+      if(value === 'order_email_no'){
+        addUser(label);
+        addBot('Très bien, on continue sans email.');
+        return addOrderSummary();
+      }
+
+      if(value === 'order_pay_wave' || value === 'order_pay_om' || value === 'order_pay_free' || value === 'order_pay_cash'){
+        addUser(label);
+        const wallet = value === 'order_pay_wave' ? 'Wave' : value === 'order_pay_om' ? 'Orange Money' : value === 'order_pay_free' ? 'Free Money' : 'paiement à la livraison';
+        setWallet(wallet === 'paiement à la livraison' ? 'Wave' : wallet);
+        return simulateOrderPayment(wallet);
+      }
+
+      if(value === 'modify_order'){
+        addUser(label);
+        addBot('Aucun problème, on reprend la commande depuis le début.');
+        return startOrderFlow({silentIntro:true});
+      }
+
+      if(value === 'whatsapp_order_confirm'){
+        addUser(label);
+        addBot('Confirmation WhatsApp simulée ✅\nDans la version réelle, le client reçoit le reçu, le délai, la zone et le récapitulatif de commande.');
+        return;
+      }
+
+if(value.startsWith('pre_bundle_')){
         addUser(label);
         const bundleKey = value.replace('pre_','');
         addBundle(bundleMap[bundleKey] || [], label);
@@ -1095,6 +1815,23 @@
         return;
       }
 
+      if(value === 'res_contact_whatsapp' || value === 'res_contact_sms' || value === 'res_contact_email'){
+        addUser(label);
+        const method = value === 'res_contact_email' ? 'email' : value === 'res_contact_sms' ? 'sms' : 'whatsapp';
+        return askReservationContactInput(method);
+      }
+
+      if(value === 'res_optional_email_yes'){
+        addUser(label);
+        return askReservationOptionalEmailInput();
+      }
+
+      if(value === 'res_optional_email_no'){
+        addUser(label);
+        addBot('Très bien, on continue sans email complémentaire.');
+        return addReservationSummary();
+      }
+
       if(value === 'confirm_wave' || value === 'confirm_om' || value === 'confirm_free'){
         addUser(label);
         const wallet = value === 'confirm_wave' ? 'Wave' : value === 'confirm_om' ? 'Orange Money' : 'Free Money';
@@ -1107,6 +1844,26 @@
         addUser(label);
         addBot('Aucun problème, on reprend la réservation depuis le début.');
         startReservationFlow({silentIntro:true});
+        return;
+      }
+
+      if(value === 'res_marketing_yes'){
+        addUser(label);
+        state.reservation.marketingOptIn = true;
+        addBot('C’est noté ✅ Le client accepte de recevoir les offres du restaurant.');
+        return;
+      }
+
+      if(value === 'order_marketing_yes'){
+        addUser(label);
+        state.order.marketingOptIn = true;
+        addBot('C’est noté ✅ Le client accepte de recevoir les offres du restaurant.');
+        return;
+      }
+
+      if(value === 'marketing_no'){
+        addUser(label);
+        addBot('Très bien. Aucune offre marketing ne sera envoyée.');
         return;
       }
 
@@ -1148,6 +1905,10 @@
       if(map[data.intent]) state.selected = map[data.intent];
       if(data.intent === 'reservation'){
         startReservationFlow({silentIntro:true});
+        return;
+      }
+      if(data.intent === 'order'){
+        startOrderFlow({silentIntro:true});
         return;
       }
       addBot(data.reply || 'Je peux vous aider à composer votre panier.');
@@ -1216,6 +1977,25 @@
         setReservationTime(inputTime.value, inputTime.value.replace(':','h'));
       }
 
+      if(action === 'contactInput'){
+        const context = btn.dataset.contactContext;
+        const card = btn.closest('.chat-card');
+        const inputContact = card ? card.querySelector('input[data-contact-input]') : null;
+        const value = inputContact ? inputContact.value.trim() : '';
+        if(!value){
+          showToast('Complétez ce champ.');
+          return false;
+        }
+        const valid = context.includes('phone') ? isLikelyPhone(value) : context.includes('email') ? isValidEmail(value) : value.length >= 5;
+        addUser(value);
+        if(context === 'reservation_phone') submitReservationPhone(value);
+        if(context === 'reservation_email' || context === 'reservation_optional_email') submitReservationEmail(value);
+        if(context === 'order_phone') submitOrderPhone(value);
+        if(context === 'order_address') submitOrderAddress(value);
+        if(context === 'order_email') submitOrderEmail(value);
+        if(valid) btn.disabled = true;
+      }
+
       if(action === 'add'){
         const id = btn.dataset.id;
         addToCart(id);
@@ -1244,6 +2024,7 @@
       if(/tartare/.test(m)) return reply('tartare', 'Le tartare est idéal avec un rouge structuré et une garniture simple.', ['tartare','malbec','chevalnoir','frites']);
       if(/sushi|asia|partager|amis|groupe/.test(m)) return reply('asia', 'Pour une table entre amis, le format à partager fonctionne très bien avec Sancerre ou Prosecco.', ['asia','sancerre','prosecco','carteblanche']);
       if(/dessert|tiramisu|moelleux|chocolat/.test(m)) return reply('tiramisu', "Très bon choix de fin de repas. Je recommande l'Espresso Martini ou un rosé festif.", ['tiramisu','espresso','lyvrose','glace']);
+      if(/livraison|livrer|domicile|commande|commander|emporter|retrait|takeaway|delivery/.test(m)) return reply('order', 'Je peux gérer une commande directe : livraison ou retrait, nombre de personnes, zone, frais estimés, panier et paiement wallet.', ['daurade','tagliatelles','volaille','tiramisu'], ['Voulez-vous une livraison à domicile ou une commande à emporter ?']);
       if(/budget|fcfa|xof|moins de|pas depasser|60000|50000|40000|30000/.test(m)) return reply('budget', 'Avec ce budget, je compose un panier optimisé : plat fort + accord accessible + dessert ou cocktail.', ['daurade','riesling','cremebrulee','espresso']);
       return reply('default', "Je peux vous aider à choisir un plat, proposer un accord, composer un panier ou sécuriser une réservation. Utilisez les boutons ou essayez : Chateaubriand, poisson, anniversaire ou budget 60000.", ['chateaubriand','daurade','asia','tiramisu']);
     }
@@ -1291,7 +2072,7 @@
     }
 
     function resetDemo(){
-      state.selected = 'chateaubriand'; state.cart = []; state.wallet='Wave'; state.paid=false; state.lastIntent='default'; state.reservation = freshReservation();
+      state.selected = 'chateaubriand'; state.cart = []; state.wallet='Wave'; state.paid=false; state.lastIntent='default'; state.reservation = freshReservation(); state.order = freshOrder();
       document.getElementById('chat').innerHTML = '';
       document.getElementById('phoneSubtitle').textContent = 'Je vous conseille, je compose le panier et je sécurise la réservation.';
       startChat(); renderAll(); showToast('Démo réinitialisée.');
@@ -1306,9 +2087,10 @@
         subtitle:'Le parcours reste dans la discussion. Les prochains boutons apparaîtront toujours en bas.',
         choices:[
           {label:'Réserver une table', value:'start_reservation', primary:true},
+          {label:'Commander / livraison', value:'start_order'},
+          {label:'À emporter', value:'start_pickup'},
           {label:'Découvrir le menu', value:'start_menu'},
-          {label:'Me faire conseiller', value:'start_advice'},
-          {label:'Commander / précommander', value:'start_preorder'}
+          {label:'Me faire conseiller', value:'start_advice'}
         ]
       });
     }
