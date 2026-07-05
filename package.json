@@ -1,0 +1,13 @@
+{
+  "name": "restaurant-revenue-ai-mvp",
+  "version": "2.0.0",
+  "private": true,
+  "description": "MVP live - Sommelier Digital pour restaurant premium",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

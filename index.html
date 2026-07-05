@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sommelier Digital Live - MVP Restaurant Revenue AI</title>
+  <style>
+    :root{
+      --bg:#f7f0e7;
+      --paper:#fffaf3;
+      --white:#fff;
+      --ink:#17120f;
+      --muted:#70675f;
+      --line:#eadfce;
+      --gold:#b98c4c;
+      --gold2:#e0bd7c;
+      --wine:#4c1722;
+      --wine2:#7d2839;
+      --green:#176a50;
+      --red:#ac4135;
+      --blue:#1e3156;
+      --shadow:0 24px 70px rgba(44,31,20,.13);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 6% 8%, rgba(224,189,124,.36), transparent 26%),
+        radial-gradient(circle at 88% 9%, rgba(76,23,34,.16), transparent 30%),
+        linear-gradient(135deg,#fffaf1 0%,#f4ebdf 55%,#ffffff 100%);
+    }
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .app{max-width:1440px;margin:0 auto;padding:22px}
+    .topbar{
+      position:sticky;top:0;z-index:30;
+      margin:-22px -22px 22px;padding:15px 22px;
+      background:rgba(255,250,243,.84);backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(234,223,206,.86);
+    }
+    .topbar-inner{max-width:1440px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:280px}
+    .logo{width:48px;height:48px;border-radius:17px;background:linear-gradient(135deg,var(--wine),var(--wine2) 55%,var(--gold));display:grid;place-items:center;color:white;font-size:24px;box-shadow:0 12px 34px rgba(76,23,34,.23)}
+    .brand small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:900}
+    .brand strong{display:block;font-size:18px;line-height:1.1;letter-spacing:-.02em}
+    .nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .nav button,.pill{
+      border:1px solid var(--line);background:rgba(255,255,255,.78);color:var(--ink);
+      padding:10px 14px;border-radius:999px;font-weight:850;font-size:13px;box-shadow:0 8px 18px rgba(35,27,20,.05);transition:.2s ease;
+    }
+    .nav button:hover,.pill:hover{transform:translateY(-1px);border-color:#dec291;background:white}
+    .nav button.active,.pill.active{background:var(--ink);border-color:var(--ink);color:white}
+    .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:20px;align-items:stretch;margin-bottom:20px}
+    .hero-card{
+      position:relative;overflow:hidden;min-height:382px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.18);
+      background:linear-gradient(135deg,#17110e 0%,#341917 52%,#7c5727 100%);color:white;box-shadow:var(--shadow);padding:34px;
+    }
+    .hero-card:before{content:"";position:absolute;right:-80px;top:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 64%)}
+    .hero-card:after{content:"";position:absolute;right:42px;bottom:32px;width:250px;height:250px;border-radius:50%;border:1px solid rgba(255,255,255,.13)}
+    .hero-content{position:relative;z-index:2;max-width:820px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.13);color:#ffe4b3;font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+    h1{margin:18px 0 14px;font-size:clamp(42px,6vw,76px);line-height:.92;letter-spacing:-.06em}
+    .hero p{margin:0 0 22px;color:rgba(255,255,255,.8);font-size:18px;line-height:1.6;max-width:780px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .primary,.secondary,.ghost{border:0;border-radius:18px;padding:13px 17px;font-weight:950;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:.2s ease}
+    .primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#25180d;box-shadow:0 16px 32px rgba(181,139,74,.3)}
+    .secondary{background:white;color:var(--wine)}
+    .ghost{background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2)}
+    .primary:hover,.secondary:hover,.ghost:hover{transform:translateY(-2px)}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px;max-width:760px}
+    .hero-stat{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);border-radius:22px;padding:16px}
+    .hero-stat b{display:block;font-size:28px;letter-spacing:-.04em}.hero-stat span{font-size:12px;color:rgba(255,255,255,.72);line-height:1.35}
+    .status-card{border:1px solid var(--line);background:rgba(255,255,255,.78);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+    .status-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border-radius:20px;background:#fff;border:1px solid var(--line)}
+    .status-left{display:flex;align-items:center;gap:12px}.dot{width:13px;height:13px;border-radius:50%;background:#999;box-shadow:0 0 0 7px rgba(153,153,153,.12)}.dot.ok{background:var(--green);box-shadow:0 0 0 7px rgba(23,106,80,.13)}.dot.warn{background:var(--gold);box-shadow:0 0 0 7px rgba(185,140,76,.16)}
+    .status-row b{display:block}.status-row small{display:block;color:var(--muted);margin-top:2px}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;background:#f3eadc;color:#7c5727}.badge.green{background:#e9f6f0;color:var(--green)}.badge.wine{background:#f5e8ec;color:var(--wine)}
+    .section{display:none}.section.active{display:block;animation:fade .24s ease}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .panel{border:1px solid var(--line);background:rgba(255,250,243,.88);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:20px}
+    .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}.panel-title{font-size:28px;line-height:1;letter-spacing:-.04em;margin:0}.panel-sub{margin:6px 0 0;color:var(--muted);line-height:1.55}
+    .demo-grid{display:grid;grid-template-columns:minmax(360px,.78fr) minmax(0,1.22fr) minmax(340px,.82fr);gap:18px;align-items:start}
+    .phone{border:10px solid #17120f;background:#17120f;border-radius:46px;box-shadow:0 26px 80px rgba(17,11,7,.27);height:760px;position:sticky;top:94px;overflow:hidden}.phone:before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:112px;height:25px;border-radius:0 0 17px 17px;background:#17120f;z-index:3}
+    .screen{height:100%;border-radius:34px;overflow:hidden;background:#fffaf3;display:flex;flex-direction:column;position:relative}.screen-top{padding:22px 18px 14px;background:linear-gradient(135deg,var(--wine),#91562d);color:white}.screen-top .mini{display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.72);font-size:12px;font-weight:900}.screen-top h3{margin:18px 0 5px;font-size:25px;letter-spacing:-.04em}.screen-top p{margin:0;color:rgba(255,255,255,.82);font-size:13px;line-height:1.38}
+    .screen-body{padding:14px;overflow:auto;flex:1;scroll-behavior:smooth}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:2px 0 14px}.chip{border:1px solid #eadfce;background:white;color:#332920;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}.chip:hover{background:#fff4dd}.chat{display:grid;gap:10px}.bubble{padding:11px 12px;border-radius:18px;line-height:1.42;font-size:13px;max-width:88%;white-space:pre-line}.bot{background:#f0e6d7;color:#241b13;border-top-left-radius:6px}.user{background:#17120f;color:white;justify-self:end;border-top-right-radius:6px}.typing{display:flex;gap:5px;width:max-content}.typing span{width:7px;height:7px;border-radius:50%;background:#9b8e80;animation:typing 1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}@keyframes typing{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+    .chat-card{border:1px solid #eadfce;background:#fff;border-radius:21px;padding:12px;box-shadow:0 10px 24px rgba(35,27,20,.07);max-width:95%}.chat-card .top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.chat-card .kind{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:950;color:#8b652c}.chat-card h4{margin:4px 0 4px;font-size:15px}.chat-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.4}.chat-card .price{font-weight:950;color:var(--wine);font-size:14px;text-align:right}.add-small{border:0;background:var(--ink);color:white;border-radius:13px;padding:9px 10px;font-size:12px;font-weight:950;margin-top:10px;width:100%}.add-small.added{background:var(--green)}
+    .screen-bottom{border-top:1px solid #eadfce;background:white;padding:11px;display:grid;gap:8px}.input-row{display:flex;gap:8px}.input-row input{flex:1;border:1px solid var(--line);border-radius:15px;padding:11px 12px;outline:none;background:#fffaf3;font-size:13px}.input-row button{border:0;background:linear-gradient(135deg,var(--wine),var(--wine2));color:white;border-radius:15px;padding:0 13px;font-weight:950}.mini-cart{display:flex;justify-content:space-between;align-items:center;gap:10px}.mini-cart span{display:block;color:var(--muted);font-size:11px}.mini-cart b{font-size:15px}.mini-cart button{border:0;background:var(--gold);color:#25180d;border-radius:13px;padding:10px 11px;font-weight:950;font-size:12px}
+    .catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.dish{border:1px solid var(--line);background:white;border-radius:24px;padding:15px;position:relative;overflow:hidden;transition:.2s ease}.dish:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(35,27,20,.09)}.dish.active{border-color:var(--wine);box-shadow:0 0 0 3px rgba(76,23,34,.08)}.dish .emoji{font-size:34px;margin-bottom:10px}.dish .type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:950}.dish h3{margin:4px 0;font-size:18px;line-height:1.05;letter-spacing:-.03em}.dish p{margin:8px 0 12px;color:var(--muted);line-height:1.35;font-size:13px}.dish .price{font-weight:950;color:var(--wine)}.dish button{border:0;background:#17120f;color:white;border-radius:14px;padding:10px 12px;font-weight:950;width:100%;margin-top:12px}
+    .pairing-list{display:grid;gap:11px}.pairing{border:1px solid var(--line);background:#fff;border-radius:22px;padding:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.pairing .type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8b652c;font-weight:950}.pairing h4{margin:4px 0 5px}.pairing p{margin:0;color:var(--muted);font-size:13px;line-height:1.4}.pairing .right{text-align:right;min-width:120px}.pairing .right b{color:var(--wine)}.pairing button{border:0;background:#17120f;color:white;border-radius:13px;padding:8px 10px;font-size:12px;font-weight:950;margin-top:8px}.pairing button.added{background:var(--green)}
+    .side-stack{display:grid;gap:18px}.cart-card{border:1px solid var(--line);background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}.cart-card h3{margin:0 0 12px;font-size:23px;letter-spacing:-.04em}.cart-line{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e5d7c2;padding:10px 0;font-size:13px}.cart-line span:first-child{color:var(--muted)}.cart-line b{text-align:right}.empty{padding:22px;border:1px dashed #d8c6aa;border-radius:20px;text-align:center;color:var(--muted);background:#fffaf3}.total{border:1px solid #decaa9;background:linear-gradient(135deg,#fff8ec,#f4e4ca);border-radius:22px;padding:15px;margin-top:12px}.total-label{color:#7a6040;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:950}.amount{font-size:31px;font-weight:950;letter-spacing:-.045em}.uplift{display:flex;justify-content:space-between;gap:12px;background:#effaf4;color:var(--green);border:1px solid #cce7da;border-radius:18px;padding:11px;margin-top:10px;font-weight:850;font-size:13px}
+    .reserve-box{border:1px solid var(--line);border-radius:22px;background:#fffaf3;padding:14px;margin-top:12px}.reserve-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.control{border:1px solid var(--line);border-radius:15px;background:white;padding:10px}.control label{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:950}.control input,.control select{border:0;outline:none;background:transparent;width:100%;padding-top:5px;font-weight:900;color:var(--ink)}.wallets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.wallets button{border:1px solid var(--line);background:white;border-radius:14px;padding:10px 7px;font-size:12px;font-weight:950}.wallets button.active{background:#17120f;color:white;border-color:#17120f}.pay{width:100%;border:0;background:linear-gradient(135deg,var(--wine),var(--wine2));color:white;border-radius:16px;padding:13px;margin-top:12px;font-weight:950}.pay.success{background:linear-gradient(135deg,var(--green),#27846a)}.clear{border:1px solid var(--line);background:white;color:var(--ink);border-radius:14px;padding:10px 12px;font-weight:850;width:100%;margin-top:8px}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.metric .name{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:950}.metric .value{font-size:29px;font-weight:950;letter-spacing:-.045em;margin-top:6px}.metric .sub{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}.bar{height:10px;background:#f0e6d7;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--wine))}.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.table{border-collapse:collapse;width:100%;background:white;border-radius:18px;overflow:hidden}.table th,.table td{padding:13px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}.table th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:#fff4df}.table td:last-child,.table th:last-child{text-align:right}.script-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.script-card{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.script-card h3{margin:0 0 12px;font-size:20px}.script-step{display:flex;gap:10px;border-bottom:1px dashed #e5d7c2;padding:10px 0}.script-step:last-child{border-bottom:0}.num{width:27px;height:27px;border-radius:50%;background:#17120f;color:white;display:grid;place-items:center;font-size:12px;font-weight:950;flex:0 0 auto}.script-step p{margin:0;color:var(--muted);line-height:1.42;font-size:13px}.script-step b{color:var(--ink)}.offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.offer{border:1px solid var(--line);background:white;border-radius:26px;padding:20px;display:flex;flex-direction:column;gap:12px}.offer.featured{border-color:var(--gold);box-shadow:0 20px 46px rgba(185,140,76,.17);transform:translateY(-4px)}.offer h3{margin:0;font-size:21px}.offer .big{font-size:33px;font-weight:950;letter-spacing:-.05em}.offer ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}.toast{position:fixed;right:22px;bottom:22px;background:#17120f;color:white;border-radius:18px;padding:14px 16px;box-shadow:0 18px 50px rgba(0,0,0,.26);display:none;z-index:100;max-width:390px;line-height:1.35}.toast.show{display:block;animation:pop .24s ease}@keyframes pop{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+    @media(max-width:1180px){.hero{grid-template-columns:1fr}.demo-grid{grid-template-columns:390px minmax(0,1fr)}.side-stack{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.script-grid,.offer-grid,.dashboard-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:860px){.app{padding:14px}.topbar{margin:-14px -14px 16px;padding:12px 14px}.topbar-inner{align-items:flex-start;flex-direction:column}.brand{min-width:0}.nav{justify-content:flex-start}.hero-card{padding:24px;min-height:auto}.demo-grid,.catalog-grid,.metrics,.script-grid,.offer-grid,.dashboard-grid,.reserve-controls{grid-template-columns:1fr}.phone{position:relative;top:auto;height:760px;max-width:420px;margin:auto}.wallets{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.panel-head{flex-direction:column}.hero p{font-size:16px}h1{font-size:44px}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">🍷</div>
+        <div><small>MVP live</small><strong>Sommelier Digital AI</strong></div>
+      </div>
+      <nav class="nav" id="nav">
+        <button class="active" data-section="demo">Chatbot live</button>
+        <button data-section="dashboard">Dashboard</button>
+        <button data-section="scripts">Script chatbot</button>
+        <button data-section="offer">Offre client</button>
+      </nav>
+    </div>
+  </div>
+
+  <main class="app">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="hero-content">
+          <span class="eyebrow">🟢 Test live prêt</span>
+          <h1>Le menu devient vendeur.</h1>
+          <p>Un chatbot connecté au menu qui conseille, recommande les accords mets-vins, ajoute des upsells au panier et sécurise la réservation avec acompte wallet.</p>
+          <div class="hero-actions">
+            <button class="primary" onclick="focusChat()">Tester le chatbot →</button>
+            <button class="secondary" onclick="quickSend('Je veux le Chateaubriand')">Démo Chateaubriand</button>
+            <button class="ghost" onclick="quickSend('Anniversaire pour 4 personnes')">Démo anniversaire</button>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><b>+18-30%</b><span>Objectif de hausse du panier moyen via upsell.</span></div>
+            <div class="hero-stat"><b>24/7</b><span>Conseil automatique avant réservation ou commande.</span></div>
+            <div class="hero-stat"><b>Wallet</b><span>Wave, Orange Money, Free Money en démonstration.</span></div>
+          </div>
+        </div>
+      </div>
+      <aside class="status-card">
+        <div>
+          <div class="status-row"><div class="status-left"><span class="dot ok" id="apiDot"></span><div><b id="apiStatus">API chatbot en vérification</b><small id="apiSub">Test du serveur local /api/chat</small></div></div><span class="badge green">Live</span></div>
+          <div class="status-row"><div class="status-left"><span class="dot ok"></span><div><b>Mode démonstration</b><small>Réponses contextualisées sans dépendance externe.</small></div></div><span class="badge">MVP</span></div>
+          <div class="status-row"><div class="status-left"><span class="dot warn"></span><div><b>Mode public</b><small>Déployable sur un hébergeur Node.js avec npm start.</small></div></div><span class="badge wine">Online-ready</span></div>
+        </div>
+        <div class="panel" style="margin:0;box-shadow:none;background:#fff;border-radius:22px;padding:16px">
+          <b>Questions test rapides</b>
+          <p class="panel-sub" style="font-size:13px">Essaie : “Je viens en couple”, “poisson”, “budget 60000”, “réserver à 20h30”, “paiement Wave”.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="demo" class="section active">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h2 class="panel-title">Chatbot live + panier dynamique</h2>
+            <p class="panel-sub">Écris naturellement dans le téléphone. Le bot répond, propose des cartes, ajoute les produits au panier et simule la réservation.</p>
+          </div>
+          <button class="pill active" onclick="resetDemo()">Réinitialiser</button>
+        </div>
+        <div class="demo-grid">
+          <div class="phone" aria-label="Aperçu mobile du chatbot">
+            <div class="screen">
+              <div class="screen-top">
+                <div class="mini"><span>La Fourchette · Demo</span><span id="liveClock">12:00</span></div>
+                <h3 id="phoneTitle">Sommelier Digital</h3>
+                <p id="phoneSubtitle">Je vous conseille, je compose le panier et je sécurise la réservation.</p>
+              </div>
+              <div class="screen-body" id="screenBody">
+                <div class="chips" id="quickChips"></div>
+                <div class="chat" id="chat"></div>
+              </div>
+              <div class="screen-bottom">
+                <div class="input-row">
+                  <input id="chatInput" autocomplete="off" placeholder="Ex : Je veux le Chateaubriand" />
+                  <button onclick="sendFromInput()">Envoyer</button>
+                </div>
+                <div class="mini-cart">
+                  <div><span>Panier actuel</span><b id="miniTotal">0 FCFA</b></div>
+                  <button onclick="quickSend('Je veux réserver et payer avec Wave')">Réserver</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" style="margin:0;box-shadow:none;background:rgba(255,255,255,.62)">
+            <div class="panel-head">
+              <div><h2 class="panel-title" style="font-size:24px">Plats et scénarios à tester</h2><p class="panel-sub">Clique sur un plat pour déclencher une conversation et les accords associés.</p></div>
+            </div>
+            <div class="catalog-grid" id="catalogGrid"></div>
+            <div style="height:18px"></div>
+            <div class="panel-head" style="margin-bottom:12px"><div><h2 class="panel-title" style="font-size:24px">Accords recommandés</h2><p class="panel-sub">Produits déjà présents sur la carte, reliés automatiquement au plat sélectionné.</p></div></div>
+            <div class="pairing-list" id="pairingList"></div>
+          </div>
+
+          <aside class="side-stack">
+            <div class="cart-card">
+              <h3>Panier live</h3>
+              <div id="cartLines" class="empty">Aucun produit ajouté pour l'instant.</div>
+              <div class="total"><div class="total-label">Total estimé</div><div class="amount" id="cartTotal">0 FCFA</div></div>
+              <div class="uplift"><span>Uplift vs plat seul</span><b id="cartUplift">0%</b></div>
+              <button class="clear" onclick="clearCart()">Vider le panier</button>
+            </div>
+
+            <div class="cart-card">
+              <h3>Réservation avec acompte</h3>
+              <p class="panel-sub" style="font-size:13px">Le paiement est simulé pour la démo. L'acompte est déduit de l'addition.</p>
+              <div class="reserve-box">
+                <div class="reserve-controls">
+                  <div class="control"><label>Date</label><input id="dateInput" type="date" /></div>
+                  <div class="control"><label>Heure</label><input id="timeInput" type="time" value="20:30" /></div>
+                  <div class="control"><label>Convives</label><select id="guestInput"><option>2</option><option>3</option><option>4</option><option>6</option><option>8</option></select></div>
+                  <div class="control"><label>Acompte</label><select id="depositInput"><option value="10000">10 000</option><option value="20000" selected>20 000</option><option value="30000">30 000</option><option value="50000">50 000</option></select></div>
+                </div>
+                <div class="wallets" id="wallets"></div>
+                <button class="pay" id="payButton" onclick="simulatePayment()">Payer l'acompte avec Wave</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section">
+      <div class="panel">
+        <div class="panel-head"><div><h2 class="panel-title">Dashboard restaurateur</h2><p class="panel-sub">Vue de pilotage pour montrer au restaurant l'impact business du moteur d'upsell.</p></div></div>
+        <div class="metrics" id="metrics"></div>
+        <div style="height:18px"></div>
+        <div class="dashboard-grid">
+          <div class="cart-card" style="box-shadow:none"><h3>Leviers de vente</h3><div id="leverBars"></div></div>
+          <div class="cart-card" style="box-shadow:none"><h3>Produits poussés par l'IA</h3><table class="table" id="upsellTable"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="scripts" class="section">
+      <div class="panel">
+        <div class="panel-head"><div><h2 class="panel-title">Script chatbot prêt à présenter</h2><p class="panel-sub">Questions fermées, relances d'upsell et objections commerciales intégrées.</p></div></div>
+        <div class="script-grid" id="scriptGrid"></div>
+      </div>
+    </section>
+
+    <section id="offer" class="section">
+      <div class="panel">
+        <div class="panel-head"><div><h2 class="panel-title">Offre sur mesure à présenter</h2><p class="panel-sub">Positionnement : ne pas vendre un chatbot, vendre un moteur de panier moyen et de réservations sécurisées.</p></div></div>
+        <div class="offer-grid">
+          <div class="offer"><span class="badge">Pilote</span><h3>Audit + prototype</h3><div class="big">2 semaines</div><ul><li>Audit site et menu</li><li>10 plats connectés aux upsells</li><li>Script chatbot personnalisé</li><li>Prototype web + QR code</li></ul></div>
+          <div class="offer featured"><span class="badge green">Recommandé</span><h3>MVP live</h3><div class="big">30 jours</div><ul><li>Chatbot branché au site</li><li>Menu dynamique midi/soir</li><li>Réservation avec acompte</li><li>Dashboard d'upsell</li><li>Optimisation hebdomadaire</li></ul></div>
+          <div class="offer"><span class="badge wine">Scale</span><h3>Revenue Concierge</h3><div class="big">mensuel</div><ul><li>Multi-sites restaurants</li><li>WhatsApp / QR / site web</li><li>A/B testing des recommandations</li><li>Reporting panier moyen</li><li>Amélioration continue</li></ul></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const fcfa = n => `${Number(n || 0).toLocaleString('fr-FR')} FCFA`;
+
+    const items = {
+      chateaubriand:{id:'chateaubriand', type:'Plat', emoji:'🥩', category:'Viande premium', name:'Chateaubriand 600g', price:45000, description:'Plat signature à partager, idéal pour déclencher un accord vin premium et une entrée.'},
+      canard:{id:'canard', type:'Plat', emoji:'🍗', category:'Viande gourmande', name:'Confit de canard', price:28500, description:'Plat à forte valeur gustative, parfait pour proposer un rouge rond ou un Bourgogne.'},
+      daurade:{id:'daurade', type:'Plat', emoji:'🐟', category:'Poisson', name:'Filet de daurade royale', price:16500, description:'Plat accessible qui peut monter en panier avec un blanc sec et frais.'},
+      tartare:{id:'tartare', type:'Plat', emoji:'🔪', category:'Viande froide', name:'Tartare de boeuf au couteau', price:16500, description:'Très bon support pour proposer un rouge structuré ou une garniture.'},
+      asia:{id:'asia', type:'Plat', emoji:'🍣', category:'À partager', name:"L'Asia - plateau à partager", price:16500, description:'Plateau idéal entre amis, à connecter avec Prosecco, Sancerre ou Carte Blanche.'},
+      tiramisu:{id:'tiramisu', type:'Dessert', emoji:'🍰', category:'Dessert', name:'Tiramisu déstructuré', price:7500, description:'Moment parfait pour proposer un cocktail, une coupe festive ou une option anniversaire.'},
+      petitcaillou:{id:'petitcaillou', type:'Vin rouge premium', emoji:'🍷', name:"Saint-Julien 'Petit Caillou'", price:75000, reason:'Accord premium idéal avec le Chateaubriand.'},
+      lepape:{id:'lepape', type:'Vin rouge prestige', emoji:'🍷', name:"Pessac-Léognan 'Château Le Pape'", price:82500, reason:'Option très haut de gamme pour dîner signature.'},
+      gambas:{id:'gambas', type:'Entrée à partager', emoji:'🍤', name:'Rouleaux de gambas dorées', price:22000, reason:'Très bon levier de partage avant un plat premium.'},
+      moelleux:{id:'moelleux', type:'Dessert', emoji:'🍫', name:'Moelleux chocolat noir 70%', price:7500, reason:'Dessert signature pour clôturer un repas premium.'},
+      champy:{id:'champy', type:'Vin rouge premium', emoji:'🍷', name:'Bourgogne Chrey-lès-Beaune Maison Champy', price:66000, reason:'Accord élégant pour le confit de canard.'},
+      chaireclavel:{id:'chaireclavel', type:'Vin rouge accessible', emoji:'🍷', name:'Côtes du Rhône Chaire Clavel', price:27000, reason:'Alternative accessible, ronde et gourmande.'},
+      chablis:{id:'chablis', type:'Vin blanc', emoji:'🥂', name:'Chablis J. Moreau & fils', price:35000, reason:'Blanc sec et frais, parfait avec daurade ou sole.'},
+      riesling:{id:'riesling', type:'Vin blanc accessible', emoji:'🥂', name:'Riesling Gustav Lorentz', price:28000, reason:'Option plus accessible pour déclencher un premier achat vin.'},
+      cremebrulee:{id:'cremebrulee', type:'Dessert', emoji:'🍮', name:'Crème brûlée vanille de Madagascar', price:8500, reason:'Dessert doux et facile à accepter après un plat poisson.'},
+      malbec:{id:'malbec', type:'Vin rouge', emoji:'🍷', name:'Malbec San Felipe Argentine', price:35000, reason:'Rouge structuré, bon accord avec tartare.'},
+      chevalnoir:{id:'chevalnoir', type:'Vin rouge accessible', emoji:'🍷', name:'Cheval Noir Mähler-Besse', price:24000, reason:'Option accessible et charpentée.'},
+      frites:{id:'frites', type:'Garniture', emoji:'🍟', name:'Frites ou saladette', price:3000, reason:'Petit add-on simple et très facile à accepter.'},
+      sancerre:{id:'sancerre', type:'Vin blanc', emoji:'🥂', name:'Sancerre Pascal Jolivet', price:42000, reason:'Très adapté au plateau asiatique et sushi.'},
+      prosecco:{id:'prosecco', type:'Pétillant', emoji:'🍾', name:'Prosecco Brut', price:40000, reason:'Option festive pour table entre amis.'},
+      carteblanche:{id:'carteblanche', type:'Produit signature', emoji:'✨', name:'La Carte Blanche du Chef', price:75000, reason:'Produit événementiel à mieux mettre en scène.'},
+      espresso:{id:'espresso', type:'Cocktail', emoji:'🍸', name:'Espresso Martini', price:7500, reason:'Accord naturel avec tiramisu ou moelleux chocolat.'},
+      lyvrose:{id:'lyvrose', type:'Rosé / Champagne', emoji:'🍾', name:"Pays d'Oc Lyv Rosé", price:30000, reason:'Accord festif pour anniversaire ou dessert.'},
+      glace:{id:'glace', type:'Extra dessert', emoji:'🍨', name:'Boule de glace ou sorbet', price:2000, reason:'Petit add-on à faible friction.'},
+      deposit20000:{id:'deposit20000', type:'Acompte', emoji:'💳', name:'Acompte réservation', price:20000, reason:"Déduit de l'addition et limite le no-show."},
+      wave:{id:'wave', type:'Wallet', emoji:'🌊', name:'Paiement Wave', price:0, reason:'Paiement wallet simulé dans le MVP.'},
+      orangeMoney:{id:'orangeMoney', type:'Wallet', emoji:'🟠', name:'Orange Money', price:0, reason:'Alternative de paiement wallet.'},
+      freeMoney:{id:'freeMoney', type:'Wallet', emoji:'🔵', name:'Free Money', price:0, reason:'Alternative de paiement wallet.'}
+    };
+
+    const pairingsByDish = {
+      chateaubriand:['petitcaillou','lepape','gambas','moelleux'],
+      canard:['champy','chaireclavel','cremebrulee'],
+      daurade:['chablis','riesling','cremebrulee'],
+      tartare:['malbec','chevalnoir','frites'],
+      asia:['sancerre','prosecco','carteblanche'],
+      tiramisu:['espresso','lyvrose','glace']
+    };
+
+    const quicks = ['Je viens en couple','Je veux le Chateaubriand','Je préfère du poisson','Anniversaire pour 4 personnes','Budget 60000','Réserver à 20h30','Paiement Wave'];
+
+    const state = {
+      selected:'chateaubriand',
+      cart:[],
+      wallet:'Wave',
+      paid:false,
+      apiOnline:false,
+      chatStarted:false,
+      lastIntent:'default'
+    };
+
+    function item(id){ return items[id]; }
+    function dishIds(){ return ['chateaubriand','canard','daurade','tartare','asia','tiramisu']; }
+    function selectedDish(){ return item(state.selected); }
+    function cartTotal(){ return state.cart.reduce((sum,id)=>sum + (item(id)?.price || 0),0); }
+    function basePrice(){ const firstDish = state.cart.map(item).find(x => x && x.type === 'Plat'); return firstDish ? firstDish.price : selectedDish().price; }
+    function uplift(){ const base = basePrice(); if(!base) return 0; return Math.max(0, Math.round(((cartTotal() - base) / base) * 100)); }
+
+    function renderAll(){ renderClock(); renderChips(); renderCatalog(); renderPairings(); renderCart(); renderWallets(); renderMetrics(); renderScripts(); }
+
+    function renderClock(){
+      const d = new Date();
+      document.getElementById('liveClock').textContent = d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+    }
+
+    function renderChips(){
+      document.getElementById('quickChips').innerHTML = quicks.map(q=>`<button class="chip" onclick="quickSend('${escapeAttr(q)}')">${q}</button>`).join('');
+    }
+
+    function renderCatalog(){
+      document.getElementById('catalogGrid').innerHTML = dishIds().map(id=>{
+        const d = item(id);
+        return `<article class="dish ${state.selected===id?'active':''}">
+          <div class="emoji">${d.emoji}</div><div class="type">${d.category}</div><h3>${d.name}</h3><div class="price">${fcfa(d.price)}</div><p>${d.description}</p>
+          <button onclick="selectDish('${id}')">Tester ce scénario</button>
+        </article>`;
+      }).join('');
+    }
+
+    function renderPairings(){
+      const ids = pairingsByDish[state.selected] || [];
+      document.getElementById('pairingList').innerHTML = ids.map(id=>pairingHtml(id)).join('');
+    }
+
+    function pairingHtml(id){
+      const p = item(id); if(!p) return '';
+      const added = state.cart.includes(id);
+      return `<div class="pairing">
+        <div><div class="type">${p.type}</div><h4>${p.emoji || ''} ${p.name}</h4><p>${p.reason || ''}</p></div>
+        <div class="right"><b>${fcfa(p.price)}</b><br><button class="${added?'added':''}" onclick="addToCart('${id}')">${added?'✓ Ajouté':'Ajouter'}</button></div>
+      </div>`;
+    }
+
+    function renderCart(){
+      const el = document.getElementById('cartLines');
+      if(!state.cart.length){
+        el.className = 'empty';
+        el.innerHTML = "Aucun produit ajouté pour l'instant.";
+      } else {
+        el.className = '';
+        el.innerHTML = state.cart.map(id=>{
+          const x = item(id);
+          return `<div class="cart-line"><span>${x.emoji || ''} ${x.type} · ${x.name}</span><b>${fcfa(x.price)}</b></div>`;
+        }).join('');
+      }
+      document.getElementById('cartTotal').textContent = fcfa(cartTotal());
+      document.getElementById('miniTotal').textContent = fcfa(cartTotal());
+      document.getElementById('cartUplift').textContent = `+${uplift()}%`;
+      const pay = document.getElementById('payButton');
+      pay.textContent = state.paid ? `Acompte payé avec ${state.wallet} ✓` : `Payer l'acompte avec ${state.wallet}`;
+      pay.classList.toggle('success', state.paid);
+    }
+
+    function renderWallets(){
+      document.getElementById('wallets').innerHTML = ['Wave','Orange Money','Free Money'].map(w=>`<button class="${state.wallet===w?'active':''}" onclick="setWallet('${w}')">${w}</button>`).join('');
+    }
+
+    function renderMetrics(){
+      const total = cartTotal();
+      const base = basePrice();
+      const add = Math.max(0,total-base);
+      const monthlySessions = 800;
+      const attach = 0.22;
+      const monthlyAdd = Math.round(add * monthlySessions * attach);
+      document.getElementById('metrics').innerHTML = `
+        <div class="metric"><div class="name">Panier plat seul</div><div class="value">${fcfa(base)}</div><div class="sub">Référence avant recommandation.</div></div>
+        <div class="metric"><div class="name">Panier live</div><div class="value">${fcfa(total)}</div><div class="sub">Panier composé par le chatbot.</div></div>
+        <div class="metric"><div class="name">Uplift</div><div class="value">+${uplift()}%</div><div class="sub">Gain potentiel par commande.</div></div>
+        <div class="metric"><div class="name">CA add. pilote</div><div class="value">${fcfa(monthlyAdd)}</div><div class="sub">Hyp. 800 vues menu/mois, 22% attach.</div></div>`;
+      document.getElementById('leverBars').innerHTML = [
+        ['Accords mets-vins',84],['Desserts et cocktails',62],['Réservation avec acompte',58],['Menu dynamique midi/soir',73]
+      ].map(([name,v])=>`<div style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;font-weight:900"><span>${name}</span><span>${v}%</span></div><div class="bar"><span style="width:${v}%"></span></div></div>`).join('');
+      const rows = (pairingsByDish[state.selected] || []).map(id=>{
+        const p = item(id);
+        return `<tr><td>${p.name}</td><td>${p.type}</td><td>${fcfa(p.price)}</td></tr>`;
+      }).join('');
+      document.getElementById('upsellTable').innerHTML = `<thead><tr><th>Produit</th><th>Type</th><th>Prix</th></tr></thead><tbody>${rows}</tbody>`;
+    }
+
+    function renderScripts(){
+      const blocks = [
+        {title:'1. Qualification', steps:[['Bot','Bonjour 👋 Quelle expérience recherchez-vous aujourd’hui ?'],['Choix','Déjeuner · Dîner romantique · Entre amis · Anniversaire · Business lunch'],['Bot','Préférez-vous viande, poisson, plat à partager ou dessert ?']]},
+        {title:'2. Upsell mets-vins', steps:[['Bot','Excellent choix. Ce plat s’accorde avec cette suggestion.'],['Relance','Préférez-vous une option accessible ou premium ?'],['Bot','Je peux l’ajouter directement à votre panier.']]},
+        {title:'3. Réservation payante', steps:[['Bot','Souhaitez-vous réserver cette table maintenant ?'],['Relance','Pour garantir la table, vous pouvez verser un acompte déduit de l’addition.'],['Paiement','Choisissez Wave, Orange Money ou Free Money.']]},
+        {title:'Chateaubriand', steps:[['Client','Je veux le Chateaubriand.'],['Bot','Excellent choix. Le meilleur accord est le Saint-Julien Petit Caillou.'],['Upsell','Souhaitez-vous ajouter les rouleaux de gambas en entrée ?']]},
+        {title:'Daurade', steps:[['Client','Je préfère du poisson.'],['Bot','Je recommande la daurade royale avec un Chablis ou un Riesling.'],['Upsell','Souhaitez-vous finir léger avec une crème brûlée ?']]},
+        {title:'Anniversaire', steps:[['Client','Anniversaire pour 4 personnes.'],['Bot','Je recommande la Carte Blanche + rosé ou Prosecco.'],['Conversion','Je peux sécuriser la table avec un acompte wallet.']]}
+      ];
+      document.getElementById('scriptGrid').innerHTML = blocks.map(b=>`<div class="script-card"><h3>${b.title}</h3>${b.steps.map((s,i)=>`<div class="script-step"><div class="num">${i+1}</div><p><b>${s[0]} :</b> ${s[1]}</p></div>`).join('')}</div>`).join('');
+    }
+
+    function selectDish(id){
+      state.selected = id;
+      if(!state.cart.includes(id)) state.cart = [id, ...state.cart.filter(x => item(x)?.type !== 'Plat')];
+      renderAll();
+      const label = item(id).name;
+      quickSend(`Je veux ${label}`);
+    }
+
+    function addToCart(id, silent=false){
+      if(!item(id)) return;
+      if(!state.cart.includes(id)) state.cart.push(id);
+      state.paid = false;
+      renderAll();
+      if(!silent) showToast(`${item(id).name} ajouté au panier.`);
+    }
+
+    function clearCart(){ state.cart = []; state.paid = false; renderAll(); showToast('Panier vidé.'); }
+    function setWallet(w){ state.wallet = w; state.paid = false; renderWallets(); renderCart(); }
+
+    function simulatePayment(){
+      const deposit = Number(document.getElementById('depositInput').value || 20000);
+      const guests = document.getElementById('guestInput').value;
+      const time = document.getElementById('timeInput').value || '20:30';
+      state.paid = true;
+      renderCart();
+      addBot(`Réservation confirmée ✅\n${guests} personne(s) à ${time}. Acompte simulé : ${fcfa(deposit)} via ${state.wallet}. Le montant sera déduit de l'addition.`);
+      showToast(`Paiement simulé : ${fcfa(deposit)} via ${state.wallet}.`);
+    }
+
+    function focusChat(){
+      switchSection('demo');
+      setTimeout(()=>document.getElementById('chatInput').focus(),150);
+    }
+
+    function quickSend(text){
+      switchSection('demo');
+      document.getElementById('chatInput').value = text;
+      sendFromInput();
+    }
+
+    function sendFromInput(){
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if(!text) return;
+      input.value = '';
+      addUser(text);
+      respond(text);
+    }
+
+    function addUser(text){ appendBubble('user', escapeHtml(text)); }
+    function addBot(text){ appendBubble('bot', escapeHtml(text)); }
+    function appendBubble(role, html){
+      const chat = document.getElementById('chat');
+      const div = document.createElement('div');
+      div.className = `bubble ${role}`;
+      div.innerHTML = html;
+      chat.appendChild(div);
+      scrollPhone();
+    }
+
+    function showTyping(){
+      const chat = document.getElementById('chat');
+      const div = document.createElement('div');
+      div.id = 'typing';
+      div.className = 'bubble bot typing';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      chat.appendChild(div);
+      scrollPhone();
+    }
+    function hideTyping(){ const el = document.getElementById('typing'); if(el) el.remove(); }
+    function scrollPhone(){ const body = document.getElementById('screenBody'); body.scrollTop = body.scrollHeight; }
+
+    async function respond(message){
+      showTyping();
+      let data;
+      try{
+        const res = await fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message, cart:state.cart, selected:state.selected})});
+        if(!res.ok) throw new Error('api');
+        data = await res.json();
+      }catch(e){
+        data = localBrain(message);
+      }
+      setTimeout(()=>{
+        hideTyping();
+        handleBotData(data);
+      }, 420);
+    }
+
+    function handleBotData(data){
+      state.lastIntent = data.intent || 'default';
+      const map = {chateaubriand:'chateaubriand', canard:'canard', daurade:'daurade', tartare:'tartare', asia:'asia', tiramisu:'tiramisu'};
+      if(map[data.intent]) state.selected = map[data.intent];
+      addBot(data.reply || 'Je peux vous aider à composer votre panier.');
+      (data.followups || []).forEach(f => addBot(f));
+      if(data.cards && data.cards.length) addCards(data.cards);
+      if(data.intent === 'reservation') document.getElementById('phoneSubtitle').textContent = 'Réservation avec acompte wallet activée.';
+      renderAll();
+    }
+
+    function addCards(ids){
+      const chat = document.getElementById('chat');
+      ids.forEach(id=>{
+        const p = item(id); if(!p) return;
+        const card = document.createElement('div');
+        card.className = 'chat-card';
+        const action = p.type === 'Wallet' ? `setWallet('${p.name === 'Paiement Wave' ? 'Wave' : p.name}'); simulatePayment();` : `addToCart('${id}')`;
+        const label = p.type === 'Wallet' ? 'Choisir et payer' : (state.cart.includes(id) ? '✓ Déjà ajouté' : 'Ajouter au panier');
+        card.innerHTML = `<div class="top"><div><div class="kind">${escapeHtml(p.type)}</div><h4>${p.emoji || ''} ${escapeHtml(p.name)}</h4><p>${escapeHtml(p.reason || p.description || '')}</p></div><div class="price">${fcfa(p.price)}</div></div><button class="add-small ${state.cart.includes(id)?'added':''}" onclick="${action}">${label}</button>`;
+        chat.appendChild(card);
+      });
+      scrollPhone();
+    }
+
+    function localBrain(message){
+      const m = message.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const reply = (intent, text, cards, followups=[]) => ({mode:'front-fallback', intent, reply:text, cards, followups});
+      if(/chateaubriand|boeuf premium|600g/.test(m)) return reply('chateaubriand', "Excellent choix. Le Chateaubriand est le meilleur support d'upsell premium : je vous propose un Saint-Julien ou un Pessac-Léognan.", ['chateaubriand','petitcaillou','lepape','gambas','moelleux'], ['Voulez-vous une option vin accessible ou prestige ?']);
+      if(/canard|confit/.test(m)) return reply('canard', 'Très bon choix gourmand. Je propose une option rouge accessible ou un Bourgogne premium.', ['canard','champy','chaireclavel','cremebrulee']);
+      if(/poisson|daurade|sole|meuniere/.test(m)) return reply('daurade', 'Pour le poisson, je recommande un blanc sec et frais. Chablis ou Riesling selon le budget.', ['daurade','chablis','riesling','cremebrulee'], ['Souhaitez-vous rester léger ou ajouter un dessert ?']);
+      if(/tartare/.test(m)) return reply('tartare', 'Le tartare est idéal avec un rouge structuré et une garniture simple.', ['tartare','malbec','chevalnoir','frites']);
+      if(/sushi|asia|partager|amis|groupe/.test(m)) return reply('asia', 'Pour une table entre amis, le format à partager fonctionne très bien avec Sancerre ou Prosecco.', ['asia','sancerre','prosecco','carteblanche']);
+      if(/dessert|tiramisu|moelleux|chocolat/.test(m)) return reply('tiramisu', "Très bon choix de fin de repas. Je recommande l'Espresso Martini ou un rosé festif.", ['tiramisu','espresso','lyvrose','glace']);
+      if(/anniversaire|birthday|celebration|fete/.test(m)) return reply('anniversaire', "Pour un anniversaire, je recommande un parcours clé en main : Carte Blanche, rosé ou Prosecco, puis acompte wallet pour sécuriser la table.", ['carteblanche','lyvrose','prosecco','tiramisu'], ['Je peux aussi préparer la réservation avec acompte.']);
+      if(/reserv|table|20h|21h|midi|dejeuner|diner|acompte|no show|wave|orange money|free money|payer|paiement|wallet/.test(m)) return reply('reservation', "Je peux sécuriser la réservation avec un acompte wallet. Le montant sera déduit de l'addition.", ['deposit20000','wave','orangeMoney','freeMoney'], ['Quel créneau souhaitez-vous ? Exemple : ce soir 20h30, 2 personnes.']);
+      if(/budget|fcfa|xof|moins de|pas depasser|60000|50000|40000|30000/.test(m)) return reply('budget', 'Avec ce budget, je compose un panier optimisé : plat fort + accord accessible + dessert ou cocktail.', ['daurade','riesling','cremebrulee','espresso']);
+      return reply('default', "Je peux vous aider à choisir un plat, proposer un accord, composer un panier ou sécuriser une réservation. Essayez : Chateaubriand, poisson, anniversaire, budget 60000 ou réservation.", ['chateaubriand','daurade','asia','tiramisu']);
+    }
+
+    function switchSection(id){
+      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active', b.dataset.section===id));
+      if(id === 'dashboard') renderMetrics();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function resetDemo(){
+      state.selected = 'chateaubriand'; state.cart = []; state.wallet='Wave'; state.paid=false; state.lastIntent='default';
+      document.getElementById('chat').innerHTML = '';
+      startChat(); renderAll(); showToast('Démo réinitialisée.');
+    }
+
+    function startChat(){
+      addBot("Bonjour 👋 Je suis votre Sommelier Digital. Dites-moi votre intention : dîner en couple, anniversaire, poisson, viande, budget ou réservation.");
+      addBot("Je peux aussi ajouter automatiquement un vin, un cocktail, un dessert ou un acompte wallet au panier.");
+    }
+
+    async function checkApi(){
+      try{
+        const res = await fetch('/health', {cache:'no-store'});
+        if(!res.ok) throw new Error('health');
+        const data = await res.json();
+        state.apiOnline = true;
+        document.getElementById('apiDot').className = 'dot ok';
+        document.getElementById('apiStatus').textContent = 'API chatbot en ligne';
+        document.getElementById('apiSub').textContent = `Serveur actif sur le port ${data.port || 5173}`;
+      }catch(e){
+        state.apiOnline = false;
+        document.getElementById('apiDot').className = 'dot warn';
+        document.getElementById('apiStatus').textContent = 'Fallback front-end actif';
+        document.getElementById('apiSub').textContent = 'Le chatbot reste testable sans serveur API.';
+      }
+    }
+
+    function escapeHtml(str){ return String(str).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+    function escapeAttr(str){ return escapeHtml(str).replace(/`/g,'&#96;'); }
+    function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.classList.remove('show'),3600); }
+
+    document.getElementById('nav').addEventListener('click', e => { const b = e.target.closest('button[data-section]'); if(b) switchSection(b.dataset.section); });
+    document.getElementById('chatInput').addEventListener('keydown', e => { if(e.key === 'Enter') sendFromInput(); });
+    document.getElementById('dateInput').valueAsDate = new Date(Date.now() + 24*60*60*1000);
+    renderAll(); startChat(); checkApi(); setInterval(renderClock, 30000);
+  </script>
+</body>
+</html>
