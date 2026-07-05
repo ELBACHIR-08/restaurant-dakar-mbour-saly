@@ -1,11 +1,10 @@
 {
-  "name": "restaurant-revenue-ai-mvp",
-  "version": "2.0.0",
+  "name": "restaurant-dakar-mbour-saly",
+  "version": "2.2.0-vercel-fix",
   "private": true,
-  "description": "MVP live - Sommelier Digital pour restaurant premium",
+  "description": "MVP Sommelier Digital - static frontend + Vercel serverless API",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js"
+    "dev": "vercel dev"
   },
   "engines": {
     "node": ">=18"

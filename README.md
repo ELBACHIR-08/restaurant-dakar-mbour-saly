@@ -1,8 +1,16 @@
-# Restaurant Revenue AI - Sommelier Digital Live MVP
+# Sommelier Digital - MVP Vercel Ready
 
-Prototype HTML/CSS/JS + serveur Node local, sans dépendance externe.
+Prototype de démonstration du Sommelier Digital pour restaurant premium.
 
-## Lancer le chatbot en live
+## Contenu
+
+- `index.html` : interface mobile/desktop du MVP
+- `api/chat.js` : endpoint chatbot compatible Vercel Serverless Functions
+- `api/health.js` : endpoint de test santé
+- `server.js` : serveur local Node.js pour tester sans Vercel
+- `vercel.json` : rewrite `/health` vers `/api/health`
+
+## Test local classique
 
 ```bash
 npm run dev
@@ -14,32 +22,15 @@ Puis ouvrir :
 http://127.0.0.1:5173
 ```
 
-## Ce qui est inclus
+## Déploiement Vercel via GitHub
 
-- Chatbot interactif live avec champ de saisie et réponses contextuelles
-- Suggestions automatiques d'accords mets-vins/cocktails
-- Cartes cliquables pour ajouter un plat, un vin, un cocktail ou un dessert au panier
-- Panier dynamique, calcul d'uplift et estimation de panier moyen
-- Réservation avec acompte wallet en mode démonstration
-- Endpoint local `/api/chat` pour tester un vrai flux chatbot côté serveur
-- Fallback 100 % front-end si le serveur API n'est pas disponible
+1. Dézipper ce dossier.
+2. Créer un nouveau repository GitHub.
+3. Ajouter tout le contenu du dossier, pas le fichier ZIP lui-même.
+4. Importer le repository dans Vercel.
+5. Framework Preset : Other.
+6. Build Command : vide.
+7. Output Directory : vide ou `.`.
+8. Cliquer sur Deploy.
 
-## Exemples à tester dans le chatbot
-
-- `Je viens en couple`
-- `Je veux le Chateaubriand`
-- `Je préfère du poisson`
-- `Anniversaire pour 4 personnes`
-- `J'ai un budget de 60000`
-- `Je veux réserver à 20h30`
-- `Je paie avec Wave`
-
-## Déploiement public
-
-Ce projet peut être mis en ligne sur un hébergeur Node.js en utilisant :
-
-```bash
-npm start
-```
-
-Port par défaut : `5173`, ou variable d'environnement `PORT` si l'hébergeur l'impose.
+Le chatbot live utilise `/api/chat` en ligne.
