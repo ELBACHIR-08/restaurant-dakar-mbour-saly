@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>Sommelier Digital Live - MVP Restaurant Revenue AI</title>
+  <title>Restaurant Revenue AI - MVP Concierge Commercial</title>
   <style>
     :root{
       --bg:#f7f0e7;
@@ -93,7 +93,22 @@
     .pairing-list{display:grid;gap:11px}.pairing{border:1px solid var(--line);background:#fff;border-radius:22px;padding:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.pairing .type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8b652c;font-weight:950}.pairing h4{margin:4px 0 5px}.pairing p{margin:0;color:var(--muted);font-size:13px;line-height:1.4}.pairing .right{text-align:right;min-width:120px}.pairing .right b{color:var(--wine)}.pairing button{border:0;background:#17120f;color:white;border-radius:13px;padding:8px 10px;font-size:12px;font-weight:950;margin-top:8px}.pairing button.added{background:var(--green)}
     .side-stack{display:grid;gap:18px}.cart-card{border:1px solid var(--line);background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}.cart-card h3{margin:0 0 12px;font-size:23px;letter-spacing:-.04em}.cart-line{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e5d7c2;padding:10px 0;font-size:13px}.cart-line span:first-child{color:var(--muted)}.cart-line b{text-align:right}.empty{padding:22px;border:1px dashed #d8c6aa;border-radius:20px;text-align:center;color:var(--muted);background:#fffaf3}.total{border:1px solid #decaa9;background:linear-gradient(135deg,#fff8ec,#f4e4ca);border-radius:22px;padding:15px;margin-top:12px}.total-label{color:#7a6040;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:950}.amount{font-size:31px;font-weight:950;letter-spacing:-.045em}.uplift{display:flex;justify-content:space-between;gap:12px;background:#effaf4;color:var(--green);border:1px solid #cce7da;border-radius:18px;padding:11px;margin-top:10px;font-weight:850;font-size:13px}
     .reserve-box{border:1px solid var(--line);border-radius:22px;background:#fffaf3;padding:14px;margin-top:12px}.reserve-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.control{border:1px solid var(--line);border-radius:15px;background:white;padding:10px}.control label{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:950}.control input,.control select{border:0;outline:none;background:transparent;width:100%;padding-top:5px;font-weight:900;color:var(--ink)}.wallets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.wallets button{border:1px solid var(--line);background:white;border-radius:14px;padding:10px 7px;font-size:12px;font-weight:950}.wallets button.active{background:#17120f;color:white;border-color:#17120f}.pay{width:100%;border:0;background:linear-gradient(135deg,var(--wine),var(--wine2));color:white;border-radius:16px;padding:13px;margin-top:12px;font-weight:950}.pay.success{background:linear-gradient(135deg,var(--green),#27846a)}.clear{border:1px solid var(--line);background:white;color:var(--ink);border-radius:14px;padding:10px 12px;font-weight:850;width:100%;margin-top:8px}
-    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.metric .name{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:950}.metric .value{font-size:29px;font-weight:950;letter-spacing:-.045em;margin-top:6px}.metric .sub{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}.bar{height:10px;background:#f0e6d7;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--wine))}.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.table{border-collapse:collapse;width:100%;background:white;border-radius:18px;overflow:hidden}.table th,.table td{padding:13px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}.table th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:#fff4df}.table td:last-child,.table th:last-child{text-align:right}.script-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.script-card{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.script-card h3{margin:0 0 12px;font-size:20px}.script-step{display:flex;gap:10px;border-bottom:1px dashed #e5d7c2;padding:10px 0}.script-step:last-child{border-bottom:0}.num{width:27px;height:27px;border-radius:50%;background:#17120f;color:white;display:grid;place-items:center;font-size:12px;font-weight:950;flex:0 0 auto}.script-step p{margin:0;color:var(--muted);line-height:1.42;font-size:13px}.script-step b{color:var(--ink)}.offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.offer{border:1px solid var(--line);background:white;border-radius:26px;padding:20px;display:flex;flex-direction:column;gap:12px}.offer.featured{border-color:var(--gold);box-shadow:0 20px 46px rgba(185,140,76,.17);transform:translateY(-4px)}.offer h3{margin:0;font-size:21px}.offer .big{font-size:33px;font-weight:950;letter-spacing:-.05em}.offer ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}.toast{position:fixed;right:22px;bottom:22px;background:#17120f;color:white;border-radius:18px;padding:14px 16px;box-shadow:0 18px 50px rgba(0,0,0,.26);display:none;z-index:100;max-width:390px;line-height:1.35}.toast.show{display:block;animation:pop .24s ease}@keyframes pop{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.metric .name{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:950}.metric .value{font-size:29px;font-weight:950;letter-spacing:-.045em;margin-top:6px}.metric .sub{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}.bar{height:10px;background:#f0e6d7;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--wine))}.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.table{border-collapse:collapse;width:100%;background:white;border-radius:18px;overflow:hidden}.table th,.table td{padding:13px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}.table th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:#fff4df}.table td:last-child,.table th:last-child{text-align:right}.script-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.script-card{border:1px solid var(--line);background:white;border-radius:24px;padding:18px}.script-card h3{margin:0 0 12px;font-size:20px}.script-step{display:flex;gap:10px;border-bottom:1px dashed #e5d7c2;padding:10px 0}.script-step:last-child{border-bottom:0}.num{width:27px;height:27px;border-radius:50%;background:#17120f;color:white;display:grid;place-items:center;font-size:12px;font-weight:950;flex:0 0 auto}.script-step p{margin:0;color:var(--muted);line-height:1.42;font-size:13px}.script-step b{color:var(--ink)}.offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.offer{border:1px solid var(--line);background:white;border-radius:26px;padding:20px;display:flex;flex-direction:column;gap:12px}.offer.featured{border-color:var(--gold);box-shadow:0 20px 46px rgba(185,140,76,.17);transform:translateY(-4px)}.offer h3{margin:0;font-size:21px}.offer .big{font-size:33px;font-weight:950;letter-spacing:-.05em}.offer ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}
+    .exec-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);gap:18px;margin-bottom:18px}
+    .exec-card{border:1px solid rgba(255,255,255,.18);background:linear-gradient(135deg,#17120f 0%,#442018 58%,#8a622e 100%);color:white;border-radius:28px;padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .exec-card:after{content:"";position:absolute;right:-72px;top:-72px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 65%)}
+    .exec-card h3{margin:0 0 10px;font-size:30px;line-height:1;letter-spacing:-.05em;position:relative;z-index:1}
+    .exec-card p{margin:0;color:rgba(255,255,255,.78);line-height:1.55;position:relative;z-index:1}
+    .exec-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:20px;position:relative;z-index:1}
+    .exec-kpi{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.08);border-radius:18px;padding:13px}
+    .exec-kpi b{display:block;font-size:22px;letter-spacing:-.04em}.exec-kpi span{display:block;margin-top:4px;font-size:11px;color:rgba(255,255,255,.7);line-height:1.25}
+    .roi-card{border:1px solid var(--line);background:white;border-radius:28px;padding:22px;box-shadow:0 18px 45px rgba(35,27,20,.08)}
+    .roi-card h3{margin:0;font-size:22px;letter-spacing:-.03em}.roi-score{display:flex;align-items:flex-end;gap:8px;margin-top:13px}.roi-score b{font-size:54px;letter-spacing:-.07em;line-height:.86}.roi-score span{color:var(--muted);font-weight:900;margin-bottom:7px}.roi-card p{margin:14px 0 0;color:var(--muted);line-height:1.5;font-size:14px}
+    .insight-list{display:grid;gap:10px}.insight{border:1px solid var(--line);background:white;border-radius:20px;padding:14px;display:flex;align-items:flex-start;gap:12px}.insight .icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:#fff2da;color:#7c5727;flex:0 0 auto}.insight b{display:block;font-size:14px}.insight span{display:block;color:var(--muted);font-size:12px;line-height:1.4;margin-top:3px}
+    .server-tips{display:grid;gap:10px}.server-tip{border:1px dashed #e0cfae;background:#fffaf3;border-radius:18px;padding:13px}.server-tip .prob{display:flex;justify-content:space-between;gap:10px;font-weight:950}.server-tip p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.4}
+    .heatmap{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.heat-cell{border:1px solid var(--line);background:white;border-radius:17px;padding:12px;text-align:center}.heat-cell b{display:block;font-size:14px}.heat-cell span{display:block;margin-top:5px;font-size:11px;color:var(--muted)}.heat-cell.hot{background:#fff1d5;border-color:#e0bd7c}.heat-cell.peak{background:#4c1722;color:white;border-color:#4c1722}.heat-cell.peak span{color:rgba(255,255,255,.72)}
+    .roadmap-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.roadmap-card{border:1px solid var(--line);background:white;border-radius:22px;padding:16px}.roadmap-card small{display:inline-flex;border-radius:99px;background:#f4eadb;color:#7c5727;padding:6px 9px;font-weight:950;letter-spacing:.09em;text-transform:uppercase;font-size:10px}.roadmap-card h4{margin:12px 0 6px;font-size:17px}.roadmap-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.toast{position:fixed;right:22px;bottom:22px;background:#17120f;color:white;border-radius:18px;padding:14px 16px;box-shadow:0 18px 50px rgba(0,0,0,.26);display:none;z-index:100;max-width:390px;line-height:1.35}.toast.show{display:block;animation:pop .24s ease}@keyframes pop{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
 
     .choice-system{background:#fffdf8;max-width:98%}
     .flow-meta{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#f4eadb;color:#7c5727;font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;margin-bottom:8px}
@@ -115,8 +130,8 @@
     .privacy-note{font-size:10.5px;color:#73685d;background:#fbf5eb;border:1px solid #efe2d2;border-radius:12px;padding:8px 9px;margin-top:8px;line-height:1.35}
     .contact-pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#e9f6f0;color:#176a50;font-size:11px;font-weight:950;padding:6px 9px;margin-top:8px}
 
-    @media(max-width:1180px){.hero{grid-template-columns:1fr}.demo-grid{grid-template-columns:390px minmax(0,1fr)}.side-stack{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.script-grid,.offer-grid,.dashboard-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}}
-    @media(max-width:860px){.app{padding:14px}.topbar{margin:-14px -14px 16px;padding:12px 14px}.topbar-inner{align-items:flex-start;flex-direction:column}.brand{min-width:0}.nav{justify-content:flex-start}.hero-card{padding:24px;min-height:auto}.demo-grid,.catalog-grid,.metrics,.script-grid,.offer-grid,.dashboard-grid,.reserve-controls{grid-template-columns:1fr}.phone{position:relative;top:auto;height:760px;max-width:420px;margin:auto}.wallets{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.panel-head{flex-direction:column}.hero p{font-size:16px}h1{font-size:44px}}
+    @media(max-width:1180px){.hero{grid-template-columns:1fr}.demo-grid{grid-template-columns:390px minmax(0,1fr)}.side-stack{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.script-grid,.offer-grid,.dashboard-grid,.exec-grid{grid-template-columns:1fr 1fr}.exec-kpis,.roadmap-row{grid-template-columns:repeat(2,1fr)}.hero-stats{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:860px){.app{padding:14px}.topbar{margin:-14px -14px 16px;padding:12px 14px}.topbar-inner{align-items:flex-start;flex-direction:column}.brand{min-width:0}.nav{justify-content:flex-start}.hero-card{padding:24px;min-height:auto}.demo-grid,.catalog-grid,.metrics,.script-grid,.offer-grid,.dashboard-grid,.reserve-controls,.exec-grid,.exec-kpis,.roadmap-row{grid-template-columns:1fr}.heatmap{grid-template-columns:repeat(2,1fr)}.phone{position:relative;top:auto;height:760px;max-width:420px;margin:auto}.wallets{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.panel-head{flex-direction:column}.hero p{font-size:16px}h1{font-size:44px}}
 
     @media(max-width:860px){
       /* Mode discussion verrouillé : aucune remontée de page, aucun zoom input, tout reste dans le téléphone. */
@@ -146,7 +161,7 @@
     <div class="topbar-inner">
       <div class="brand">
         <div class="logo">🍷</div>
-        <div><small>MVP live</small><strong>Sommelier Digital AI</strong></div>
+        <div><small>MVP live</small><strong>Restaurant Revenue AI</strong></div>
       </div>
       <nav class="nav" id="nav">
         <button class="active" data-section="demo">Chatbot live</button>
@@ -163,11 +178,12 @@
         <div class="hero-content">
           <span class="eyebrow">🟢 Test live prêt</span>
           <h1>Le menu devient vendeur.</h1>
-          <p>Un chatbot connecté au menu qui conseille, recommande les accords mets-vins, ajoute des upsells au panier et sécurise la réservation avec acompte wallet.</p>
+          <p>Un concierge commercial connecté au menu : il conseille, réserve, prend les commandes, pousse les upsells, collecte le contact et mesure le revenu généré.</p>
           <div class="hero-actions">
             <button class="primary" onclick="focusChat()">Tester le chatbot →</button>
             <button class="secondary" onclick="quickSend('Je veux le Chateaubriand')">Démo Chateaubriand</button>
             <button class="secondary" onclick="quickSend('Je veux commander en livraison')">Démo livraison</button>
+            <button class="secondary" onclick="quickSend('Je suis un client régulier')">Démo mémoire client</button>
             <button class="ghost" onclick="quickSend('Anniversaire pour 4 personnes')">Démo anniversaire</button>
           </div>
           <div class="hero-stats">
@@ -185,7 +201,7 @@
         </div>
         <div class="panel" style="margin:0;box-shadow:none;background:#fff;border-radius:22px;padding:16px">
           <b>Questions test rapides</b>
-          <p class="panel-sub" style="font-size:13px">Essaie : “Je viens en couple”, “livraison aux Almadies”, “poisson”, “budget 60000”, “réserver à 20h30”, “paiement Wave”.</p>
+          <p class="panel-sub" style="font-size:13px">Essaie : “Je viens en couple”, “livraison aux Almadies”, “client régulier”, “allergie fruits de mer”, “budget 60000”, “paiement Wave”.</p>
         </div>
       </aside>
     </section>
@@ -264,12 +280,39 @@
 
     <section id="dashboard" class="section">
       <div class="panel">
-        <div class="panel-head"><div><h2 class="panel-title">Dashboard restaurateur</h2><p class="panel-sub">Vue de pilotage pour montrer au restaurant l'impact business du moteur d'upsell.</p></div></div>
+        <div class="panel-head"><div><h2 class="panel-title">Dashboard exécutif Restaurant Revenue AI</h2><p class="panel-sub">Une vue dirigeant qui transforme la démo en argument business : CA généré, panier moyen, upsell, no-show évités, livraison et recommandations IA.</p></div><button class="pill active" onclick="quickSend('Je suis un client régulier')">Tester la mémoire client</button></div>
+        <div class="exec-grid">
+          <div class="exec-card">
+            <h3>Le site devient un canal de vente mesurable.</h3>
+            <p>Le restaurateur ne voit pas seulement un chatbot : il voit les ventes additionnelles, les réservations sécurisées, les commandes directes et les opportunités d'optimisation.</p>
+            <div class="exec-kpis" id="execKpis"></div>
+          </div>
+          <div class="roi-card">
+            <h3>Score de maturité revenu</h3>
+            <div class="roi-score"><b id="roiScore">82</b><span>/100</span></div>
+            <p id="roiNarrative">Le parcours couvre les leviers essentiels : conseil, commande, acompte, contact client et analytics.</p>
+          </div>
+        </div>
         <div class="metrics" id="metrics"></div>
         <div style="height:18px"></div>
         <div class="dashboard-grid">
           <div class="cart-card" style="box-shadow:none"><h3>Leviers de vente</h3><div id="leverBars"></div></div>
           <div class="cart-card" style="box-shadow:none"><h3>Produits poussés par l'IA</h3><table class="table" id="upsellTable"></table></div>
+        </div>
+        <div style="height:18px"></div>
+        <div class="dashboard-grid">
+          <div class="cart-card" style="box-shadow:none"><h3>Recommandations IA du jour</h3><div class="insight-list" id="insightList"></div></div>
+          <div class="cart-card" style="box-shadow:none"><h3>Assistant serveur</h3><p class="panel-sub" style="font-size:13px;margin-bottom:12px">Suggestions à afficher sur tablette serveur au moment de la prise de commande.</p><div class="server-tips" id="serverTips"></div></div>
+        </div>
+        <div style="height:18px"></div>
+        <div class="dashboard-grid">
+          <div class="cart-card" style="box-shadow:none"><h3>Heatmap des moments de vente</h3><div class="heatmap" id="heatmap"></div></div>
+          <div class="cart-card" style="box-shadow:none"><h3>Prochaines briques activables</h3><div class="roadmap-row">
+            <div class="roadmap-card"><small>QR</small><h4>QR code intelligent</h4><p>Ouverture directe sur le parcours adapté : table, livraison, anniversaire ou business lunch.</p></div>
+            <div class="roadmap-card"><small>CRM</small><h4>Mémoire client</h4><p>Reconnaître les clients récurrents et recommander leur dernière expérience.</p></div>
+            <div class="roadmap-card"><small>WhatsApp</small><h4>Confirmation active</h4><p>Envoyer confirmation, reçu, lien wallet et relance panier abandonné.</p></div>
+            <div class="roadmap-card"><small>A/B test</small><h4>Optimisation continue</h4><p>Tester wording, prix, bundles et timing d'upsell pour maximiser le panier moyen.</p></div>
+          </div></div>
         </div>
       </div>
     </section>
@@ -283,11 +326,11 @@
 
     <section id="offer" class="section">
       <div class="panel">
-        <div class="panel-head"><div><h2 class="panel-title">Offre sur mesure à présenter</h2><p class="panel-sub">Positionnement : ne pas vendre un chatbot, vendre un moteur de panier moyen et de réservations sécurisées.</p></div></div>
+        <div class="panel-head"><div><h2 class="panel-title">Offre commerciale à présenter</h2><p class="panel-sub">Positionnement : vendre un concierge de revenu pour restaurants premium : réservation, commande directe, paiement, CRM, upsell et dashboard.</p></div></div>
         <div class="offer-grid">
           <div class="offer"><span class="badge">Pilote</span><h3>Audit + prototype</h3><div class="big">2 semaines</div><ul><li>Audit site et menu</li><li>10 plats connectés aux upsells</li><li>Script chatbot personnalisé</li><li>Prototype web + QR code</li></ul></div>
           <div class="offer featured"><span class="badge green">Recommandé</span><h3>MVP live</h3><div class="big">30 jours</div><ul><li>Chatbot branché au site</li><li>Menu dynamique midi/soir</li><li>Réservation avec acompte</li><li>Dashboard d'upsell</li><li>Optimisation hebdomadaire</li></ul></div>
-          <div class="offer"><span class="badge wine">Scale</span><h3>Revenue Concierge</h3><div class="big">mensuel</div><ul><li>Multi-sites restaurants</li><li>WhatsApp / QR / site web</li><li>A/B testing des recommandations</li><li>Reporting panier moyen</li><li>Amélioration continue</li></ul></div>
+          <div class="offer"><span class="badge wine">Scale</span><h3>Restaurant Revenue AI</h3><div class="big">SaaS</div><ul><li>Multi-restaurants et QR codes</li><li>WhatsApp / QR / site web</li><li>CRM client et mémoire d’achat</li><li>Assistant serveur tablette</li><li>Dashboard dirigeant et A/B testing</li></ul></div>
         </div>
       </div>
     </section>
@@ -508,21 +551,80 @@
       const base = basePrice();
       const add = Math.max(0,total-base);
       const monthlySessions = 800;
-      const attach = 0.22;
+      const attach = state.order.active ? 0.28 : 0.22;
       const monthlyAdd = Math.round(add * monthlySessions * attach);
-      document.getElementById('metrics').innerHTML = `
-        <div class="metric"><div class="name">Panier plat seul</div><div class="value">${fcfa(base)}</div><div class="sub">Référence avant recommandation.</div></div>
-        <div class="metric"><div class="name">Panier live</div><div class="value">${fcfa(total)}</div><div class="sub">Panier composé par le chatbot.</div></div>
-        <div class="metric"><div class="name">Uplift</div><div class="value">+${uplift()}%</div><div class="sub">Gain potentiel par commande.</div></div>
-        <div class="metric"><div class="name">CA add. pilote</div><div class="value">${fcfa(monthlyAdd)}</div><div class="sub">Hyp. 800 vues menu/mois, 22% attach.</div></div>`;
-      document.getElementById('leverBars').innerHTML = [
-        ['Réservation conversationnelle',88],['Commande & livraison directe',86],['Accords mets-vins',84],['Desserts et cocktails',62],['Acompte anti no-show',68],['Menu dynamique midi/soir',73]
-      ].map(([name,v])=>`<div style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;font-weight:900"><span>${name}</span><span>${v}%</span></div><div class="bar"><span style="width:${v}%"></span></div></div>`).join('');
-      const rows = (pairingsByDish[state.selected] || []).map(id=>{
-        const p = item(id);
-        return `<tr><td>${p.name}</td><td>${p.type}</td><td>${fcfa(p.price)}</td></tr>`;
-      }).join('');
-      document.getElementById('upsellTable').innerHTML = `<thead><tr><th>Produit</th><th>Type</th><th>Prix</th></tr></thead><tbody>${rows}</tbody>`;
+      const liveOrders = state.order.active ? 13 : 8;
+      const liveReservations = state.reservation.active ? 27 : 19;
+      const dailyRevenue = Math.max(148000, Math.round((total || 42000) * (liveOrders + liveReservations * 0.55)));
+      const noShowsSaved = Math.max(3, Math.round(liveReservations * 0.18));
+
+      const metricsEl = document.getElementById('metrics');
+      if(metricsEl){
+        metricsEl.innerHTML = `
+          <div class="metric"><div class="name">Panier plat seul</div><div class="value">${fcfa(base)}</div><div class="sub">Référence avant recommandation.</div></div>
+          <div class="metric"><div class="name">Panier live</div><div class="value">${fcfa(total)}</div><div class="sub">Panier composé par le chatbot.</div></div>
+          <div class="metric"><div class="name">Uplift</div><div class="value">+${uplift()}%</div><div class="sub">Gain potentiel par commande.</div></div>
+          <div class="metric"><div class="name">CA add. pilote</div><div class="value">${fcfa(monthlyAdd)}</div><div class="sub">Hyp. 800 vues menu/mois, ${Math.round(attach*100)}% attach.</div></div>`;
+      }
+
+      const exec = document.getElementById('execKpis');
+      if(exec){
+        exec.innerHTML = [
+          ['Réservations', String(liveReservations), 'sur la journée démo'],
+          ['Commandes directes', String(liveOrders), 'livraison + emporter'],
+          ['CA généré', fcfa(dailyRevenue), 'hors hypothèses externes'],
+          ['No-show évités', String(noShowsSaved), 'via acompte wallet']
+        ].map(([k,v,s])=>`<div class="exec-kpi"><b>${v}</b><span>${k}<br>${s}</span></div>`).join('');
+      }
+
+      const roiScore = document.getElementById('roiScore');
+      const score = Math.min(96, 68 + Math.round(uplift()/8) + (state.cart.length >= 3 ? 8 : 0) + (state.order.active ? 6 : 0) + ((state.reservation.phone || state.order.phone) ? 4 : 0));
+      if(roiScore) roiScore.textContent = score;
+      const narrative = document.getElementById('roiNarrative');
+      if(narrative) narrative.textContent = score >= 90 ? 'Très forte maturité : le parcours capte le client, vend plus, sécurise le paiement et structure la donnée client.' : 'Bonne maturité : le MVP couvre le revenu additionnel, la réservation, la commande directe et les premiers signaux CRM.';
+
+      const lever = document.getElementById('leverBars');
+      if(lever){
+        lever.innerHTML = [
+          ['Réservation conversationnelle',88],['Commande & livraison directe',86],['Accords mets-vins',84],['Collecte contact CRM',79],['Acompte anti no-show',72],['Menu dynamique midi/soir',73]
+        ].map(([name,v])=>`<div style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;font-weight:900"><span>${name}</span><span>${v}%</span></div><div class="bar"><span style="width:${v}%"></span></div></div>`).join('');
+      }
+      const table = document.getElementById('upsellTable');
+      if(table){
+        const rows = (pairingsByDish[state.selected] || []).map(id=>{
+          const p = item(id);
+          return `<tr><td>${p.name}</td><td>${p.type}</td><td>${fcfa(p.price)}</td></tr>`;
+        }).join('');
+        table.innerHTML = `<thead><tr><th>Produit</th><th>Type</th><th>Prix</th></tr></thead><tbody>${rows}</tbody>`;
+      }
+
+      const insightList = document.getElementById('insightList');
+      if(insightList){
+        const selected = item(state.selected);
+        insightList.innerHTML = [
+          ['📈','Mettre en avant le plat signature', `${selected.name} déclenche ${uplift()}% d'uplift dans le scénario actuel.`],
+          ['🍷','Proposer le bon accord plus tôt', `Le premier accord recommandé peut ajouter ${fcfa((pairingsByDish[state.selected]||[]).map(item)[0]?.price || 0)} au panier.`],
+          ['📲','Capitaliser sur le contact client', `${state.order.phone || state.reservation.phone ? 'Contact déjà capté dans le parcours.' : 'Demander WhatsApp après le récap, pas au début.'}`],
+          ['🛵','Réduire la dépendance aux plateformes', 'La commande directe permet de garder la marge et la donnée client.' ]
+        ].map(([ic,t,s])=>`<div class="insight"><div class="icon">${ic}</div><div><b>${t}</b><span>${s}</span></div></div>`).join('');
+      }
+
+      const serverTips = document.getElementById('serverTips');
+      if(serverTips){
+        const ids = pairingsByDish[state.selected] || ['tiramisu','espresso','citronnade'];
+        serverTips.innerHTML = ids.slice(0,3).map((id,i)=>{
+          const x = item(id); const prob = [81,68,54][i] || 45;
+          return `<div class="server-tip"><div class="prob"><span>${x.emoji || '✨'} ${x.name}</span><span>${prob}%</span></div><p>À proposer maintenant : ${x.reason || 'bon potentiel de vente additionnelle.'}</p></div>`;
+        }).join('');
+      }
+
+      const heat = document.getElementById('heatmap');
+      if(heat){
+        const cells = [
+          ['12h-14h','Business lunch','hot'],['14h-17h','Faible trafic',''],['18h-19h','Pré-dîner','hot'],['19h-21h','Pic réservation','peak'],['21h-23h','Dessert/cocktail','peak'],['Week-end','Anniversaire','hot']
+        ];
+        heat.innerHTML = cells.map(([t,s,c])=>`<div class="heat-cell ${c}"><b>${t}</b><span>${s}</span></div>`).join('');
+      }
     }
 
     function renderScripts(){
@@ -533,7 +635,9 @@
         {title:'4. Zone, délai et frais', steps:[['Bot','Dans quelle zone souhaitez-vous être livré ?'],['Choix','Plateau · Almadies · Ngor · Mermoz · Saly · Autre zone'],['Rassurance','Frais et délai estimés avant paiement.']]},
         {title:'5. Upsell contextualisé', steps:[['Sur place','Vin, champagne, table premium, dessert anniversaire.'],['Livraison','Dessert, boisson soft, garniture, pack duo/groupe.'],['Entreprise','Business lunch, dîner d’affaires ou demande de devis.']]},
         {title:'6. Contact subtil', steps:[['Bot','Où souhaitez-vous recevoir la confirmation ?'],['Logique','Téléphone prioritaire pour WhatsApp/SMS, email optionnel ou requis pour groupe/entreprise.'],['Conformité','Micro-mention : les infos servent à confirmer la commande ou la réservation.']]},
-        {title:'7. Confirmation', steps:[['Récap','Mode, convives, zone/retrait, contact, délai, frais, panier.'],['Paiement','Wave · Orange Money · Free Money · paiement à la livraison si validé.'],['Mobile','Écran figé sur la discussion, pas de zoom.']]}
+        {title:'7. Confirmation', steps:[['Récap','Mode, convives, zone/retrait, contact, délai, frais, panier.'],['Paiement','Wave · Orange Money · Free Money · paiement à la livraison si validé.'],['Mobile','Écran figé sur la discussion, pas de zoom.']]},
+        {title:'8. Mémoire client', steps:[['Signal','Téléphone ou WhatsApp permet de reconnaître un client récurrent.'],['Bot','Content de vous revoir, souhaitez-vous reprendre votre dernière expérience ?'],['Business','Recommande plus vite, personnalise et augmente le repeat purchase.']]},
+        {title:'9. Dashboard IA', steps:[['Direction','CA généré, panier moyen, no-shows évités, produits poussés.'],['Serveur','Suggestion tablette : quoi proposer maintenant et avec quelle probabilité.'],['Pilotage','A/B testing des bundles, scripts et timings d’upsell.']]}
       ];
       document.getElementById('scriptGrid').innerHTML = blocks.map(b=>`<div class="script-card"><h3>${b.title}</h3>${b.steps.map((s,i)=>`<div class="script-step"><div class="num">${i+1}</div><p><b>${s[0]} :</b> ${s[1]}</p></div>`).join('')}</div>`).join('');
     }
@@ -2018,6 +2122,8 @@ if(value.startsWith('pre_bundle_')){
     function localBrain(message){
       const m = normalize(message);
       const reply = (intent, text, cards, followups=[]) => ({mode:'front-fallback', intent, reply:text, cards, followups});
+      if(/client regulier|deja client|de retour|derniere fois|habitude|recommander la meme|meme experience/.test(m)) return reply('memory', "Content de vous revoir 👋 La dernière expérience enregistrée était : Chateaubriand 600g + Saint-Julien + Moelleux chocolat. Je peux la recommander ou l'adapter à votre budget.", ['chateaubriand','petitcaillou','moelleux'], ['Souhaitez-vous réserver la même expérience ou la transformer en livraison premium ?']);
+      if(/allergie|allergique|fruits de mer|crevette|gambas|poisson|enceinte|grossesse|sans fromage|fromage|halal|sans porc/.test(m) && !/daurade|sole|poisson grille/.test(m)) return reply('dietary', "Merci pour la précision. Je filtre les suggestions pour éviter les risques et je propose des options plus sûres : volaille, tartare ou plat végétarien selon préférence. Dans la version réelle, le restaurant valide la matrice allergènes.", ['volaille','tartare','chevalnoir','cremebrulee'], ['Voulez-vous une option légère, premium ou adaptée livraison ?']);
       if(/chateaubriand|boeuf premium|600g/.test(m)) return reply('chateaubriand', "Excellent choix. Le Chateaubriand est le meilleur support d'upsell premium : je vous propose un Saint-Julien ou un Pessac-Léognan.", ['chateaubriand','petitcaillou','lepape','gambas','moelleux'], ['Voulez-vous une option vin accessible ou prestige ?']);
       if(/canard|confit/.test(m)) return reply('canard', 'Très bon choix gourmand. Je propose une option rouge accessible ou un Bourgogne premium.', ['canard','champy','chaireclavel','cremebrulee']);
       if(/poisson|daurade|sole|meuniere/.test(m)) return reply('daurade', 'Pour le poisson, je recommande un blanc sec et frais. Chablis ou Riesling selon le budget.', ['daurade','chablis','riesling','cremebrulee'], ['Souhaitez-vous rester léger ou ajouter un dessert ?']);

@@ -1,8 +1,8 @@
 {
   "name": "restaurant-dakar-mbour-saly",
-  "version": "2.6.0-contact-flow",
+  "version": "2.7.0-sprint1-executive",
   "private": true,
-  "description": "MVP Sommelier Digital - reservation, commande, livraison, emporter, contact client et API serverless Vercel",
+  "description": "MVP Restaurant Revenue AI - dashboard exécutif, mémoire client, chatbot réservation, livraison et contact client",
   "scripts": {
     "dev": "vercel dev"
   },
