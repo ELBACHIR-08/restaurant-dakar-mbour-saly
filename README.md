@@ -29,3 +29,8 @@ Cette version corrige le test mobile du chatbot :
 2. Commit changes.
 3. Dans Vercel, redeploy sans cache.
 4. Tester `/health` puis la page principale.
+
+
+## Correctif interaction mobile
+
+Cette version corrige le mode chatbot mobile : l’écran reste figé sur la discussion et les boutons “Ajouter au panier” restent cliquables en un seul tap, même après la saisie d’un message.
